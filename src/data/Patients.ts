@@ -1,0 +1,65 @@
+const Patients = [{
+    id: 0,
+    name: "Omar Baayoun",
+    age: 19,
+    gender: 'M',
+    cat_id: 1,
+},
+{
+    id: 1,
+    name: "Ali Abbasi",
+    age: 20,
+    gender: 'M',
+    cat_id: 3,
+},
+{
+    id: 2,
+    name: "Ali Dandan",
+    age: 19,
+    gender: 'M',
+    cat_id: 3,
+},
+{
+    id: 3,
+    name: "Samih Somar",
+    age: 22,
+    gender: 'M',
+    cat_id: 3,
+},
+{
+    id: 4,
+    name: "Sami Abedin",
+    age: 19,
+    gender: 'M',
+    cat_id: 2,
+},
+{
+    id: 5,
+    name: "Sarah Reziq",
+    age: 18,
+    gender: 'F',
+    cat_id: 1,
+},
+{
+    id: 6,
+    name: "Julia Matrees",
+    age: 24,
+    gender: 'F',
+    cat_id: 2,
+},
+{
+    id: 7,
+    name: "Mohye Bay",
+    age: 60,
+    gender: 'M',
+    cat_id: 3,
+},
+{
+    id: 8,
+    name: "Samir Mezhir",
+    age: 25,
+    gender: 'M',
+    cat_id: 2,
+}]
+
+export default Patients

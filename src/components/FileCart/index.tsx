@@ -1,16 +1,33 @@
+import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react'
 import { View, Text, Pressable } from 'react-native'
 import styles from './styles'
 
+type RootStackParamList = {
+    Home: undefined;
+    Profile: { userId: string };
+    Feed: { sort: 'latest' | 'top' } | undefined;
+  };
+type Nav = StackScreenProps<RootStackParamList, 'Profile'>;
+
 interface FileCartProps {
-    Pname: String
+    cred: {
+        id: number,
+        name: String,
+        age: number,
+        gender: String,
+        cat_id: number,
+    },
+    navigation: Nav['navigation']
 }
 
-const FileCart = (props: FileCartProps) => {
-    const { Pname } = props
+const FileCart = ({ cred, navigation }: FileCartProps) => {
+    const handlePress = (navigation: Nav['navigation']) => {
+        console.log(cred)
+    }
 
     return (
-        <Pressable style={styles.root}>
+        <Pressable style={styles.root} onPress={() => handlePress(navigation)}>
             {/* Mark Bar */}
             <View style={styles.bar}></View>
 
@@ -18,7 +35,7 @@ const FileCart = (props: FileCartProps) => {
             <View style={styles.info}>
                 {/* Patient Name */}
                 <View>
-                    <Text numberOfLines={1} style={styles.pat_name}>{Pname}</Text>
+                    <Text numberOfLines={1} style={styles.pat_name}>{cred.name}</Text>
                 </View>
 
                 {/* Patient Status */}

@@ -22,8 +22,9 @@ interface FileCartProps {
 }
 
 const FileCart = ({ cred, navigation }: FileCartProps) => {
+
     const handlePress = (navigation: Nav['navigation']) => {
-        console.log(cred)
+        navigation.navigate("PServicesScreen")
     }
 
     return (

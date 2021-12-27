@@ -8,6 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import PFilesScreen from '../screens/PFilesScreen';
 import HRScreen from '../screens/HRScreen';
 import KnowledgeScreen from '../screens/KnowledgeScreen';
+import PServicesScreen from '../screens/PServicesScreen';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,14 @@ const StackNavigator = () => {
                 <Stack.Screen name="PFilesScreen" component={PFilesScreen}
                 options={{
                     title: 'Patient Files',
+                    headerStyle: { backgroundColor: '#d4f4fa' }
+                }}
+                />
+
+                {/* PServices */}
+                <Stack.Screen name="PServicesScreen" component={PServicesScreen}
+                options={{
+                    title: 'Patient Services',
                     headerStyle: { backgroundColor: '#d4f4fa' }
                 }}
                 />

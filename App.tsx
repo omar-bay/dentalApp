@@ -27,6 +27,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import FileCart from './src/components/FileCart';
+import ServiceCart from './src/components/ServiceCart';
+import TaskCart from './src/components/RTaskCart';
 import Router from './src/router';
 
 import HomeScreen from './src/screens/HomeScreen';

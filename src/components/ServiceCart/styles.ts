@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
     root: {
-        height: '19%',
+        height: 90,
         width: '100%',
         backgroundColor: 'transparent',
         marginBottom: 10

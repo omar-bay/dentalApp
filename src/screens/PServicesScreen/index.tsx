@@ -6,8 +6,7 @@ import styles from './styles'
 const PServicesScreen = () => {
     return (
         <View style={styles.root}>
-            <ScrollView style={styles.lista}>
-                <ServiceCart/>
+            <ScrollView style={styles.lista} showsVerticalScrollIndicator={false}>
                 <ServiceCart/>
                 <ServiceCart/>
                 <ServiceCart/>

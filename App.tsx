@@ -32,6 +32,7 @@ import TaskCart from './src/components/RTaskCart';
 import Router from './src/router';
 
 import HomeScreen from './src/screens/HomeScreen';
+import PNoteBook from './src/components/PNoteBook';
 
 const Section: React.FC<{
   title: string;

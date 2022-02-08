@@ -24,7 +24,7 @@ interface FileCartProps {
 const FileCart = ({ cred, navigation }: FileCartProps) => {
 
     const handlePress = (navigation: Nav['navigation']) => {
-        navigation.navigate("PNotebook")
+        navigation.navigate("PNotebook", { cred })
     }
 
     return (

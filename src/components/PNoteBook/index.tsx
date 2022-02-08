@@ -1,9 +1,19 @@
+import { StackScreenProps } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react'
 import { View, Text, Pressable, TextBase } from 'react-native'
 import PServicesScreen from '../../screens/PServicesScreen'
 import styles from './styles'
 
-const PNoteBook = () => {
+type RootStackParamList = {
+    Home: undefined;
+    Profile: { userId: string };
+    Feed: { sort: 'latest' | 'top' } | undefined;
+  };
+type Nav = StackScreenProps<RootStackParamList, 'Profile'>;
+
+const PNoteBook = ({navigation, route}: Nav) => {
+    const cred = route.params.cred
+
     const [visible, setVisible] = useState('Services')
 
     const renderScreen = () => {
@@ -21,6 +31,7 @@ const PNoteBook = () => {
     }
 
     useEffect(() => {
+        navigation.setOptions({ title: cred.name })
         setVisible('Services')
     }, [])
 

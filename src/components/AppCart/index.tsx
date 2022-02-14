@@ -2,13 +2,7 @@ import React from 'react'
 import { View, Text, Pressable, Image } from 'react-native'
 import styles from './styles'
 import { StackScreenProps } from '@react-navigation/stack';
-
-type RootStackParamList = {
-  Home: undefined;
-  Profile: { userId: string };
-  Feed: { sort: 'latest' | 'top' } | undefined;
-};
-type Nav = StackScreenProps<RootStackParamList, 'Profile'>;
+import { Nav } from '../../Types'
 
 interface AppCartProps {
     cred: {

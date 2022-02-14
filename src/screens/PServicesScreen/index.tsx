@@ -9,8 +9,8 @@ const PServicesScreen = () => {
         <View style={styles.root}>
             <ScrollView style={styles.lista} showsVerticalScrollIndicator={false}>
                 {
-                    Services.map((index) => (
-                        <ServiceCart />
+                    Services.map( service => (
+                        <ServiceCart key={service.id} service={service} />
                     ))
                 }
             </ScrollView>

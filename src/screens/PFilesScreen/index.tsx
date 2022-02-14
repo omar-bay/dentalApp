@@ -4,21 +4,7 @@ import FileCart from '../../components/FileCart'
 import styles from './styles'
 import Patients from '../../data/Patients'
 import { StackScreenProps } from '@react-navigation/stack'
-
-type RootStackParamList = {
-    Home: undefined;
-    Profile: { userId: string };
-    Feed: { sort: 'latest' | 'top' } | undefined;
-  };
-type Nav = StackScreenProps<RootStackParamList, 'Profile'>;
-
-interface Patient {
-    id: number,
-    name: String,
-    age: number,
-    gender: String,
-    cat_id: number
-}
+import { Patient, Nav } from '../Types'
 
 const PFilesScreen = ({navigation, route}: Nav) => {
     return (

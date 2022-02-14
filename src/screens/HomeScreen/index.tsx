@@ -4,14 +4,7 @@ import HomeHeader from '../../components/HomeHeader'
 import AppCart from '../../components/AppCart'
 import Apps from './Apps'
 import styles from './styles'
-import { StackScreenProps } from '@react-navigation/stack';
-
-type RootStackParamList = {
-  Home: undefined;
-  Profile: { userId: string };
-  Feed: { sort: 'latest' | 'top' } | undefined;
-};
-type Nav = StackScreenProps<RootStackParamList, 'Profile'>;
+import { Nav } from '../../Types'
 
 const HomeScreen = ({ navigation, route }: Nav) => {
 

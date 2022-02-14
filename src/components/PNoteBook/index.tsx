@@ -3,13 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, Pressable, TextBase } from 'react-native'
 import PServicesScreen from '../../screens/PServicesScreen'
 import styles from './styles'
-
-type RootStackParamList = {
-    Home: undefined;
-    Profile: { userId: string };
-    Feed: { sort: 'latest' | 'top' } | undefined;
-  };
-type Nav = StackScreenProps<RootStackParamList, 'Profile'>;
+import { Nav } from '../../Types'
 
 const PNoteBook = ({navigation, route}: Nav) => {
     const cred = route.params.cred

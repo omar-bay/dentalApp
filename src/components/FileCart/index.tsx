@@ -1,23 +1,10 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react'
 import { View, Text, Pressable } from 'react-native'
+import { Patient, Nav } from '../../Types';
 import styles from './styles'
 
-type RootStackParamList = {
-    Home: undefined;
-    Profile: { userId: string };
-    Feed: { sort: 'latest' | 'top' } | undefined;
-  };
-type Nav = StackScreenProps<RootStackParamList, 'Profile'>;
-
 interface FileCartProps {
-    cred: {
-        id: number,
-        name: String,
-        age: number,
-        gender: String,
-        cat_id: number,
-    },
+    cred: Patient,
     navigation: Nav['navigation']
 }
 

@@ -1,8 +1,14 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import styles from './styles'
+import { Task } from '../../Types'
 
-const RTaskCart = () => {
+interface RTaskCart {
+    task: Task
+}
+
+const RTaskCart = ({ task }: RTaskCart) => {
+
     return (
         <View style={styles.root}>
             {/* Mark Bar */}
@@ -12,7 +18,7 @@ const RTaskCart = () => {
             <View style={styles.info}>
                 {/* Task Name */}
                 <View>
-                    <Text numberOfLines={1} style={styles.pat_name}>Task Name</Text>
+                    <Text numberOfLines={1} style={styles.pat_name}>{task.name}</Text>
                 </View>
 
                 {/* Date Modified */}

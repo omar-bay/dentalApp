@@ -4,6 +4,7 @@ import FileCart from '../FileCart'
 import RTaskCart from '../RTaskCart'
 import styles from './styles'
 import { Service } from '../Types'
+import Services from '../../data/Services'
 
 interface ServiceCartProps {
     service: Service
@@ -19,7 +20,7 @@ const ServiceCart = ({ service }: ServiceCartProps) => {
 
                 {/* recent task */}
                 <View style={styles.taskcontainer}>
-                    <RTaskCart/>
+                    <RTaskCart task={service.tasks[0]} />
                 </View>
                 
             </View>

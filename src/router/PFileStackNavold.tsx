@@ -13,7 +13,7 @@ import PNoteBook from '../components/PNoteBook';
 
 const Stack = createStackNavigator();
 
-const StackNavigator = () => {
+const PFileStackNav = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
@@ -59,4 +59,4 @@ const StackNavigator = () => {
     )
 }
 
-export default StackNavigator
+export default PFileStackNav

@@ -12,7 +12,7 @@ const Services = [{
     name: "Venom Teeth",
     tasks: [{
         id: 3,
-        name: "task of Honors",
+        name: "Teeth Of Venom",
         description: "open honors and do stuff."
     },{
         id: 8,

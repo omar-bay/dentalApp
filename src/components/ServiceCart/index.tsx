@@ -28,7 +28,7 @@ const ServiceCart = ({ service }: ServiceCartProps) => {
                     </View>
                     <Pressable style={styles.edit}>
                         <IconEdit name="edit" size={20} />
-                        <Text style={{ fontSize: 14 }}>Edit</Text>
+                        <Text style={{ fontSize: 14 }}> Edit</Text>
                     </Pressable>
                 </View>
 

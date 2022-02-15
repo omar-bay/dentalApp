@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -26,6 +26,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import changeNavigationBarColor, {
+  hideNavigationBar,
+  showNavigationBar,
+} from 'react-native-navigation-bar-color';
 import FileCart from './src/components/FileCart';
 import ServiceCart from './src/components/ServiceCart';
 import TaskCart from './src/components/RTaskCart';
@@ -69,6 +73,18 @@ const App = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  const changeNavBarColor =async () => {
+    try {
+      const response = await changeNavigationBarColor('#e9f9fc');
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    changeNavBarColor()
+  }, []);
 
   return (
     <Router />

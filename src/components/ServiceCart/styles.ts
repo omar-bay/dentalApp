@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         width: '100%',
         borderWidth: 2,
         borderColor: '#bfeff8',
-        backgroundColor: '#d4f4fa',
+        backgroundColor: 'white',
         alignSelf: 'center',
         marginHorizontal: 10,
         borderRadius: 3,
@@ -35,13 +35,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '100%',
-        padding: 5
+        padding: 5,
+        marginBottom: 8
     },
     edit: {
         display: 'flex',
         flexDirection: 'row',
         // borderWidth: 0.5,
-        backgroundColor: 'red',
+        backgroundColor: '#d4f4fa',
         borderRadius: 20,
         alignItems: 'center',
         padding: 5

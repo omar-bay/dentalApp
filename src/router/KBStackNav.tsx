@@ -2,7 +2,6 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import PFilesScreen from '../screens/PFilesScreen'
-import PNoteBook from '../components/PNoteBook'
 import KnowledgeScreen from '../screens/KnowledgeScreen'
 
 const Stack = createStackNavigator()

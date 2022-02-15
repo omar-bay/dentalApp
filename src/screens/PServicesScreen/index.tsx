@@ -16,7 +16,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
     return (
         <View style={styles.root}>
             {/* header */}
-            <PServicesHeader navigation={navigation} />
+            <PServicesHeader navigation={navigation} name={cred.name} profile_pic={cred.profile_pic} style={{ marginTop: 0 }} />
 
             {/* list of services */}
             <ScrollView style={styles.lista} showsVerticalScrollIndicator={false}>

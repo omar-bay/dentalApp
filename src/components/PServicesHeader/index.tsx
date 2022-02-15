@@ -7,10 +7,12 @@ import IconBack from 'react-native-vector-icons/AntDesign'
 import { Nav } from '../../Types'
 
 interface PServicesHeaderProps {
-    navigation: Nav
+    navigation: Nav,
+    name: string,
+    profile_pic: string
 }
 
-const PServicesHeader = ({ navigation }: PServicesHeaderProps) => {
+const PServicesHeader = ({ navigation, name, profile_pic }: PServicesHeaderProps) => {
     const [text, setText] = useState('')
     
     const mySearchBar = useRef()
@@ -36,12 +38,12 @@ const PServicesHeader = ({ navigation }: PServicesHeaderProps) => {
                 <View style={[styles.profileImgContainer, { borderColor: 'green', borderWidth:1 }]}>
                     <Image
                     source={{
-                        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1mKVoDmigf1J_RHiZvKEQB98mgYGBySuJPw&usqp=CAU"
+                        uri: `data:image/png;base64,${profile_pic}`
                     }}
                     style={styles.profileImg}
                     />
                 </View>
-                <Text style={styles.profile_name}>Perona Hooker</Text>
+                <Text style={styles.profile_name}>{name}</Text>
 
                 <SearchBar
                 ref={mySearchBar}

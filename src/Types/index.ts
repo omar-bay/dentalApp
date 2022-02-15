@@ -10,17 +10,29 @@ export type Nav = StackScreenProps<RootStackParamList, 'Profile'>;
 export interface Service {
     id: number,
     name: string,
-    tasks: [task: Task]
+    tasks: [task: Task],
+    assignee: {
+        id: number,
+        name: string,
+        profile_pic: string
+    }
 }
 
 export interface Task {
     id: number,
+    stage: Stage,
     name: string,
     description: string
+}
+export enum Stage {
+    New = "New",
+    Pending = "Pending",
+    Done = "Done"
 }
 
 export interface Patient {
     id: number,
+    profile_pic: string,
     name: String,
     age: number,
     gender: String,

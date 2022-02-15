@@ -5,9 +5,11 @@ const styles = StyleSheet.create({
         height: 90,
         width: '100%',
         backgroundColor: 'transparent',
-        marginBottom: 10
+        marginBottom: 10,
+        paddingHorizontal: 10,
     },
     body: {
+        width: '100%',
         borderWidth: 2,
         borderColor: '#bfeff8',
         backgroundColor: '#d4f4fa',
@@ -16,17 +18,34 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         padding: 2
     },
-    name: {
-        paddingHorizontal: 3,
-        marginTop: 3,
-        marginBottom: 3,
-        fontWeight: "bold"
+    profileImgContainer: {
+        alignSelf: 'center',
+        height: 40,
+        width: 40,
+        borderRadius: 20,
+        marginTop: 0.5,
     },
-    taskcontainer: {
+    profileImg: {
+        height: 40,
+        width: 40,
+        borderRadius: 20,
+    },
+    ppNedit: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         width: '100%',
-        height: '65%',
         padding: 5
-    }
+    },
+    edit: {
+        display: 'flex',
+        flexDirection: 'row',
+        // borderWidth: 0.5,
+        backgroundColor: 'red',
+        borderRadius: 20,
+        alignItems: 'center',
+        padding: 5
+    },
 })
 
 export default styles

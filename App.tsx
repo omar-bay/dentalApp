@@ -33,6 +33,7 @@ import Router from './src/router';
 
 import HomeScreen from './src/screens/HomeScreen';
 import PNoteBook from './src/components/PNoteBook';
+import PServicesHeader from './src/components/PServicesHeader';
 
 const Section: React.FC<{
   title: string;

@@ -32,12 +32,11 @@ import changeNavigationBarColor, {
 } from 'react-native-navigation-bar-color';
 import FileCart from './src/components/FileCart';
 import ServiceCart from './src/components/ServiceCart';
-import TaskCart from './src/components/RTaskCart';
 import Router from './src/router';
 
 import HomeScreen from './src/screens/HomeScreen';
-import PNoteBook from './src/components/PNoteBook';
 import PServicesHeader from './src/components/PServicesHeader';
+import Services from './src/data/Services'
 
 const Section: React.FC<{
   title: string;
@@ -86,7 +85,9 @@ const App = () => {
     changeNavBarColor()
   }, []);
 
+
   return (
+    // <ServiceCart service={Services[1]}/>
     <Router />
   );
 };

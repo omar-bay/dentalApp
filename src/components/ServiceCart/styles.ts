@@ -2,10 +2,10 @@ import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
     root: {
-        height: 90,
+        height: 200,
         width: '100%',
         backgroundColor: 'transparent',
-        marginBottom: 10,
+        marginVertical: 5,
         paddingHorizontal: 10,
     },
     body: {
@@ -47,6 +47,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 5
     },
+    stages: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: 8,
+        marginTop: 8,
+    }
 })
 
 export default styles

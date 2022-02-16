@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Pressable, Image } from 'react-native'
 import FileCart from '../FileCart'
-import RTaskCart from '../RTaskCart'
+import RTaskStack from '../RTaskStack'
 import styles from './styles'
 import { Service } from '../Types'
 import Services from '../../data/Services'
@@ -12,16 +12,19 @@ interface ServiceCartProps {
 }
 
 const ServiceCart = ({ service }: ServiceCartProps) => {
+    const servicePressed = () => {
+        // console.log('Service Pressed!')
+    }
 
     return (
-        <Pressable style={styles.root}>
+        <Pressable onPress={() => servicePressed()} style={styles.root}>
             <View style={styles.body}>
                 {/* assignee_pic & edit_button */}
                 <View style={styles.ppNedit}>
                     <View style={[styles.profileImgContainer, { borderColor: 'green', borderWidth:1 }]}>
                         <Image
                         source={{
-                            uri: `data:image/png;base64,${service.assignee.profile_pic}`
+                            uri: `data:image/png;base64,${service?.assignee?.profile_pic}`
                         }}
                         style={styles.profileImg}
                         />
@@ -33,12 +36,16 @@ const ServiceCart = ({ service }: ServiceCartProps) => {
                 </View>
 
                 {/* Service Name & description */}
-                <View>
+                <View style={{ marginHorizontal: 8 }}>
                     <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }}>{service.name}</Text>
                 </View>
 
-                {/* Recent Task Carts */}
-                <RTaskCart task={service.tasks[0]} />
+                {/* Stages Recent Tasks */}
+                <View style={styles.stages}>
+                    <RTaskStack />
+                    <RTaskStack />
+                    <RTaskStack />
+                </View>
                 
             </View>
         </Pressable>

@@ -6,6 +6,7 @@ import styles from './styles'
 import { Service } from '../Types'
 import Services from '../../data/Services'
 import IconEdit from 'react-native-vector-icons/AntDesign'
+import { Stage } from '../../Types'
 
 interface ServiceCartProps {
     service: Service
@@ -37,14 +38,14 @@ const ServiceCart = ({ service }: ServiceCartProps) => {
 
                 {/* Service Name & description */}
                 <View style={{ marginHorizontal: 8 }}>
-                    <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }}>{service.name}</Text>
+                    <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }}>{service?.name}</Text>
                 </View>
 
                 {/* Stages Recent Tasks */}
                 <View style={styles.stages}>
-                    <RTaskStack />
-                    <RTaskStack />
-                    <RTaskStack />
+                    <RTaskStack stage={Stage.New} />
+                    <RTaskStack stage={Stage.Pending} />
+                    <RTaskStack stage={Stage.Done} />
                 </View>
                 
             </View>

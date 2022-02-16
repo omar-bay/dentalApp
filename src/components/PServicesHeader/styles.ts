@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        marginBottom: 10,
+        marginBottom: 2,
 
         shadowColor: '#470000',
         shadowOffset: {width: 0, height: 1},

@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
     root: {
-        height: 200,
+        display: 'flex',
+        // height: 200,
         width: '100%',
         backgroundColor: 'transparent',
         marginVertical: 5,

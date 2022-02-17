@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, ScrollView, FlatList, Animated } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
+import { View, Text, ScrollView, FlatList, Animated, Dimensions } from 'react-native'
 import ServiceCart from '../../components/ServiceCart'
 import styles from './styles'
 import Services from '../../data/Services'
 import { Nav } from '../../Types'
 import PServicesHeader from '../../components/PServicesHeader'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
-const HEADER_HEIGHT = 100
+const HEADER_HEIGHT = 107
 
 const PServicesScreen = ({navigation, route}: Nav) => {
+    const cred = route.params.cred
+
     const [scrollAnim] = useState(new Animated.Value(0));
     const [offsetAnim] = useState(new Animated.Value(0));
     const [clampedScroll, setClampedScroll] = useState(Animated.diffClamp(
@@ -27,14 +30,8 @@ const PServicesScreen = ({navigation, route}: Nav) => {
         extrapolate: 'clamp'
     })
 
-    const cred = route.params.cred
-
-     // useEffect(() => {
-    //     navigation.setOptions({ title: cred.name })
-    // }, [])
-
     return (
-        <View>
+        <SafeAreaView style={{ flex: 1 }}>
             {/* header */}
             <Animated.View style={[styles.header, {
                 transform: [{translateY: navbarTranslate}]
@@ -58,26 +55,26 @@ const PServicesScreen = ({navigation, route}: Nav) => {
 
             {/* list of services */}
             <Animated.ScrollView
+            // contentInset={{ top: HEADER_HEIGHT }}
+            // contentOffset={{ x: 0, y: -HEADER_HEIGHT }}
+            bounces={false}
             onScroll={Animated.event(
-                [
-                    {
-                        nativeEvent: {
-                            contentOffset: { y: scrollAnim }
-                        }
-                    }
-                ],
+                [ { nativeEvent: { contentOffset: { y: offsetAnim } } } ],
                 { useNativeDriver: true }
-            )} 
+            )}
             showsVerticalScrollIndicator={false}
-            style={{ paddingTop: 186 }}
+            scrollEventThrottle={16}
+            style={styles.scroll_view}
             >
+                <View style={{ height: HEADER_HEIGHT+81 }} ></View>
                 {
                     Services.map( service => (
                         <ServiceCart key={service.id} service={service} />
                     ))
                 }
             </Animated.ScrollView>
-        </View>
+
+        </SafeAreaView>
     )
 }
 

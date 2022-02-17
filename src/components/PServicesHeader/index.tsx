@@ -29,8 +29,8 @@ const PServicesHeader = ({ navigation, name, profile_pic }: PServicesHeaderProps
         <View style={styles.root}>
             {/* Top */}
             <View style={styles.top}>
-                <Pressable onPress={() => navigation.goBack()} style={styles.back}><IconBack name="left" size={20} /><Text>PFiles</Text></Pressable>
-                <Pressable onPress={() => handleDetails}><Text>Details</Text></Pressable>
+                <Pressable onPress={() => navigation.goBack()} style={styles.back}><IconBack name="left" size={25} /><Text style={{ fontSize: 18 }}>PFiles</Text></Pressable>
+                <Pressable onPress={() => handleDetails}><Text style={{ fontSize: 18 }}>Details</Text></Pressable>
             </View>
             
             {/* profile pic,  Name, & search */}

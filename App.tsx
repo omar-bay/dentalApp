@@ -37,6 +37,10 @@ import Router from './src/router';
 import HomeScreen from './src/screens/HomeScreen';
 import PServicesHeader from './src/components/PServicesHeader';
 import Services from './src/data/Services'
+import TaskScreenHeader from './src/components/TaskScreenHeader';
+import TaskInfo from './src/components/TaskInfo';
+import TaskScreen from './src/screens/TaskScreen';
+import Redirect from './src/components/Redirect';
 
 const Section: React.FC<{
   title: string;
@@ -87,8 +91,8 @@ const App = () => {
 
 
   return (
-    // <ServiceCart service={Services[1]}/>
-    <Router />
+    <TaskScreen/>
+    // <Router />
   );
 };
 

@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
         zIndex: 1
     },
     scroll_view: {
-        // paddingTop: 190,
         flexGrow: 1,
         width: '100%',
     }

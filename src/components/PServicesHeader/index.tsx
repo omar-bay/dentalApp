@@ -1,6 +1,6 @@
 import { View, Text, TouchableHighlight, Image, InteractionManager, Keyboard, Pressable } from 'react-native'
 import styles from './styles'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { Input, SearchBar } from 'react-native-elements'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import IconBack from 'react-native-vector-icons/AntDesign'
@@ -9,12 +9,12 @@ import { Nav } from '../../Types'
 interface PServicesHeaderProps {
     navigation: Nav,
     name: string,
-    profile_pic: string
+    profile_pic: string,
+    text: string,
+    setText: Dispatch<SetStateAction<string>>
 }
 
-const PServicesHeader = ({ navigation, name, profile_pic }: PServicesHeaderProps) => {
-    const [text, setText] = useState('')
-    
+const PServicesHeader = ({ navigation, name, profile_pic, text, setText }: PServicesHeaderProps) => {
     const mySearchBar = useRef()
 
     const handleChange = (txt: string) => {

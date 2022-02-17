@@ -3,6 +3,7 @@ import React from 'react'
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack'
 import PFilesScreen from '../screens/PFilesScreen'
 import PServicesScreen from '../screens/PServicesScreen'
+import TaskScreen from '../screens/TaskScreen'
 
 const Stack = createStackNavigator()
 
@@ -28,6 +29,14 @@ const PFileStackNav = () => {
             headerShown: false
         }}
         />
+
+        {/* Task Screen */}
+        <Stack.Screen name="TaskScreen" component={TaskScreen}
+        options={{
+            headerShown: false
+        }}
+        />
+
     </Stack.Navigator>
   )
 }

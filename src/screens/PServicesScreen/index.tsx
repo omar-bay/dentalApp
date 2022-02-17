@@ -1,17 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View, Text, ScrollView, FlatList, Animated, Dimensions } from 'react-native'
+import { View, Text, ScrollView, FlatList, Animated, Dimensions, Pressable } from 'react-native'
 import ServiceCart from '../../components/ServiceCart'
 import styles from './styles'
 import Services from '../../data/Services'
 import { Nav } from '../../Types'
 import PServicesHeader from '../../components/PServicesHeader'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import IconBack from 'react-native-vector-icons/AntDesign'
 
-const HEADER_HEIGHT = 107
+const HEADER_HEIGHT = 135
 
 const PServicesScreen = ({navigation, route}: Nav) => {
     const cred = route.params.cred
 
+    const [text, setText] = useState('')
     const [scrollAnim] = useState(new Animated.Value(0));
     const [offsetAnim] = useState(new Animated.Value(0));
     const [clampedScroll, setClampedScroll] = useState(Animated.diffClamp(
@@ -50,13 +52,11 @@ const PServicesScreen = ({navigation, route}: Nav) => {
                 );
             }}
             >
-                <PServicesHeader navigation={navigation} name={cred.name} profile_pic={cred.profile_pic}/>
+                <PServicesHeader text={text} setText={setText} navigation={navigation} name={cred.name} profile_pic={cred.profile_pic}/>
             </Animated.View>
 
             {/* list of services */}
             <Animated.ScrollView
-            // contentInset={{ top: HEADER_HEIGHT }}
-            // contentOffset={{ x: 0, y: -HEADER_HEIGHT }}
             bounces={false}
             onScroll={Animated.event(
                 [ { nativeEvent: { contentOffset: { y: offsetAnim } } } ],
@@ -66,7 +66,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
             scrollEventThrottle={16}
             style={styles.scroll_view}
             >
-                <View style={{ height: HEADER_HEIGHT+81 }} ></View>
+                <View style={{ height: HEADER_HEIGHT+50 }} ></View>
                 {
                     Services.map( service => (
                         <ServiceCart key={service.id} service={service} />

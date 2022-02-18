@@ -16,7 +16,7 @@ const TaskEditScreen = ({ navigation, route }: Nav) => {
     return (
         <View style={styles.root}>
             {/* Header */}
-            <TaskEditHeader navigation={navigation} />
+            <TaskEditHeader stage={task.stage} navigation={navigation} />
 
             <ScrollView style={styles.body}>
                 {/* Label & Redirects */}

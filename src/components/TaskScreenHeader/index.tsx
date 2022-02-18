@@ -7,12 +7,12 @@ import IconBack from 'react-native-vector-icons/AntDesign'
 import { Nav, Stage } from '../../Types'
 
 interface TaskScreenHeaderProps {
-    navigation: Nav,
+    gotoEdit: () => void,
     name: string,
     stage: Stage,
 }
 
-const TaskScreenHeader = ({ navigation, name, stage }: TaskScreenHeaderProps) => {
+const TaskScreenHeader = ({ navigation, gotoEdit, name, stage }: TaskScreenHeaderProps) => {
     const color = () => {
         switch (stage) {
             case Stage.New:
@@ -24,14 +24,16 @@ const TaskScreenHeader = ({ navigation, name, stage }: TaskScreenHeaderProps) =>
         }
     }
 
-    const handleDetails = () => {}
+    const handleEdits = () => {
+        gotoEdit()
+    }
 
     return (
         <View style={[styles.root, { backgroundColor: color() }]}>
             {/* Top */}
             <View style={styles.top}>
                 <Pressable onPress={() => navigation.goBack()} style={styles.back}><IconBack name="left" size={25} /><Text style={{ fontSize: 18 }}>Back</Text></Pressable>
-                <Pressable onPress={() => handleDetails}><Text style={{ fontSize: 18 }}>Edit</Text></Pressable>
+                <Pressable onPress={() => handleEdits()}><Text style={{ fontSize: 18 }}>Edit</Text></Pressable>
             </View>
             
             {/* Task Stage & Service Name */}

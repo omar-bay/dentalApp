@@ -70,7 +70,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
                 {
                     Services.map( service => (
                         service.name.toLowerCase().includes(text.toLowerCase()) &&
-                        <ServiceCart key={service.id} service={service} />
+                        <ServiceCart navigation={navigation} key={service.id} service={service} />
                     ))
                 }
             </Animated.ScrollView>

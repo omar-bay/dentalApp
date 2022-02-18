@@ -25,12 +25,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignContent: 'center',
         alignItems: 'center',
-        width: '50%',
         justifyContent: 'flex-end'
     },
-    about_text: {
-        // textAlign: 'right'
-    }
 })
 
 export default styles

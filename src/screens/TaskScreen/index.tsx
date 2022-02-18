@@ -7,14 +7,33 @@ import TaskScreenHeader from '../../components/TaskScreenHeader'
 import TaskInfo from '../../components/TaskInfo'
 import Redirect from '../../components/Redirect'
 
-const HEADER_HEIGHT = 50
-
-interface TaskScreenProps {
-    navigation: Nav,
-    task: Task
+const padTo2Digits = (num: number) => {
+    return num.toString().padStart(2, '0');
+}
+const formatDate = (date: Date) => {
+    return [
+        padTo2Digits(date.getDate()),
+        padTo2Digits(date.getMonth() + 1),
+        date.getFullYear(),
+    ].join('/');
+}
+export const formatAMPM = (date: Date) => {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var minutesS = ''
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    var minutesS = minutes < 10 ? '0'+minutes : ''+minutes;
+    var strTime = hours + ':' + minutesS + '' + ampm + '  ' + formatDate(date);
+    return strTime;
 }
 
-const TaskScreen = ({ navigation, task }: TaskScreenProps) => {
+const HEADER_HEIGHT = 50
+
+const TaskScreen = ({ navigation, route }: Nav) => {
+    const task = route.params.task
+
     const [scrollAnim] = useState(new Animated.Value(0));
     const [offsetAnim] = useState(new Animated.Value(0));
     const [clampedScroll, setClampedScroll] = useState(Animated.diffClamp(
@@ -33,26 +52,8 @@ const TaskScreen = ({ navigation, task }: TaskScreenProps) => {
         extrapolate: 'clamp'
     })
 
-    const padTo2Digits = (num: number) => {
-        return num.toString().padStart(2, '0');
-    }
-    const formatDate = (date: Date) => {
-        return [
-            padTo2Digits(date.getDate()),
-            padTo2Digits(date.getMonth() + 1),
-            date.getFullYear(),
-        ].join('/');
-    }
-    const formatAMPM = (date: Date) => {
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
-        var minutesS = ''
-        var ampm = hours >= 12 ? 'PM' : 'AM';
-        hours = hours % 12;
-        hours = hours ? hours : 12; // the hour '0' should be '12'
-        var minutesS = minutes < 10 ? '0'+minutes : ''+minutes;
-        var strTime = hours + ':' + minutesS + '' + ampm + '  ' + formatDate(date);
-        return strTime;
+    const gotoEdit = () => {
+        navigation.navigate('TaskEditScreen', { task })
     }
 
     return (
@@ -75,7 +76,7 @@ const TaskScreen = ({ navigation, task }: TaskScreenProps) => {
                 );
             }}
             >
-                <TaskScreenHeader navigation={navigation} name={task.name} stage={task.stage}/>
+                <TaskScreenHeader navigation={navigation} gotoEdit={gotoEdit} name={task.name} stage={task.stage}/>
             </Animated.View>
 
             {/* body */}

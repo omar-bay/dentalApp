@@ -6,15 +6,18 @@ import styles from './styles'
 import { Service } from '../Types'
 import Services from '../../data/Services'
 import IconEdit from 'react-native-vector-icons/AntDesign'
-import { Stage } from '../../Types'
+import { Nav, Stage } from '../../Types'
+import { NavigationRouteContext } from '@react-navigation/native'
 
 interface ServiceCartProps {
-    service: Service
+    service: Service,
+    navigation: Nav
 }
 
-const ServiceCart = ({ service }: ServiceCartProps) => {
+const ServiceCart = ({ navigation, service }: ServiceCartProps) => {
     const servicePressed = () => {
-        // console.log('Service Pressed!')
+        const task = service.tasks[0]
+        navigation.navigate('TaskScreen', { task })
     }
 
     return (

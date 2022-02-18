@@ -4,6 +4,7 @@ import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/
 import PFilesScreen from '../screens/PFilesScreen'
 import PServicesScreen from '../screens/PServicesScreen'
 import TaskScreen from '../screens/TaskScreen'
+import TaskEditScreen from '../screens/TaskEditScreen'
 
 const Stack = createStackNavigator()
 
@@ -32,6 +33,13 @@ const PFileStackNav = () => {
 
         {/* Task Screen */}
         <Stack.Screen name="TaskScreen" component={TaskScreen}
+        options={{
+            headerShown: false
+        }}
+        />
+
+        {/* Task Edit Screen */}
+        <Stack.Screen name="TaskEditScreen" component={TaskEditScreen}
         options={{
             headerShown: false
         }}

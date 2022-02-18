@@ -41,6 +41,7 @@ import TaskScreenHeader from './src/components/TaskScreenHeader';
 import TaskInfo from './src/components/TaskInfo';
 import TaskScreen from './src/screens/TaskScreen';
 import Redirect from './src/components/Redirect';
+import TaskEditScreen from './src/screens/TaskEditScreen';
 
 const Section: React.FC<{
   title: string;

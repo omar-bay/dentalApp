@@ -2,17 +2,24 @@ import { View, Text, TextInput, Pressable } from 'react-native'
 import React from 'react'
 import styles from './styles'
 import IconFor from 'react-native-vector-icons/AntDesign'
+import { Nav } from '../../Types'
 
 interface RedirectProps {
-    text: string
+    navigation: Nav
+    text: string,
+    about?: string,
+    style?: { color: string }
 }
 
-const Redirect = ({ text }: RedirectProps) => {
+const Redirect = ({ navigation, text, about, style }: RedirectProps) => {
   return (
     <Pressable style={styles.root}>
       <View style={styles.text_container}>
-            <Text numberOfLines={1} style={styles.text}>{text}</Text>
-            <IconFor name="right" size={25}/>
+            <Text numberOfLines={1} style={[styles.text, style]}>{text}</Text>
+            <View style={styles.icon_container}>
+              { about && (<Text numberOfLines={1} style={styles.about_text}>{about}</Text>) }
+              <IconFor name="right" size={25}/>
+            </View>
       </View>
 
     </Pressable>

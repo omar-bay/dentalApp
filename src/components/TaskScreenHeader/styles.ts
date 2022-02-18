@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     root: {
-        backgroundColor: '#F9C985',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',

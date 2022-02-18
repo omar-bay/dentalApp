@@ -69,6 +69,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
                 <View style={{ height: HEADER_HEIGHT+50 }} ></View>
                 {
                     Services.map( service => (
+                        service.name.toLowerCase().includes(text.toLowerCase()) &&
                         <ServiceCart key={service.id} service={service} />
                     ))
                 }

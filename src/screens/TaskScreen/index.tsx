@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { View, Text, ScrollView, FlatList, Animated, Dimensions, Pressable } from 'react-native'
 import styles from './styles'
-import { Nav } from '../../Types'
+import { Nav, Task } from '../../Types'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import TaskScreenHeader from '../../components/TaskScreenHeader'
 import TaskInfo from '../../components/TaskInfo'
@@ -9,7 +9,12 @@ import Redirect from '../../components/Redirect'
 
 const HEADER_HEIGHT = 50
 
-const TaskScreen = () => {
+interface TaskScreenProps {
+    navigation: Nav,
+    task: Task
+}
+
+const TaskScreen = ({ navigation, task }: TaskScreenProps) => {
     const [scrollAnim] = useState(new Animated.Value(0));
     const [offsetAnim] = useState(new Animated.Value(0));
     const [clampedScroll, setClampedScroll] = useState(Animated.diffClamp(
@@ -70,7 +75,7 @@ const TaskScreen = () => {
                 );
             }}
             >
-                <TaskScreenHeader/>
+                <TaskScreenHeader navigation={navigation} name={task.name} stage={task.stage}/>
             </Animated.View>
 
             {/* body */}
@@ -87,10 +92,10 @@ const TaskScreen = () => {
             >
                 {/* Task Credentials */}
                 <View style={{ height: HEADER_HEIGHT+60 }} ></View>
-                <TaskInfo label='Objective' info='Kasserlo Raso, in other words. Khallis 3le.'/>
-                <TaskInfo label='status' info='Pending'/>
-                <TaskInfo label="deadline at" info={formatAMPM(new Date())}/>
-                <TaskInfo label="Assignee Notes" info="Done Use Knife. The patient should not die while you're in the room.🤔"/>
+                <TaskInfo label='Objective' info={task.description}/>
+                <TaskInfo label='status' info={task.stage.toString()}/>
+                <TaskInfo label="deadline at" info={formatAMPM(task.date)}/>
+                <TaskInfo label="Assignee Notes" info={task.assignee_notes}/>
 
                 {/* Toothly Recommends */}
                 <Text style={styles.tr_text}>Toothly Recommends</Text>

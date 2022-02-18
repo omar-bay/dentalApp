@@ -91,8 +91,7 @@ const App = () => {
 
 
   return (
-    <TaskScreen/>
-    // <Router />
+    <Router />
   );
 };
 

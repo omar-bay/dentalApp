@@ -22,7 +22,9 @@ export interface Task {
     id: number,
     stage: Stage,
     name: string,
-    description: string
+    description: string,
+    date: Date,
+    assignee_notes: string
 }
 export enum Stage {
     New = "New",

@@ -4,29 +4,30 @@ import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 're
 import { Input, SearchBar } from 'react-native-elements'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import IconBack from 'react-native-vector-icons/AntDesign'
-import { Nav } from '../../Types'
+import { Nav, Stage } from '../../Types'
 
-interface PServicesHeaderProps {
+interface TaskScreenHeaderProps {
     navigation: Nav,
     name: string,
-    profile_pic: string,
-    text: string,
-    setText: Dispatch<SetStateAction<string>>
+    stage: Stage,
 }
 
-const TaskScreenHeader = ({ navigation, name, profile_pic, text, setText }: TaskScreenHeaderProps) => {
-    const mySearchBar = useRef()
+const TaskScreenHeader = ({ navigation, name, stage }: TaskScreenHeaderProps) => {
+    const color = () => {
+        switch (stage) {
+            case Stage.New:
+                return '#FF574A'
+            case Stage.Pending:
+                return '#F9C985'
+            default:
+                return '#51CE72'
+        }
+    }
 
-    const handleChange = (txt: string) => {
-        setText(txt)
-    }
-    const focus = () => {
-        mySearchBar?.current.blur()
-    }
     const handleDetails = () => {}
 
     return (
-        <View style={styles.root}>
+        <View style={[styles.root, { backgroundColor: color() }]}>
             {/* Top */}
             <View style={styles.top}>
                 <Pressable onPress={() => navigation.goBack()} style={styles.back}><IconBack name="left" size={25} /><Text style={{ fontSize: 18 }}>Back</Text></Pressable>
@@ -35,8 +36,8 @@ const TaskScreenHeader = ({ navigation, name, profile_pic, text, setText }: Task
             
             {/* Task Stage & Service Name */}
             <View style={styles.profile}>
-                <Text>Pending</Text>
-                <Text style={styles.service_name}>Tarbsho</Text>
+                <Text>{stage}</Text>
+                <Text style={styles.service_name}>{name}</Text>
             </View>
 
         </View>

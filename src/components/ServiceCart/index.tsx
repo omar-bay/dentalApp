@@ -16,8 +16,7 @@ interface ServiceCartProps {
 
 const ServiceCart = ({ navigation, service }: ServiceCartProps) => {
     const servicePressed = () => {
-        const task = service.tasks[0]
-        navigation.navigate('TaskScreen', { task })
+        navigation.navigate('TaskListScreen', { service_name: service.name, tasks: service.tasks })
     }
 
     return (

@@ -5,6 +5,7 @@ import PFilesScreen from '../screens/PFilesScreen'
 import PServicesScreen from '../screens/PServicesScreen'
 import TaskScreen from '../screens/TaskScreen'
 import TaskEditScreen from '../screens/TaskEditScreen'
+import TaskListScreen from '../screens/TaskListScreen'
 
 const Stack = createStackNavigator()
 
@@ -40,6 +41,13 @@ const PFileStackNav = () => {
 
         {/* Task Edit Screen */}
         <Stack.Screen name="TaskEditScreen" component={TaskEditScreen}
+        options={{
+            headerShown: false
+        }}
+        />
+
+        {/* Task List Screen */}
+        <Stack.Screen name="TaskListScreen" component={TaskListScreen}
         options={{
             headerShown: false
         }}

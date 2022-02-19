@@ -21,7 +21,7 @@ const Router = () => {
             <Tab.Navigator
             screenOptions={{
                 tabBarLabelStyle: {fontSize: 18},
-                tabBarActiveTintColor: 'blue',
+                tabBarActiveTintColor: 'cyan',
                 tabBarStyle: { backgroundColor: '#e9f9fc' }
             }}
             >

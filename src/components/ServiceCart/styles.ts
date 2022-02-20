@@ -6,16 +6,18 @@ const styles = StyleSheet.create({
         // height: 200,
         width: '100%',
         backgroundColor: 'transparent',
-        marginVertical: 5,
+        marginVertical: 0,
         paddingHorizontal: 10,
+        height: 200
     },
     body: {
+        display: 'flex',
         width: '100%',
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: '#bfeff8',
         backgroundColor: 'white',
         alignSelf: 'center',
-        marginHorizontal: 10,
+        marginHorizontal: 0,
         borderRadius: 3,
         padding: 2
     },
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '100%',
         padding: 5,
-        marginBottom: 8
+        marginBottom: 0
     },
     edit: {
         display: 'flex',
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginHorizontal: 8,
-        marginTop: 8,
+        marginTop: 0,
     }
 })
 

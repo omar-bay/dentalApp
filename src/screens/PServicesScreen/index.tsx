@@ -3,7 +3,7 @@ import { View, Text, ScrollView, FlatList, Animated, Dimensions, Pressable } fro
 import ServiceCart from '../../components/ServiceCart'
 import styles from './styles'
 import Services from '../../data/Services'
-import { Nav, Service } from '../../Types'
+import { Nav, Service, Static_Service } from '../../Types'
 import PServicesHeader from '../../components/PServicesHeader'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import IconBack from 'react-native-vector-icons/AntDesign'
@@ -32,23 +32,31 @@ const PServicesScreen = ({navigation, route}: Nav) => {
         extrapolate: 'clamp'
     })
 
+
+    const renderList = ({item}) => {
+        return (
+            <ServiceCart navigation={navigation} service={item} />
+        )
+    }
+
     return (
-        <Animated.View style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
             {/* header */}
-            <Animated.View style={[styles.header, {
-                transform: [{translateY: navbarTranslate}]
+            <Animated.View
+            style={[styles.header, {
+                transform: [{ translateY: navbarTranslate }]
             }]}
             onLayout={(event) => {
                 let {height} = event.nativeEvent.layout;
                 setClampedScroll(Animated.diffClamp(
-                    Animated.add(
-                        scrollAnim.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [0, 1],
-                            extrapolateLeft: 'clamp'
-                        }),
-                        offsetAnim
-                    ), 0, height)
+                Animated.add(
+                    scrollAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, 1],
+                    extrapolateLeft: 'clamp'
+                    }),
+                    offsetAnim
+                ), 0, height)
                 );
             }}
             >
@@ -58,25 +66,48 @@ const PServicesScreen = ({navigation, route}: Nav) => {
             {/* list of services */}
             <Animated.ScrollView
             bounces={false}
+            scrollEventThrottle={16}
             onScroll={Animated.event(
-                [ { nativeEvent: { contentOffset: { y: scrollAnim } } } ],
-                { useNativeDriver: true }
+            [
+                {
+                nativeEvent: {
+                    contentOffset: { y: scrollAnim }
+                }
+                }
+            ],
+            { useNativeDriver: true }
             )}
-            showsVerticalScrollIndicator={false}
-            scrollEventThrottle={6}
-            scrollEnabled={true}
             style={styles.scroll_view}
             >
                 {/* <View style={{ height: 185 }}></View> */}
                 {
                     Services.map((service, index) => (
                         service.service.name.toLowerCase().includes(text.toLowerCase()) &&
-                        <ServiceCart navigation={navigation} key={index} service={service} />
+                        <View style={{}}><ServiceCart navigation={navigation} key={index} service={service} /></View>
                     ))
                 }
             </Animated.ScrollView>
+            {/* <Animated.FlatList 
+                contentInset={{ top: HEADER_HEIGHT }}
+                contentOffset={{ x: 0, y: -HEADER_HEIGHT }}
+                bounces={false}
+                scrollEventThrottle={16}
+                style={{ flexGrow: 1, width: '100%' }}
+                data={Services}
+                renderItem={renderList}
+                onScroll={Animated.event(
+                [
+                    {
+                    nativeEvent: {
+                        contentOffset: { y: scrollAnim }
+                    }
+                    }
+                ],
+                { useNativeDriver: true }
+                )}
+            /> */}
 
-        </Animated.View>
+        </View>
     )
 }
 

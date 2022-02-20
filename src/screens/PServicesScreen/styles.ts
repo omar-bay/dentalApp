@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         left: 0,
         right: 0,
-        top: 0,
+        top: -1,
         zIndex: 1
     },
     scroll_view: {

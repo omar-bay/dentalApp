@@ -3,22 +3,16 @@ import React, { useState } from 'react'
 import styles from './styles'
 import { Stage } from '../../Types'
 
-const TaskListTableHeader = () => {
-  const [selectedStage, setSelectedStage] = useState(Stage.New)
+interface TaskListTableHeaderProps {
+  selectedStage: Stage,
+  setSelectedStage: () => {},
+  pickColor: () => Stage
+}
+
+const TaskListTableHeader = ({ selectedStage, setSelectedStage, pickColor }) => {
 
   const handlePressStage = (stage: Stage) => {
     setSelectedStage(stage)
-  }
-
-  const pickColor = () => {
-    switch (selectedStage) {
-      case Stage.New:
-        return ['#FF574A', '#D3FFE3']
-      case Stage.Pending:
-        return ['#FDA424', '#FFEBD0']
-      case Stage.Done:
-        return ['#51CE72', '#FFDFDD']
-    }
   }
 
   return (

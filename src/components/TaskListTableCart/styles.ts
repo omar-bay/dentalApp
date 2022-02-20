@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         borderTopWidth: 0.2,
         borderBottomWidth: 0.2,
-        paddingVertical: 12
+        paddingVertical: 12,
     },
     tree_title_container: {
         width: '28%',

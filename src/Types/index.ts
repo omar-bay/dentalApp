@@ -9,13 +9,17 @@ export type Nav = StackScreenProps<RootStackParamList, 'Profile'>;
 
 export interface Service {
     id: number,
+    service: Static_Service
+    patient: Patient,
+    assignee: HR_Assignee,
+    date: Date,
+    tasks: [task: Task]
+}
+
+export interface Static_Service {
+    id: number,
     name: string,
-    tasks: [task: Task],
-    assignee: {
-        id: number,
-        name: string,
-        profile_pic: string
-    }
+    description?: string
 }
 
 export interface Task {
@@ -23,9 +27,10 @@ export interface Task {
     stage: Stage,
     name: string,
     description: string,
+    assignee_notes: string,
     date: Date,
-    assignee_notes: string
 }
+
 export enum Stage {
     New = "New",
     Pending = "Pending",
@@ -39,4 +44,18 @@ export interface Patient {
     age: number,
     gender: String,
     cat_id: number
+}
+
+export interface HR_Assignee {
+    id: number,
+    name: string,
+    profile_pic: string,
+    hr_type: HR_Type
+}
+
+export enum HR_Type {
+    Admin = "Admin",
+    Doctor = "Doctor",
+    Student = "Student",
+    Employee = "Employee"
 }

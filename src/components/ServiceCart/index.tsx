@@ -16,7 +16,11 @@ interface ServiceCartProps {
 
 const ServiceCart = ({ navigation, service }: ServiceCartProps) => {
     const servicePressed = () => {
-        navigation.navigate('TaskListScreen', { service_name: service.name, tasks: service.tasks })
+        navigation.navigate('TaskListScreen', {
+            service_name: service.service.name,
+            tasks: service.tasks,
+            
+        })
     }
 
     return (
@@ -40,7 +44,7 @@ const ServiceCart = ({ navigation, service }: ServiceCartProps) => {
 
                 {/* Service Name & description */}
                 <View style={{ marginHorizontal: 8 }}>
-                    <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }}>{service?.name}</Text>
+                    <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }}>{service?.service.name}</Text>
                 </View>
 
                 {/* Stages Recent Tasks */}

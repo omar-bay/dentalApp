@@ -7,10 +7,11 @@ import IconBack from 'react-native-vector-icons/AntDesign'
 import { Nav } from '../../Types'
 
 interface TaskListHeaderProps {
-    navigation: Nav
+    navigation: Nav,
+    service_name: string
 }
 
-const TaskListHeader = ({ navigation }: TaskListHeaderProps) => {
+const TaskListHeader = ({ navigation, service_name }: TaskListHeaderProps) => {
     const handleEdit = () => {}
 
     return (
@@ -23,16 +24,16 @@ const TaskListHeader = ({ navigation }: TaskListHeaderProps) => {
             
             {/* profile pic,  Name, & search */}
             <View style={styles.profile}>
-                <View style={[styles.profileImgContainer, { borderColor: 'green', borderWidth:1 }]}>
+                {/* <View style={[styles.profileImgContainer, { borderColor: 'green', borderWidth:1 }]}>
                     <Image
                     source={{
                         // uri: `data:image/png;base64,${}`
                     }}
                     style={styles.profileImg}
                     />
-                </View>
+                </View> */}
                 <Text style={styles.assignee_name}>Tarek Mezriz</Text>
-                <Text style={styles.service_name}>Molar Pull</Text>
+                <Text style={styles.service_name}>{service_name}</Text>
 
                 {/* Space */}
                 <View style={styles.text_container}>

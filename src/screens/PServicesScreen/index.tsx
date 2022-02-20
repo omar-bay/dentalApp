@@ -3,7 +3,7 @@ import { View, Text, ScrollView, FlatList, Animated, Dimensions, Pressable } fro
 import ServiceCart from '../../components/ServiceCart'
 import styles from './styles'
 import Services from '../../data/Services'
-import { Nav } from '../../Types'
+import { Nav, Service } from '../../Types'
 import PServicesHeader from '../../components/PServicesHeader'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import IconBack from 'react-native-vector-icons/AntDesign'
@@ -33,7 +33,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
     })
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <Animated.View style={{ flex: 1 }}>
             {/* header */}
             <Animated.View style={[styles.header, {
                 transform: [{translateY: navbarTranslate}]
@@ -59,23 +59,24 @@ const PServicesScreen = ({navigation, route}: Nav) => {
             <Animated.ScrollView
             bounces={false}
             onScroll={Animated.event(
-                [ { nativeEvent: { contentOffset: { y: offsetAnim } } } ],
+                [ { nativeEvent: { contentOffset: { y: scrollAnim } } } ],
                 { useNativeDriver: true }
             )}
             showsVerticalScrollIndicator={false}
-            scrollEventThrottle={16}
+            scrollEventThrottle={6}
+            scrollEnabled={true}
             style={styles.scroll_view}
             >
-                <View style={{ height: HEADER_HEIGHT+50 }} ></View>
+                {/* <View style={{ height: 185 }}></View> */}
                 {
-                    Services.map( service => (
-                        service.name.toLowerCase().includes(text.toLowerCase()) &&
-                        <ServiceCart navigation={navigation} key={service.id} service={service} />
+                    Services.map((service, index) => (
+                        service.service.name.toLowerCase().includes(text.toLowerCase()) &&
+                        <ServiceCart navigation={navigation} key={index} service={service} />
                     ))
                 }
             </Animated.ScrollView>
 
-        </SafeAreaView>
+        </Animated.View>
     )
 }
 

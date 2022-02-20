@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     scroll_view: {
         flexGrow: 1,
         width: '100%',
-    }
+    },
 })
 
 export default styles

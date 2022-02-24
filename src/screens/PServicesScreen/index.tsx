@@ -78,8 +78,9 @@ const PServicesScreen = ({navigation, route}: Nav) => {
             { useNativeDriver: true }
             )}
             style={styles.scroll_view}
+            showsVerticalScrollIndicator={false}
             >
-                {/* <View style={{ height: 185 }}></View> */}
+                <View style={{ height: 200 }}></View>
                 {
                     Services.map((service, index) => (
                         service.service.name.toLowerCase().includes(text.toLowerCase()) &&

@@ -1,5 +1,5 @@
 import { View, Text, Pressable, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './styles'
 import { Nav } from '../../Types'
 import IconBack from 'react-native-vector-icons/AntDesign'
@@ -7,6 +7,7 @@ import TaskEditHeader from '../../components/TaskEditHeader'
 import TaskEdits from '../../components/TaskEdits'
 import SwitchCart from '../../components/SwitchCart'
 import TaskProperties from '../../components/TaskProperties'
+import MyDatePicker from '../../components/MyDatePicker'
 
 const TaskEditScreen = ({ navigation, route }: Nav) => {
     const { task } = route.params

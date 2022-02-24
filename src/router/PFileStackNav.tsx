@@ -13,7 +13,7 @@ const PFileStackNav = () => {
   return (
     <Stack.Navigator
     screenOptions={{
-      gestureEnabled: true,
+      gestureEnabled: false,
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     }}
     >

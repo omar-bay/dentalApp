@@ -1,17 +1,18 @@
 import React from 'react'
 import { View, Text, Pressable } from 'react-native'
-import { Patient, Nav } from '../../Types';
+import { Patient, Nav, Service } from '../../Types';
 import styles from './styles'
 
 interface FileCartProps {
     cred: Patient,
-    navigation: Nav['navigation']
+    navigation: Nav['navigation'],
+    services: Service[]
 }
 
-const FileCart = ({ cred, navigation }: FileCartProps) => {
+const FileCart = ({ cred, navigation, services }: FileCartProps) => {
 
     const handlePress = (navigation: Nav['navigation']) => {
-        navigation.navigate("PServicesScreen", { cred })
+        navigation.navigate("PServicesScreen", { cred: cred, services: services })
     }
 
     return (

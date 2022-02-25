@@ -7,8 +7,23 @@ export type RootStackParamList = {
   };
 export type Nav = StackScreenProps<RootStackParamList, 'Profile'>;
 
-export interface Service {
+interface PFile {
     id: number,
+    patient: Patient,
+    services: [service: Service],
+    teeth_pic?: Teeth_Pic[]
+}
+
+interface Teeth_Pic {
+    id: number
+    status: string
+    type: string
+    url: string
+    date_created: Date
+}
+
+export interface Service {
+    id: number, 
     service: Static_Service
     patient: Patient,
     assignee: HR_Assignee,
@@ -43,7 +58,12 @@ export interface Patient {
     name: String,
     age: number,
     gender: String,
-    cat_id: number
+    cat_id: number,
+    medical_file: Medical_File
+}
+
+export interface Medical_File {
+    id: number
 }
 
 export interface HR_Assignee {

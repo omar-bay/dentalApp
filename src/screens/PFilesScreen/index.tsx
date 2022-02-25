@@ -2,9 +2,9 @@ import React from 'react'
 import { View, Text, FlatList, ScrollView } from 'react-native'
 import FileCart from '../../components/FileCart'
 import styles from './styles'
-import Patients from '../../data/Patients'
+import PFiles from '../../data/PFiles'
 import { StackScreenProps } from '@react-navigation/stack'
-import { Patient, Nav } from '../Types'
+import { Patient, Nav, PFile } from '../Types'
 
 const PFilesScreen = ({navigation, route}: Nav) => {
     return (
@@ -14,8 +14,8 @@ const PFilesScreen = ({navigation, route}: Nav) => {
             showsVerticalScrollIndicator={false}
             >
             {
-                Patients.map((patient: Patient) => (
-                    <FileCart key={patient.id} cred={patient} navigation={navigation}/>
+                PFiles.map((PFile: PFile) => (
+                    <FileCart key={PFile.id} cred={PFile.patient} services={PFile.services} navigation={navigation}/>
                 ))
             }
             </ScrollView>

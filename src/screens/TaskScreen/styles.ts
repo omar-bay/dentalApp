@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         fontSize: 18,
         paddingTop: 15,
-        color: 'blue'
+        color: '#007AFF'
     },
     toothly_recommends: {
         width: '96%',

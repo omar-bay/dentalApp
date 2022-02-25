@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { View, Text, ScrollView, FlatList, Animated, Dimensions, Pressable } from 'react-native'
 import ServiceCart from '../../components/ServiceCart'
 import styles from './styles'
-import Services from '../../data/Services'
 import { Nav, Service, Static_Service } from '../../Types'
 import PServicesHeader from '../../components/PServicesHeader'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -12,6 +11,7 @@ const HEADER_HEIGHT = 135
 
 const PServicesScreen = ({navigation, route}: Nav) => {
     const cred = route.params.cred
+    const Services = route.params.services
 
     const [text, setText] = useState('')
     const [scrollAnim] = useState(new Animated.Value(0));

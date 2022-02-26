@@ -13,9 +13,20 @@ const TaskProperties = () => {
 
         {/* Switches */}
         <View style={styles.press_container}>
-            <SwitchCart text="Urgent" style={{ color: 'black' }}/>
-            <SwitchCart text="Assignee Notes" style={{ color: 'black' }}/>
-            <SwitchCart text="Toothly Recommends" style={{ color: 'black' }}/>
+            <SwitchCart
+            text="Urgent"
+            text_style={{ color: 'black' }}
+            container_style={{ borderTopWidth: 0 }}
+            />
+            <SwitchCart
+            text="Assignee Notes"
+            text_style={{ color: 'black' }}
+            />
+            <SwitchCart
+            text="Toothly Recommends"
+            text_style={{ color: 'black' }}
+            container_style={{ borderBottomWidth: 0 }}
+            />
         </View>
 
     </View>

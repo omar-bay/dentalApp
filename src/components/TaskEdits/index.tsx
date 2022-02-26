@@ -29,10 +29,33 @@ const TaskEdits = ({ navigation, task }: TaskEditsProps) => {
 
         {/* Routes */}
         <View style={styles.press_container}>
-            <Redirect navigation={navigation} style={{ color: 'black' }} text="Title" about={task.name}/>
-            <Redirect navigation={navigation} style={{ color: 'black' }} text="Objective" about={task.description}/>
-            <Redirect navigation={navigation} style={{ color: 'black' }} text="Status" about={task.stage.toString()}/>
-            <Redirect navigation={navigation} style={{ color: 'black' }} text="Scheduled at" about={formatAMPM(task.date)} onPress={()=>setOpenDate(!openDate)}/>
+            <Redirect
+            navigation={navigation}
+            text_style={{ color: 'black' }}
+            text="Title"
+            about={task.name}
+            container_style={{ borderTopWidth: 0 }}
+            />
+            <Redirect
+            navigation={navigation}
+            text_style={{ color: 'black' }}
+            text="Objective"
+            about={task.description}
+            />
+            <Redirect
+            navigation={navigation}
+            text_style={{ color: 'black' }}
+            text="Status"
+            about={task.stage.toString()}
+            />
+            <Redirect
+            navigation={navigation}
+            text_style={{ color: 'black' }}
+            text="Scheduled at"
+            about={formatAMPM(task.date)}
+            container_style={{ borderBottomWidth: 0 }}
+            onPress={()=>setOpenDate(!openDate)}
+            />
         </View>
 
     </View>

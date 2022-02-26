@@ -6,18 +6,19 @@ import { Nav } from '../../Types'
 
 interface SwitchCartProps {
     text: string,
-    style?: { color: string }
+    text_style?: {},
+    container_style?: {},
 }
 
-const SwitchCart = ({ text, style }: SwitchCartProps) => {
+const SwitchCart = ({ text, text_style, container_style }: SwitchCartProps) => {
     const [isEnabled, setIsEnabled] = useState(false);
 
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     return (
         <View style={styles.root}>
-        <View style={styles.text_container}>
-                <Text numberOfLines={1} style={[styles.text, style]}>{text}</Text>
+        <View style={[styles.text_container, container_style]}>
+                <Text numberOfLines={1} style={[styles.text, text_style]}>{text}</Text>
                 <View style={styles.icon_container}>
                 <Switch
                     trackColor={{ false: "lightgrey", true: "#82E8FB" }}

@@ -8,16 +8,17 @@ interface RedirectProps {
     navigation: Nav
     text: string,
     about?: string,
-    style?: { color: string },
+    text_style?: {},
+    container_style?: {}
     onPress?: () => void
 }
 
-const Redirect = ({ navigation, text, about, style, onPress }: RedirectProps) => {
+const Redirect = ({ navigation, text, about, container_style, text_style, onPress }: RedirectProps) => {
 
   return (
     <Pressable style={styles.root} onPress={onPress? ()=>onPress() : ()=>{}}>
-      <View style={styles.text_container}>
-            <Text numberOfLines={1} style={[styles.text, style]}>{text}</Text>
+      <View style={[styles.text_container, container_style]}>
+            <Text numberOfLines={1} style={[styles.text, text_style]}>{text}</Text>
             <View style={styles.icon_container}>
               { about && (<Text numberOfLines={1} style={styles.about_text}>{about}</Text>) }
               <IconFor name="right" size={25}/>

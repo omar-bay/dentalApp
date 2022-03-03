@@ -28,3 +28,6 @@ https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installatio
 
 swiping for task list
 npm i react-native-swipe-gestures
+
+npm install @react-native-picker/picker --save
+uninstall it

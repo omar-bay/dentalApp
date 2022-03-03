@@ -47,6 +47,8 @@ import TaskListHeader from './src/components/TakListHeader';
 import TaskListTableHeader from './src/components/TaskListTableHeader';
 import TaskListCart from './src/components/TaskListTableCart';
 import MyDatePicker from './src/components/MyDatePicker';
+import TestPicker from './src/tests/TestPicker';
+import PickerWithModalTest from './src/tests/PickerWithModalTest';
 
 const Section: React.FC<{
   title: string;
@@ -97,6 +99,7 @@ const App = () => {
 
 
   return (
+    // <PickerWithModalTest/>
     <Router />
   );
 };

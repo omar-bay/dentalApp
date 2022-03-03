@@ -5,6 +5,7 @@ import Redirect from '../Redirect'
 import { Nav, Task } from '../../Types'
 import { formatAMPM } from '../../screens/TaskScreen'
 import MyDatePicker from '../MyDatePicker'
+import PickerWithModel from '../PickerWithModal'
 
 interface TaskEditsProps {
   navigation: Nav,
@@ -42,11 +43,14 @@ const TaskEdits = ({ navigation, task }: TaskEditsProps) => {
             text="Objective"
             about={task.description}
             />
-            <Redirect
+            {/* <Redirect
             navigation={navigation}
             text_style={{ color: 'black' }}
             text="Status"
             about={task.stage.toString()}
+            /> */}
+            <PickerWithModel
+            task={task}
             />
             <Redirect
             navigation={navigation}

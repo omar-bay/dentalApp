@@ -31,3 +31,7 @@ npm i react-native-swipe-gestures
 
 npm install @react-native-picker/picker --save
 uninstall it
+
+https://www.npmjs.com/package/react-native-segmented-control-tab
+npm install react-native-segmented-control-tab --save
+https://aboutreact.com/react-native-segmented-control-tab/

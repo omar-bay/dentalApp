@@ -35,7 +35,9 @@ uninstall it
 https://www.npmjs.com/package/react-native-segmented-control-tab
 npm install react-native-segmented-control-tab --save
 https://aboutreact.com/react-native-segmented-control-tab/
-NOT DELETED YET
+not swiping
+DELETED
 
 https://bestofreactjs.com/repo/ainurb-react-native-segment-control-react-react-native-awesome-components
 npm install react-native-segment-control --save
+https://www.npmjs.com/package/react-native-segment-control

@@ -30,11 +30,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5F7FA',
-    justifyContent: 'center'
   },
   text: {
-    alignSelf: 'center',
-    margin: 50
+    margin: 50,
+    height: '100%'
   }
 });
  

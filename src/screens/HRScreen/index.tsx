@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react'
 import { View, Text, Keyboard } from 'react-native'
 import { SearchBar } from 'react-native-elements'
 import styles from './styles'
+import SegmentControl from '../../components/SegmentControl'
+import HRCard from '../../components/HRCard'
 
 const HRScreen = () => {
     const [text, setText] = useState('')
@@ -11,26 +13,43 @@ const HRScreen = () => {
         mySearchBar?.current.blur()
     }
 
+    const segments = [{
+        title: 'ALL',
+        view: ()=>(<HRCard/>)
+    }, {
+        title: 'EMPLOYEE',
+        view: ()=>(<Text>EMPLOYEES PEOPLE</Text>)
+    }, {
+        title: 'DOCTOR',
+        view: ()=>(<Text>DOCTORS PEOPLE</Text>)
+    }, {
+        title: 'STUDENT',
+        view: ()=>(<Text>STUDENTS PEOPLE</Text>)
+    }]
+
     return (
         <View style={styles.root}>
-            {/* Header */}
             <View style={styles.headerContainer}>
                 <Text style={styles.headerTitle}>Human Resources</Text>
+                <SearchBar
+                ref={mySearchBar}
+                lightTheme
+                round={true}
+                containerStyle= {{ backgroundColor: 'transparent', borderTopWidth: 0, borderBottomWidth: 0 }}
+                inputContainerStyle= {{ backgroundColor: 'white', height: 39 }}
+                inputStyle= {{ color: 'black' }}
+                placeholder="Service..."
+                showCancel
+                onChangeText={(txt)=>setText(txt)}
+                value={text}
+                onPressIn={focus}
+                onClear={() => Keyboard.dismiss()}
+                />
             </View>
 
-            <SearchBar
-            ref={mySearchBar}
-            lightTheme
-            round={true}
-            containerStyle= {{ backgroundColor: 'transparent', borderTopWidth: 0, borderBottomWidth: 0 }}
-            inputContainerStyle= {{ backgroundColor: 'white', height: 39 }}
-            inputStyle= {{ color: 'black' }}
-            placeholder="Service..."
-            showCancel
-            onChangeText={(txt)=>setText(txt)}
-            value={text}
-            onPressIn={focus}
-            onClear={() => Keyboard.dismiss()}
+            <SegmentControl
+            style={styles.segments}
+            segments={segments}
             />
 
         </View>

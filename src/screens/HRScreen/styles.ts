@@ -5,10 +5,21 @@ const styles = StyleSheet.create({
 
     },
     headerContainer: {
-        backgroundColor: 'red',
-        height: 50
+        backgroundColor: '#DFFAFF',
+        height: 100,
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        width: '100%',
+        borderBottomWidth: 0.5,
+        marginBottom: 0
     },
-    headerTitle: {}
+    headerTitle: {
+        alignSelf: 'center',
+        fontSize: 25,
+        fontWeight: 'bold'
+    },
+    segments: {}
 })
 
 export default styles

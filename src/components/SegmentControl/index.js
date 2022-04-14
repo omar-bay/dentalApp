@@ -53,11 +53,12 @@ class SegmentControl extends Component {
                 height: 50,
                 borderRadius: 19,
                 margin: 2,
-                zIndex: -1
+                zIndex: -1,
               }
             ]}
           />
           {/* <View style={styles.separatorStyle} /> */}
+          <View style={{ height: 15 }}></View>
 
           <ScrollView
             scrollEventThrottle={16}
@@ -129,12 +130,13 @@ class SegmentControl extends Component {
 const styles = StyleSheet.create({
   card: {
     width: "100%",
-    backgroundColor: "white",
-    borderRadius: 6,
+    backgroundColor: "transparent",
+    borderRadius: 0,
     shadowColor: "black",
     shadowOffset: { height: 4, width: 0 },
     shadowOpacity: 0.1,
-    elevation: 3
+    elevation: 3,
+    paddingTop: 10
   },
   separatorStyle: {
     height: 1,

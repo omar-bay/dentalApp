@@ -41,3 +41,6 @@ DELETED
 https://bestofreactjs.com/repo/ainurb-react-native-segment-control-react-react-native-awesome-components
 npm install react-native-segment-control --save
 https://www.npmjs.com/package/react-native-segment-control
+
+doing some changes in node_modules/react-native-segmented-control to customize our segmented control
+lol, added edited segment control to components

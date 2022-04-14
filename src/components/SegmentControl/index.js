@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     paddingHorizontal: 5,
     borderWidth: 0.15,
-    borderRadius: 10
+    borderRadius: 10,
   },
   headerItem: {
     flex: 1,

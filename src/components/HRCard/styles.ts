@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
+        borderRadius: 15
     },
     right: {
         marginLeft: 10,

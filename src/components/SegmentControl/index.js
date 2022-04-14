@@ -57,7 +57,7 @@ class SegmentControl extends Component {
               }
             ]}
           />
-          <View style={styles.separatorStyle} />
+          {/* <View style={styles.separatorStyle} /> */}
 
           <ScrollView
             scrollEventThrottle={16}

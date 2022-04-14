@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-// import SegmentControl from 'react-native-segment-control';
 import SegmentControl from '../../components/SegmentControl';
  
 const One = () => {
@@ -38,7 +37,6 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F7FA',
   },
   text: {
     margin: 50,

@@ -48,7 +48,7 @@ class SegmentControl extends Component {
               {
                 width: containerWidth / numberOfSegments,
                 marginLeft: activeMargin,
-                backgroundColor: '#1C6DD0',
+                backgroundColor: '#5FD2EF',
                 position: 'absolute',
                 height: 50,
                 borderRadius: 19,

@@ -6,7 +6,11 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         height: 90,
         width: '90%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        display: 'flex',
+        flexDirection: 'row',
+        backgroundColor: 'white',
+        marginBottom: 10
     },
     left: {
         height: '100%',
@@ -14,11 +18,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     image: {
-        height: '100%',
         width: '100%',
-        resizeMode: 'contain'
     },
-    right: {}
+    right: {
+        marginLeft: 10,
+        paddingVertical: 8
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 16
+    },
+    status: {}
 })
 
 export default styles

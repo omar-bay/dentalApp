@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { View, Text, Keyboard } from 'react-native'
+import { View, Text, Keyboard, ScrollView } from 'react-native'
 import { SearchBar } from 'react-native-elements'
 import styles from './styles'
 import SegmentControl from '../../components/SegmentControl'
@@ -15,7 +15,7 @@ const HRScreen = () => {
 
     const segments = [{
         title: 'ALL',
-        view: ()=>(<HRCard/>)
+        view: ()=>(<ScrollView>{[1,1,1,1,1,1,1,1,1,1].map(()=><HRCard/>)}</ScrollView>)
     }, {
         title: 'EMPLOYEE',
         view: ()=>(<Text>EMPLOYEES PEOPLE</Text>)

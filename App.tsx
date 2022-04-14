@@ -100,8 +100,7 @@ const App = () => {
 
 
   return (
-    // <Router />
-    <SegmentedControlTest/>
+    <Router />
   );
 };
 

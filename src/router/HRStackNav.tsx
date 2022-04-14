@@ -12,8 +12,7 @@ const HRStackNav = () => {
         {/* HR */}
         <Stack.Screen name="HRScreen" component={HRScreen}
         options={{
-            title: 'Human Resources',
-            headerStyle: { backgroundColor: '#d4f4fa' }
+            headerShown: false
         }}
         />
     </Stack.Navigator>

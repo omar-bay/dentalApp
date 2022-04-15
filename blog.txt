@@ -44,3 +44,5 @@ https://www.npmjs.com/package/react-native-segment-control
 
 doing some changes in node_modules/react-native-segmented-control to customize our segmented control
 lol, added edited segment control to components
+
+you can prop navigation to the index page

@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         backgroundColor: '#DFFAFF',
-        height: 100,
+        height: 130,
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',

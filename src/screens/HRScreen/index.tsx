@@ -4,8 +4,9 @@ import { SearchBar } from 'react-native-elements'
 import styles from './styles'
 import SegmentControl from '../../components/SegmentControl'
 import HRCard from '../../components/HRCard'
+import { Nav } from '../../Types'
 
-const HRScreen = () => {
+const HRScreen = ({ navigation, route }: Nav) => {
     const [text, setText] = useState('')
     const mySearchBar = useRef()
 
@@ -15,7 +16,7 @@ const HRScreen = () => {
 
     const segments = [{
         title: 'ALL',
-        view: ()=>(<ScrollView>{[1,1,1,1,1,1,1,1,1,1].map(()=><HRCard image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmNdSL0wetARyMZVIRgtl2yPZyzXSJQx4EzA&usqp=CAU" name="Madilyn Manson" status="HR Manager"/>)}</ScrollView>)
+        view: ()=>(<ScrollView>{[1,1,1,1,1,1,1,1,1,1].map(()=><HRCard navigation={navigation} image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmNdSL0wetARyMZVIRgtl2yPZyzXSJQx4EzA&usqp=CAU" name="Madilyn Manson" status="HR Manager"/>)}</ScrollView>)
     }, {
         title: 'EMPLOYEE',
         view: ()=>(<Text>EMPLOYEES PEOPLE</Text>)

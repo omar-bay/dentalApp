@@ -1,16 +1,21 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, Pressable } from 'react-native'
 import React from 'react'
 import styles from './styles'
+import { Nav } from '../../Types'
 
 interface HRCardProps {
+    navigation: Nav['navigation'],
     image: String,
     name: String,
     status: String
 }
 
-const HRCard = ({ image, name, status }: HRCardProps) => {
+const HRCard = ({ navigation, image, name, status }: HRCardProps) => {
     return (
-        <View style={styles.root}>
+        <Pressable
+        style={styles.root}
+        onPress={()=>navigation.navigate('HREmployeeScreen')}
+        >
             <View style={styles.left}>
                 <Image
                 style={styles.image}
@@ -21,7 +26,7 @@ const HRCard = ({ image, name, status }: HRCardProps) => {
                 <Text style={styles.title}>{name}</Text>
                 <Text style={styles.status}>{status}</Text>
             </View>
-        </View>
+        </Pressable>
     )
 }
 

@@ -39,7 +39,7 @@ const HRScreen = ({ navigation, route }: Nav) => {
                 containerStyle= {{ backgroundColor: 'transparent', borderTopWidth: 0, borderBottomWidth: 0 }}
                 inputContainerStyle= {{ backgroundColor: 'white', height: 39 }}
                 inputStyle= {{ color: 'black' }}
-                placeholder="Service..."
+                placeholder="Name..."
                 showCancel
                 onChangeText={(txt)=>setText(txt)}
                 value={text}

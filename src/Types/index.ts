@@ -69,6 +69,8 @@ export interface Medical_File {
 export interface HR_Assignee {
     id: number,
     name: string,
+    email: string,
+    phone: string,
     profile_pic: string,
     hr_type: HR_Type
 }

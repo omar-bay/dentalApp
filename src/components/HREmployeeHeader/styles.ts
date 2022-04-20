@@ -51,10 +51,24 @@ const styles = StyleSheet.create({
       infoContainer: {
           display: 'flex',
           flexDirection: 'row',
-          justifyContent: 'space-evenly'
+          justifyContent: 'space-evenly',
+          marginTop: 5,
+          marginBottom: 10
       },
-      left: {},
-      right: {}
+      left: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1
+      },
+      right: {
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flex: 1
+      }
 })
 
 export default styles

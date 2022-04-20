@@ -7,14 +7,17 @@ import IconBack from 'react-native-vector-icons/AntDesign'
 import { Nav } from '../../Types'
 
 interface HREmployeeHeaderProps {
-    navigation: Nav,
-    name: string,
-    profile_pic: string,
-    text: string,
+    navigation: Nav
+    name: string
+    profile_pic: string
+    text: string
     setText: Dispatch<SetStateAction<string>>
+    hr_type: string
+    phone: string
+    email: string
 }
 
-const HREmployeeHeader = ({ navigation, name, profile_pic, text, setText }: HREmployeeHeaderProps) => {
+const HREmployeeHeader = ({ navigation, name, profile_pic, text, setText, hr_type, phone, email }: HREmployeeHeaderProps) => {
     return (
         <View style={styles.root}>
             {/* Top */}
@@ -37,12 +40,12 @@ const HREmployeeHeader = ({ navigation, name, profile_pic, text, setText }: HREm
             {/* Info */}
             <View style={styles.infoContainer}>
                 <View style={styles.left}>
-                    <Text>Position</Text>
+                    <Text>{hr_type}</Text>
                     <Text>Manager</Text>
                 </View>
                 <View style={styles.right}>
-                    <Text>Phone</Text>
-                    <Text>Email</Text>
+                    <Text>{phone}</Text>
+                    <Text>{email}</Text>
                 </View>
             </View>
 

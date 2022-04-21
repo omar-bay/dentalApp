@@ -3,11 +3,23 @@ import React from 'react'
 import HREmployeeHeader from '../../components/HREmployeeHeader'
 import { Nav } from '../../Types'
 import SegmentControl from '../../components/SegmentControl'
+import Resume from './Resume'
+import Info from './Info'
+import Settings from './Settings'
 
 const HREmployeeScreen = ({navigation, route}: Nav) => {
   const segments = [
     {
-      title: ""
+      title: "RESUME",
+      view: () => <Resume/>
+    },
+    {
+      title: "INFO",
+      view: () => <Info/>
+    },
+    {
+      title: "Settings",
+      view: () => <Settings/>
     }
   ]
 

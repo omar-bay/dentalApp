@@ -6,6 +6,7 @@ import SegmentControl from '../../components/SegmentControl'
 import Resume from './Resume'
 import Info from './Info'
 import Settings from './Settings'
+import styles from './styles'
 
 const HREmployeeScreen = ({navigation, route}: Nav) => {
   const segments = [
@@ -35,6 +36,7 @@ const HREmployeeScreen = ({navigation, route}: Nav) => {
       />
 
       <SegmentControl
+      style={styles.segment}
       segments={segments}
       />
 

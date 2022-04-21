@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native'
 import React from 'react'
 
 const Info = () => {
@@ -117,7 +117,8 @@ export default Info
 
 const styles = StyleSheet.create({
   root: {
-    height: '60%'
+    flexGrow: 1,
+    height: '100%'
   },
   left: {
     width: '80%',

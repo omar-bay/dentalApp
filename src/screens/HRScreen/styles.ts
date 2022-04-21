@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
     root: {
-
     },
     headerContainer: {
         backgroundColor: '#DFFAFF',
@@ -19,7 +18,8 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: 'bold'
     },
-    segments: {}
+    segments: {
+    }
 })
 
 export default styles

@@ -16,7 +16,7 @@ const HRScreen = ({ navigation, route }: Nav) => {
 
     const segments = [{
         title: 'ALL',
-        view: ()=>(<ScrollView>{[1,1,1,1,1,1,1,1,1,1].map(()=><HRCard navigation={navigation} image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmNdSL0wetARyMZVIRgtl2yPZyzXSJQx4EzA&usqp=CAU" name="Madilyn Manson" status="HR Manager"/>)}</ScrollView>)
+        view: ()=>(<ScrollView style={{ height: '69%' }}>{[1,1,1,1,1,1,1,1,1,1].map(()=><HRCard navigation={navigation} image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmNdSL0wetARyMZVIRgtl2yPZyzXSJQx4EzA&usqp=CAU" name="Madilyn Manson" status="HR Manager"/>)}</ScrollView>)
     }, {
         title: 'EMPLOYEE',
         view: ()=>(<Text>EMPLOYEES PEOPLE</Text>)

@@ -15,7 +15,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
     const Services = route.params.services
 
     const [text, setText] = useState('')
-    const [closed, setClosed] = useState(false)
+    const [closed, setClosed] = useState(true)
     const [scrollAnim] = useState(new Animated.Value(0));
     const [offsetAnim] = useState(new Animated.Value(0));
     const [clampedScroll, setClampedScroll] = useState(Animated.diffClamp(

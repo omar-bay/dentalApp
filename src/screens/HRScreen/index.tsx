@@ -16,16 +16,16 @@ const HRScreen = ({ navigation, route }: Nav) => {
 
     const segments = [{
         title: 'ALL',
-        view: ()=>(<ScrollView>{[1,1,1,1,1,1,1,1,1,1].map(()=><HRCard navigation={navigation} image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmNdSL0wetARyMZVIRgtl2yPZyzXSJQx4EzA&usqp=CAU" name="Madilyn Manson" status="HR Manager"/>)}<View style={{ height: 55 }}/></ScrollView>)
+        view: ()=>(<List navigation={navigation}/>)
     }, {
         title: 'EMPLOYEE',
-        view: ()=>(<Text>EMPLOYEES PEOPLE</Text>)
+        view: ()=>(<List navigation={navigation}/>)
     }, {
         title: 'DOCTOR',
-        view: ()=>(<Text>DOCTORS PEOPLE</Text>)
+        view: ()=>(<List navigation={navigation}/>)
     }, {
         title: 'STUDENT',
-        view: ()=>(<Text>STUDENTS PEOPLE</Text>)
+        view: ()=>(<List navigation={navigation}/>)
     }]
 
     return (
@@ -54,6 +54,28 @@ const HRScreen = ({ navigation, route }: Nav) => {
             />
 
         </View>
+    )
+}
+
+interface ListProps {
+    navigation: Nav['navigation']
+}
+
+const List = ({ navigation }: ListProps) => {
+    return (
+        <ScrollView
+        showsVerticalScrollIndicator={false}
+        >
+            {[0,1,2,3,4,5,6,7,,8,9,10,11].map((x,i) =>
+                <HRCard
+                name="Madilyn Manson"
+                status="HR Manager"
+                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmNdSL0wetARyMZVIRgtl2yPZyzXSJQx4EzA&usqp=CAU"
+                navigation={navigation}
+                />
+            )}
+            <View style={{ height: 456 }}/>
+        </ScrollView>
     )
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { View, Text, Pressable, Image } from 'react-native'
 import FileCart from '../FileCart'
 import RTaskStack from '../RTaskStack'
@@ -11,10 +11,11 @@ import { NavigationRouteContext } from '@react-navigation/native'
 
 interface ServiceCartProps {
     service: Service,
-    navigation: Nav
+    navigation: Nav,
+    setClosed: Dispatch<SetStateAction<boolean>>
 }
 
-const ServiceCart = ({ navigation, service }: ServiceCartProps) => {
+const ServiceCart = ({ navigation, service, setClosed }: ServiceCartProps) => {
     const servicePressed = () => {
         navigation.navigate('TaskListScreen', {
             service_name: service.service.name,
@@ -49,9 +50,9 @@ const ServiceCart = ({ navigation, service }: ServiceCartProps) => {
 
                 {/* Stages Recent Tasks */}
                 <View style={styles.stages}>
-                    <RTaskStack stage={Stage.New} />
-                    <RTaskStack stage={Stage.Pending} />
-                    <RTaskStack stage={Stage.Done} />
+                    <RTaskStack setClosed={setClosed} stage={Stage.New} />
+                    <RTaskStack setClosed={setClosed} stage={Stage.Pending} />
+                    <RTaskStack setClosed={setClosed} stage={Stage.Done} />
                 </View>
                 
             </View>

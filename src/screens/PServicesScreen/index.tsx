@@ -15,7 +15,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
     const Services = route.params.services
 
     const [text, setText] = useState('')
-    const [closed, setClosed] = useState(true)
+    const [closed, setClosed] = useState(false)
     const [scrollAnim] = useState(new Animated.Value(0));
     const [offsetAnim] = useState(new Animated.Value(0));
     const [clampedScroll, setClampedScroll] = useState(Animated.diffClamp(
@@ -86,13 +86,13 @@ const PServicesScreen = ({navigation, route}: Nav) => {
                 {
                     Services.map((service, index) => (
                         service.service.name.toLowerCase().includes(text.toLowerCase()) &&
-                        <View style={{}}><ServiceCart navigation={navigation} key={index} service={service} /></View>
+                        <View style={{}}><ServiceCart navigation={navigation} key={index} service={service}  setClosed={setClosed}/></View>
                     ))
                 }
             </Animated.ScrollView>
 
             {!closed && (
-                <SModal/>
+                <SModal setClosed={setClosed}/>
             )}
 
         </View>

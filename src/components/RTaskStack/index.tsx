@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { View, Text, Pressable } from 'react-native'
 import styles from './styles'
 import { Stage, Task } from '../../Types'
@@ -6,9 +6,10 @@ import IconPlus from 'react-native-vector-icons/FontAwesome5'
 
 interface RTaskStackProp {
     stage: Stage
+    setClosed: Dispatch<SetStateAction<boolean>>
 }
 
-const RTaskStack = ({ stage }: RTaskStackProp) => {
+const RTaskStack = ({ stage, setClosed }: RTaskStackProp) => {
     const chooseColor = () => {
         switch (stage) {
             case Stage.New:
@@ -29,7 +30,7 @@ const RTaskStack = ({ stage }: RTaskStackProp) => {
             <View style={styles.tasks}>
                 <Pressable
                 style={styles.task}
-                onPress={()=>{}}
+                onPress={()=>setClosed(false)}
                 ><IconPlus name="plus" size={30} /></Pressable>
             </View>
 

@@ -102,11 +102,9 @@ export const Row = ({ title, data }: RowProps) => {
     <View style={styles.rowContainer}>
       <Text
       style={styles.title}
-      numberOfLines={1}
       >{title}</Text>
       <Text
       style={styles.cred}
-      numberOfLines={1}
       >{data}</Text>
     </View>
   )

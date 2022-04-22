@@ -22,7 +22,8 @@ const Router = () => {
             screenOptions={{
                 tabBarLabelStyle: {fontSize: 18},
                 tabBarActiveTintColor: 'cyan',
-                tabBarStyle: { backgroundColor: '#e9f9fc' }
+                tabBarStyle: { backgroundColor: '#e9f9fc' },
+                tabBarHideOnKeyboard: true
             }}
             >
                 <Tab.Screen

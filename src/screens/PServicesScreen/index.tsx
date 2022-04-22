@@ -6,6 +6,7 @@ import { Nav, Service, Static_Service } from '../../Types'
 import PServicesHeader from '../../components/PServicesHeader'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import IconBack from 'react-native-vector-icons/AntDesign'
+import SModal from '../../components/SModal'
 
 const HEADER_HEIGHT = 135
 
@@ -14,6 +15,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
     const Services = route.params.services
 
     const [text, setText] = useState('')
+    const [closed, setClosed] = useState(true)
     const [scrollAnim] = useState(new Animated.Value(0));
     const [offsetAnim] = useState(new Animated.Value(0));
     const [clampedScroll, setClampedScroll] = useState(Animated.diffClamp(
@@ -88,25 +90,10 @@ const PServicesScreen = ({navigation, route}: Nav) => {
                     ))
                 }
             </Animated.ScrollView>
-            {/* <Animated.FlatList 
-                contentInset={{ top: HEADER_HEIGHT }}
-                contentOffset={{ x: 0, y: -HEADER_HEIGHT }}
-                bounces={false}
-                scrollEventThrottle={16}
-                style={{ flexGrow: 1, width: '100%' }}
-                data={Services}
-                renderItem={renderList}
-                onScroll={Animated.event(
-                [
-                    {
-                    nativeEvent: {
-                        contentOffset: { y: scrollAnim }
-                    }
-                    }
-                ],
-                { useNativeDriver: true }
-                )}
-            /> */}
+
+            {!closed && (
+                <SModal/>
+            )}
 
         </View>
     )

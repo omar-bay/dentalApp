@@ -27,7 +27,10 @@ const RTaskStack = ({ stage }: RTaskStackProp) => {
 
             {/* Plus & RTasks */}
             <View style={styles.tasks}>
-                <Pressable style={styles.task}><IconPlus name="plus" size={30} /></Pressable>
+                <Pressable
+                style={styles.task}
+                onPress={()=>{}}
+                ><IconPlus name="plus" size={30} /></Pressable>
             </View>
 
         </View>

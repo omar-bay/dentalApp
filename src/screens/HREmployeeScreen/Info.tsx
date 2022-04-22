@@ -97,7 +97,7 @@ interface RowProps {
   data: string
 }
 
-const Row = ({ title, data }: RowProps) => {
+export const Row = ({ title, data }: RowProps) => {
   return (
     <View style={styles.rowContainer}>
       <Text

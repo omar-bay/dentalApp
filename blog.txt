@@ -46,3 +46,6 @@ doing some changes in node_modules/react-native-segmented-control to customize o
 lol, added edited segment control to components
 
 you can prop navigation to the index page
+
+scrollview not scrolling was solved by full height the main container
+and a dummy at the end of the scroll

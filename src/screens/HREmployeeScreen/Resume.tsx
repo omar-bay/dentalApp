@@ -1,11 +1,8 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, Platform } from 'react-native'
 
 const Resume = () => {
   return (
-    <View>
-      <Text>Resume</Text>
-    </View>
+    <View><Text>resume</Text></View>
   )
 }
 

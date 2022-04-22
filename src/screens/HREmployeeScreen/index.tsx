@@ -25,7 +25,7 @@ const HREmployeeScreen = ({navigation, route}: Nav) => {
   ]
 
   return (
-    <View>
+    <View style={{ height: '100%' }}>
       <HREmployeeHeader
       navigation={navigation}
       name="Omar Bay"

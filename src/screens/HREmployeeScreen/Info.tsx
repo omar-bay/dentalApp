@@ -2,6 +2,66 @@ import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native'
 import React from 'react'
 
 const Info = () => {
+  const work_info = [{
+    title: 'Position',
+    data: 'Doctor'
+  }, {
+    title: 'Work Phone',
+    data: '99 999 999'
+  }, {
+    title: 'Work Email',
+    data: 'working@email.com'
+  }, {
+    title: 'Contracts',
+    data: '1'
+  }, {
+    title: 'Services Done',
+    data: '9'
+  }, {
+    title: 'Last Appraisal',
+    data: '15/3/2020'
+  }, {
+    title: 'Next Appraisal',
+    data: '15/2/2022'
+  }, {
+    title: 'Department',
+    data: 'Dentistry'
+  }, {
+    title: 'Company',
+    data: 'BAU'
+  }, {
+    title: 'Work Location',
+    data: 'Main blg. F2'
+  }, {
+    title: 'Employed Since',
+    data: '12/1/2019'
+  }]
+  const priv_info = [{
+    title: 'Name',
+    data: 'Omar Bay'
+  }, {
+    title: 'Home Address',
+    data: 'Personal St. Safe Square.'
+  }, {
+    title: 'Email',
+    data: 'me_myself@email.coim'
+  }, {
+    title: 'Nationality',
+    data: 'Lebanese'
+  }, {
+    title: 'Home Number',
+    data: '99 999 999'
+  }, {
+    title: 'SSN',
+    data: '1234567890'
+  }, {
+    title: 'Birth',
+    data: '11/11/2011'
+  }, {
+    title: 'Status',
+    data: 'Single'
+  }]
+
   return (
     <ScrollView
     style={styles.root}
@@ -9,86 +69,25 @@ const Info = () => {
     >
       <View style={styles.left}>
         <Text style={styles.label}>Work Info</Text>
-        <Row
-        title="Position"
-        data="Doctor"
-        />
-        <Row
-        title="Work Phone"
-        data="999 99 999 99"
-        />
-        <Row
-        title="Work Email"
-        data="adminperson@email.com"
-        />
-        <Row
-        title="Contracts"
-        data="1"
-        />
-        <Row
-        title="Services Done"
-        data="9"
-        />
-        <Row
-        title="Last Appraisal"
-        data="15/3/2020"
-        />
-        <Row
-        title="Next Appraisal"
-        data="9/12/2023"
-        />
-        <Row
-        title="Department"
-        data="Dentistry"
-        />
-        <Row
-        title="Company"
-        data="BAU"
-        />
-        <Row
-        title="Work Location"
-        data="Main blg. F2"
-        />
-        <Row
-        title="Employed Since"
-        data="12/1/2018"
-        />
+        {work_info.map((inf, index) => (
+          <Row
+          title={inf.title}
+          data={inf.data}
+          key={index}
+          />
+        ))}
       </View>
       <View style={styles.right}>
         <Text style={styles.label}>Private Info</Text>
-          <Row
-          title="Name"
-          data="Omar Bay"
-          />
-          <Row
-          title="Home Address"
-          data="Personal St. Safe Square. One Blg"
-          />
-          <Row
-          title="Email"
-          data="adminperson@email.com"
-          />
-          <Row
-          title="Nationality"
-          data="Lebanese"
-          />
-          <Row
-          title="Home Number"
-          data="99 999 999"
-          />
-          <Row
-          title="SSN"
-          data="123456789"
-          />
-          <Row
-          title="Birth"
-          data="9/12/1998"
-          />
-          <Row
-          title="Status"
-          data="Single"
-          />
+          {priv_info.map((inf, index) => (
+            <Row
+            title={inf.title}
+            data={inf.data}
+            key={index}
+            />
+          ))}
       </View>
+      <View style={{ height: 330 }}></View>
     </ScrollView>
   )
 }
@@ -117,8 +116,6 @@ export default Info
 
 const styles = StyleSheet.create({
   root: {
-    flexGrow: 1,
-    height: '100%'
   },
   left: {
     width: '80%',
@@ -136,17 +133,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     borderBottomWidth: 0.5,
-    paddingVertical: 8
+    height: 40
   },
   label: {
     fontSize: 18,
-    marginLeft: 8
+    marginLeft: 8,
+    marginBottom: 8
   },
   title: {
     flex: 1,
     fontSize: 16,
     backgroundColor: 'white',
-    borderRadius: 50,
     paddingLeft: 5,
     fontWeight: 'bold',
   },

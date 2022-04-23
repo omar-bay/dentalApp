@@ -26,11 +26,15 @@ const SModal = ({ setClosed, setNewTask, newTask, newTaskName, setNewTaskName, n
             date: date
         }
         console.log(taskData)
+        setNewTaskName('')
+        setNewTaskDesc('')
         setClosed(true)
     }
 
     const handleCancel = () => {
         setNewTask({})
+        setNewTaskName('')
+        setNewTaskDesc('')
         setClosed(true)
     }
 

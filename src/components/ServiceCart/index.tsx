@@ -6,21 +6,22 @@ import styles from './styles'
 import { Service } from '../Types'
 import Services from '../../data/Services'
 import IconEdit from 'react-native-vector-icons/AntDesign'
-import { Nav, Stage } from '../../Types'
+import { Nav, Stage, Task } from '../../Types'
 import { NavigationRouteContext } from '@react-navigation/native'
 
 interface ServiceCartProps {
-    service: Service,
-    navigation: Nav,
+    service: Service
+    navigation: Nav
+    setNewTask: Dispatch<SetStateAction<{}>>
+    newTask: Task
     setClosed: Dispatch<SetStateAction<boolean>>
 }
 
-const ServiceCart = ({ navigation, service, setClosed }: ServiceCartProps) => {
+const ServiceCart = ({ navigation, service, setNewTask, newTask, setClosed }: ServiceCartProps) => {
     const servicePressed = () => {
         navigation.navigate('TaskListScreen', {
             service_name: service.service.name,
             tasks: service.tasks,
-            
         })
     }
 
@@ -50,9 +51,27 @@ const ServiceCart = ({ navigation, service, setClosed }: ServiceCartProps) => {
 
                 {/* Stages Recent Tasks */}
                 <View style={styles.stages}>
-                    <RTaskStack setClosed={setClosed} stage={Stage.New} />
-                    <RTaskStack setClosed={setClosed} stage={Stage.Pending} />
-                    <RTaskStack setClosed={setClosed} stage={Stage.Done} />
+                    <RTaskStack
+                    setClosed={setClosed}
+                    stage={Stage.New}
+                    service={service}
+                    setNewTask={setNewTask}
+                    newTask={newTask}
+                    />
+                    <RTaskStack
+                    setClosed={setClosed}
+                    stage={Stage.Pending}
+                    service={service}
+                    setNewTask={setNewTask}
+                    newTask={newTask}
+                    />
+                    <RTaskStack
+                    setClosed={setClosed}
+                    stage={Stage.Done}
+                    service={service}
+                    setNewTask={setNewTask}
+                    newTask={newTask}
+                    />
                 </View>
                 
             </View>

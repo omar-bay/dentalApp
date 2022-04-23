@@ -16,6 +16,9 @@ const PServicesScreen = ({navigation, route}: Nav) => {
 
     const [text, setText] = useState('')
     const [closed, setClosed] = useState(true)
+    const [newTask, setNewTask] = useState({})
+    const [newTaskName, setNewTaskName] = useState('')
+    const [newTaskDesc, setNewTaskDesc] = useState('')
     const [scrollAnim] = useState(new Animated.Value(0));
     const [offsetAnim] = useState(new Animated.Value(0));
     const [clampedScroll, setClampedScroll] = useState(Animated.diffClamp(
@@ -86,13 +89,30 @@ const PServicesScreen = ({navigation, route}: Nav) => {
                 {
                     Services.map((service, index) => (
                         service.service.name.toLowerCase().includes(text.toLowerCase()) &&
-                        <View style={{}}><ServiceCart navigation={navigation} key={index} service={service}  setClosed={setClosed}/></View>
+                        <View style={{}}>
+                            <ServiceCart
+                            key={index}
+                            service={service}
+                            navigation={navigation}
+                            setNewTask={setNewTask}
+                            newTask={newTask}
+                            setClosed={setClosed}
+                            />
+                        </View>
                     ))
                 }
             </Animated.ScrollView>
 
             {!closed && (
-                <SModal setClosed={setClosed}/>
+                <SModal
+                setClosed={setClosed}
+                setNewTask={setNewTask}
+                newTask={newTask}
+                newTaskName={newTaskName}
+                setNewTaskName={setNewTaskName}
+                newTaskDesc={newTaskDesc}
+                setNewTaskDesc={setNewTaskDesc}
+                />
             )}
 
         </View>

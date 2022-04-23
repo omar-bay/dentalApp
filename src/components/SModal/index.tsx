@@ -1,33 +1,67 @@
 import { Button, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import MyDatePicker from '../MyDatePicker'
 import { formatDate } from '../../screens/TaskScreen'
+import { Stage, Task } from '../../Types'
 
 interface SModalProps {
     setClosed: Dispatch<SetStateAction<boolean>>
+    setNewTask: Dispatch<SetStateAction<{}>>
+    newTask: Task
+    newTaskName: string
+    setNewTaskName: Dispatch<SetStateAction<string>>
+    newTaskDesc: string
+    setNewTaskDesc: Dispatch<SetStateAction<string>>
 }
 
-const SModal = ({ setClosed }: SModalProps) => {
+const SModal = ({ setClosed, setNewTask, newTask, newTaskName, setNewTaskName, newTaskDesc, setNewTaskDesc }: SModalProps) => {
     const [date, setDate] = useState(new Date());
     const [openDate, setOpenDate] = useState(false);
 
     const handlePress = () => {
+        let taskData = {
+            ...newTask,
+            name: newTaskName,
+            description: newTaskDesc,
+            date: date
+        }
+        console.log(taskData)
         setClosed(true)
     }
 
+    const handleCancel = () => {
+        setNewTask({})
+        setClosed(true)
+    }
+
+    const chooseColor = () => {
+        switch (newTask['stage']) {
+            case Stage.New:
+                return '#FF574A'
+            case Stage.Pending:
+                return '#FDA424'
+            default:
+                return '#51CE72'
+        }
+    }
+
   return (
-    <Pressable style={styles.root} onPress={()=>setClosed(true)}>
+    <Pressable style={styles.root} onPress={handleCancel}>
       <Pressable style={styles.container}>
           <Text style={styles.title}>Task</Text>
           <View style={styles.item}>
               <Text style={styles.label}>Name</Text>
               <TextInput
+              onChangeText={setNewTaskName}
+              value={newTaskName}
               style={styles.input}
               />
           </View>
           <View style={styles.item}>
               <Text style={styles.label}>Desc</Text>
               <TextInput
+              onChangeText={setNewTaskDesc}
+              value={newTaskDesc}
               style={styles.input}
               />
           </View>
@@ -44,7 +78,7 @@ const SModal = ({ setClosed }: SModalProps) => {
               />
           </View>
           <Pressable
-          style={styles.button}
+          style={[styles.button, { backgroundColor: chooseColor() }]}
           onPress={handlePress}
           ><Text style={styles.buttonTitle}>ADD</Text></Pressable>
       </Pressable>
@@ -106,7 +140,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
     buttonTitle: {
-        color: 'grey',
+        color: 'white',
         fontWeight: 'bold'
     }
 })

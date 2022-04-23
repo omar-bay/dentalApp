@@ -1,15 +1,18 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { View, Text, Pressable } from 'react-native'
 import styles from './styles'
-import { Stage, Task } from '../../Types'
+import { Service, Stage, Task } from '../../Types'
 import IconPlus from 'react-native-vector-icons/FontAwesome5'
 
 interface RTaskStackProp {
     stage: Stage
     setClosed: Dispatch<SetStateAction<boolean>>
+    service: Service
+    setNewTask: Dispatch<SetStateAction<{}>>
+    newTask: Task
 }
 
-const RTaskStack = ({ stage, setClosed }: RTaskStackProp) => {
+const RTaskStack = ({ stage, setClosed, service, setNewTask, newTask }: RTaskStackProp) => {
     const chooseColor = () => {
         switch (stage) {
             case Stage.New:
@@ -21,6 +24,14 @@ const RTaskStack = ({ stage, setClosed }: RTaskStackProp) => {
         }
     }
 
+    const handlePlus = () => {
+        setNewTask({
+            sid: service.id,
+            stage: stage
+        })
+        setClosed(false)
+    }
+
     return (
         <View style={chooseColor()}>
             {/* Stage Name */}
@@ -30,7 +41,7 @@ const RTaskStack = ({ stage, setClosed }: RTaskStackProp) => {
             <View style={styles.tasks}>
                 <Pressable
                 style={styles.task}
-                onPress={()=>setClosed(false)}
+                onPress={handlePlus}
                 ><IconPlus name="plus" size={30} /></Pressable>
             </View>
 

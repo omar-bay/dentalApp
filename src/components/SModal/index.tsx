@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         margin: 5,
-        padding: 8
+        padding: 10
     },
     button: {
         backgroundColor: '#bfeff8',
@@ -136,8 +136,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 5,
+        height: 45,
         borderRadius: 20,
-        marginTop: 5,
+        marginTop: 8,
     },
     buttonTitle: {
         color: 'white',

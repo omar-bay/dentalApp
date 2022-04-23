@@ -22,7 +22,7 @@ const HREmployeeHeader = ({ navigation, name, profile_pic, text, setText, hr_typ
         <View style={styles.root}>
             {/* Top */}
             <View style={styles.top}>
-                <Pressable onPress={() => navigation.goBack()} style={styles.back}><IconBack name="left" size={25} /><Text style={{ fontSize: 18 }}>BACK</Text></Pressable>
+                <Pressable onPress={() => navigation.goBack()} style={styles.back}><IconBack name="left" size={25} /><Text style={{ fontSize: 18 }}>Back</Text></Pressable>
                 <Pressable onPress={() => {}}><Text style={{ fontSize: 18 }}>Details</Text></Pressable>
             </View>
             

@@ -2,14 +2,18 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: '#f4f5fa',
+        backgroundColor: '#d4f4fa',
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: 40,
         borderBottomLeftRadius: 65,
-        zIndex: 0
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1
     },
     title: {
         fontSize: 24,
@@ -23,7 +27,7 @@ const styles = StyleSheet.create({
     search: {},
     featuredContainer: {
         backgroundColor: '#ffffff',
-        paddingTop: 100,
+        paddingTop: 200,
         paddingBottom: 45,
         marginTop: -65,
         borderBottomLeftRadius: 65,

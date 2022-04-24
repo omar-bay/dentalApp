@@ -1,12 +1,31 @@
 import React, { useRef, useState } from 'react'
-import { View, Text, Image, ScrollView, Keyboard, Pressable } from 'react-native'
+import { View, Text, Image, ScrollView, Keyboard, Pressable, Animated, Dimensions } from 'react-native'
 import { SearchBar } from 'react-native-elements'
 import IconSearch from 'react-native-vector-icons/Feather'
 import styles from './styles'
 
+const HEADER_HEIGHT = 135
+
 const KnowledgeScreen = () => {
     const [text, setText] = useState('')
     const [closeSearch, setCloseSearch] = useState(true)
+    const [scrollAnim] = useState(new Animated.Value(0));
+    const [offsetAnim] = useState(new Animated.Value(0));
+    const [clampedScroll, setClampedScroll] = useState(Animated.diffClamp(
+        Animated.add(
+            scrollAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, 1],
+                extrapolateLeft: 'clamp'
+            }), offsetAnim
+        ), 0, 1
+    ));
+
+    const navbarTranslate = clampedScroll.interpolate({
+        inputRange: [0, HEADER_HEIGHT],
+        outputRange: [0, -HEADER_HEIGHT],
+        extrapolate: 'clamp'
+    })
 
     const mySearchBar = useRef()
 
@@ -15,11 +34,26 @@ const KnowledgeScreen = () => {
     }
 
     return (
-        <ScrollView
-        showsVerticalScrollIndicator={false}
-        >
+        <View style={{flex:1}}>
             {/* Header */}
-            <View style={styles.header}>
+            <Animated.View
+            style={[styles.header, {
+                transform: [{ translateY: navbarTranslate }]
+            }]}
+            onLayout={(event) => {
+                let {height} = event.nativeEvent.layout;
+                setClampedScroll(Animated.diffClamp(
+                Animated.add(
+                    scrollAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, 1],
+                    extrapolateLeft: 'clamp'
+                    }),
+                    offsetAnim
+                ), 0, height)
+                );
+            }}
+            >
                 <Text style={styles.title}>Blog</Text>
                 {closeSearch ? (
                     <Pressable
@@ -47,29 +81,47 @@ const KnowledgeScreen = () => {
                         />
                     </View>
                 )}
-            </View>
+            </Animated.View>
 
-            {/* Featured */}
-            <View style={styles.featuredContainer}>
-                <Image
-                style={styles.bau}
-                source={{ uri: 'https://icas.bau.edu.lb:8443/cas/files/bau-logo-big.ico' }}
-                />
-                <Image
-                style={styles.logo}
-                source={{ uri: 'https://cdn.discordapp.com/attachments/898623704974647379/967867487217668106/logo.png' }}
-                />
-            </View>
+            <Animated.ScrollView
+            bounces={false}
+            scrollEventThrottle={16}
+            onScroll={Animated.event(
+            [
+                {
+                nativeEvent: {
+                    contentOffset: { y: scrollAnim }
+                }
+                }
+            ],
+            { useNativeDriver: true }
+            )}
+            style={{ flexGrow: 1, width: '100%' }}
+            showsVerticalScrollIndicator={false}
+            >
 
-            {/* Blogs */}
-            {[1,1,1,1,1].map((blog, index) => (
-                <Blog
-                key={index}
-                style={{ zIndex: -2-index, backgroundColor: blogColor(index) }}
-                />
-            ))}
+                {/* Featured */}
+                <View style={styles.featuredContainer}>
+                    <Image
+                    style={styles.bau}
+                    source={{ uri: 'https://icas.bau.edu.lb:8443/cas/files/bau-logo-big.ico' }}
+                    />
+                    <Image
+                    style={styles.logo}
+                    source={{ uri: 'https://cdn.discordapp.com/attachments/898623704974647379/967867487217668106/logo.png' }}
+                    />
+                </View>
 
-        </ScrollView>
+                {/* Blogs */}
+                {[1,1,1,1,1].map((blog, index) => (
+                    <Blog
+                    key={index}
+                    style={{ zIndex: -2-index, backgroundColor: blogColor(index) }}
+                    />
+                ))}
+
+            </Animated.ScrollView>
+        </View>
     )
 }
 

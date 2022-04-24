@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
         zIndex: 0
     },
     title: {
-        fontSize: 24
+        fontSize: 24,
+        marginLeft: 45
     },
     searchContainer: {
         position: 'absolute',
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
         width: 100,
     },
     blogContainer: {
-        backgroundColor: 'yellow',
+        backgroundColor: '#bfeff8',
         paddingTop: 90,
         paddingBottom: 40,
         marginTop: -65,

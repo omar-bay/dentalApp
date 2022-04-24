@@ -15,7 +15,9 @@ const KnowledgeScreen = () => {
     }
 
     return (
-        <ScrollView>
+        <ScrollView
+        showsVerticalScrollIndicator={false}
+        >
             {/* Header */}
             <View style={styles.header}>
                 <Text style={styles.title}>Blog</Text>
@@ -60,31 +62,57 @@ const KnowledgeScreen = () => {
             </View>
 
             {/* Blogs */}
-            <View style={styles.blogContainer}>
-                <View style={styles.wrapper}>
-                    <View style={styles.author}>
-                        <Image
-                        style={styles.profilepic}
-                        source={{ uri: 'https://www.kindpng.com/picc/m/187-1874123_best-pictures-for-profile-hd-png-download.png' }}
-                        />
-                        <View style={{ marginLeft: 12 }}>
-                            <Text style={styles.name}>Perla Jaccuzi</Text>
-                            <Text style={styles.date}>8/12/2021</Text>
-                        </View>
-                    </View>
-                    <View style={styles.postContainer}>
-                        <Text style={styles.post}>
-                            Hello, i've been in this University since
-                            as long as i can remember. I don't age and
-                            like being held by hand and taken down to the
-                            dance floor with the one person that learns how
-                            to ride a bike with my cousins last summer
-                        </Text>
-                    </View>
-                </View>
-            </View>
+            {[1,1,1,1,1].map((blog, index) => (
+                <Blog
+                key={index}
+                style={{ zIndex: -2-index, backgroundColor: blogColor(index) }}
+                />
+            ))}
 
         </ScrollView>
+    )
+}
+
+const blogColor = (number: number) => {
+    switch (number%3) {
+        case 0:
+            return '#f4f5fa'
+        case 1:
+            return '#ffffff'
+        default:
+            return '#bfeff8'
+    }
+}
+
+interface BlogProps {
+    style: {}
+}
+
+const Blog = ({ style }: BlogProps) => {
+    return (
+        <View style={[styles.blogContainer, style]}>
+            <View style={styles.wrapper}>
+                <View style={styles.author}>
+                    <Image
+                    style={styles.profilepic}
+                    source={{ uri: 'https://www.kindpng.com/picc/m/187-1874123_best-pictures-for-profile-hd-png-download.png' }}
+                    />
+                    <View style={{ marginLeft: 12 }}>
+                        <Text style={styles.name}>Perla Jaccuzi</Text>
+                        <Text style={styles.date}>8/12/2021</Text>
+                    </View>
+                </View>
+                <View style={styles.postContainer}>
+                    <Text style={styles.post}>
+                        Hello, i've been in this University since
+                        as long as i can remember. I don't age and
+                        like being held by hand and taken down to the
+                        dance floor with the one person that learns how
+                        to ride a bike with my cousins last summer
+                    </Text>
+                </View>
+            </View>
+        </View>
     )
 }
 

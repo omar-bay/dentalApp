@@ -1,15 +1,50 @@
-import React from 'react'
-import { View, Text, Image, ScrollView } from 'react-native'
+import React, { useRef, useState } from 'react'
+import { View, Text, Image, ScrollView, Keyboard, Pressable } from 'react-native'
+import { SearchBar } from 'react-native-elements'
 import IconSearch from 'react-native-vector-icons/Feather'
 import styles from './styles'
 
 const KnowledgeScreen = () => {
+    const [text, setText] = useState('')
+    const [closeSearch, setCloseSearch] = useState(true)
+
+    const mySearchBar = useRef()
+
+    const focus = () => {
+        mySearchBar?.current.blur()
+    }
+
     return (
         <ScrollView>
             {/* Header */}
             <View style={styles.header}>
                 <Text style={styles.title}>Blog</Text>
-                <IconSearch name="search" size={30} />
+                {closeSearch ? (
+                    <Pressable
+                    onPress={()=>setCloseSearch(false)}
+                    ><IconSearch name="search" size={30}/></Pressable>
+                ) : (
+                    <View style={styles.searchContainer}>
+                        <SearchBar
+                        style={styles.search}
+                        ref={mySearchBar}
+                        lightTheme
+                        round={true}
+                        containerStyle= {{ backgroundColor: 'transparent', borderTopWidth: 0, borderBottomWidth: 0 }}
+                        inputContainerStyle= {{ backgroundColor: 'white', height: 39 }}
+                        inputStyle= {{ color: 'black' }}
+                        placeholder="Topic..."
+                        showCancel
+                        onChangeText={(txt)=>setText(txt)}
+                        value={text}
+                        onPressIn={focus}
+                        onClear={() => {
+                            Keyboard.dismiss();
+                            setCloseSearch(true)
+                        }}
+                        />
+                    </View>
+                )}
             </View>
 
             {/* Featured */}

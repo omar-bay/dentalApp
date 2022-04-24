@@ -14,6 +14,12 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24
     },
+    searchContainer: {
+        position: 'absolute',
+        right: 0,
+        width: '70%'
+    },
+    search: {},
     featuredContainer: {
         backgroundColor: '#ffffff',
         paddingTop: 100,

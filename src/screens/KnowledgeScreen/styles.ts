@@ -50,11 +50,11 @@ const styles = StyleSheet.create({
     blogContainer: {
         backgroundColor: '#bfeff8',
         paddingTop: 90,
-        paddingBottom: 40,
+        paddingBottom: 20,
         marginTop: -65,
-        borderBottomLeftRadius: 65,
+        borderBottomLeftRadius: 70,
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: -2
@@ -83,7 +83,16 @@ const styles = StyleSheet.create({
     postContainer: {
         marginTop: 15
     },
-    post: {}
+    post: {},
+    keywordContainer: {
+        width: '70%',
+        alignItems: 'flex-end',
+        marginTop: 15,
+    },
+    keyword: {
+        fontSize: 16,
+        fontWeight: 'bold'
+    }
 })
 
 export default styles

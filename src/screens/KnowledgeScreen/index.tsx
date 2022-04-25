@@ -114,7 +114,7 @@ const KnowledgeScreen = () => {
 
                 {/* Blogs */}
                 {[1,1,1,1,1].map((blog, index) => (
-                    <Blog
+                    <BlogCard
                     key={index}
                     style={{ zIndex: -2-index, backgroundColor: blogColor(index) }}
                     />
@@ -130,17 +130,17 @@ const blogColor = (number: number) => {
         case 0:
             return '#f4f5fa'
         case 1:
-            return '#ffffff'
-        default:
             return '#bfeff8'
+        default:
+            return '#ffffff'
     }
 }
 
-interface BlogProps {
+interface BlogCardProps {
     style: {}
 }
 
-const Blog = ({ style }: BlogProps) => {
+const BlogCard = ({ style }: BlogCardProps) => {
     return (
         <View style={[styles.blogContainer, style]}>
             <View style={styles.wrapper}>
@@ -155,7 +155,10 @@ const Blog = ({ style }: BlogProps) => {
                     </View>
                 </View>
                 <View style={styles.postContainer}>
-                    <Text style={styles.post}>
+                    <Text
+                    style={styles.post}
+                    numberOfLines={5}
+                    >
                         Hello, i've been in this University since
                         as long as i can remember. I don't age and
                         like being held by hand and taken down to the
@@ -163,6 +166,11 @@ const Blog = ({ style }: BlogProps) => {
                         to ride a bike with my cousins last summer
                     </Text>
                 </View>
+            </View>
+            <View style={styles.keywordContainer}>
+                <Text
+                style={styles.keyword}
+                >Scelestical</Text>
             </View>
         </View>
     )

@@ -33,7 +33,8 @@ const ServiceCart = ({ navigation, service, setNewTask, newTask, setClosed }: Se
                     <View style={[styles.profileImgContainer, { borderColor: 'green', borderWidth:1 }]}>
                         <Image
                         source={{
-                            uri: `data:image/png;base64,${service?.assignee?.profile_pic}`
+                            // uri: `data:image/png;base64,${service?.assignee?.profile_pic}`
+                            uri: service?.assignee?.profile_pic
                         }}
                         style={styles.profileImg}
                         />

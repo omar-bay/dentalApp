@@ -5,6 +5,7 @@ import styles from './styles'
 import SegmentControl from '../../components/SegmentControl'
 import HRCard from '../../components/HRCard'
 import { Nav } from '../../Types'
+import Assignees from '../../data/Assignees'
 
 const HRScreen = ({ navigation, route }: Nav) => {
     const [text, setText] = useState('')

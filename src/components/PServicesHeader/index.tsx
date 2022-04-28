@@ -38,7 +38,8 @@ const PServicesHeader = ({ navigation, name, profile_pic, text, setText }: PServ
                 <View style={[styles.profileImgContainer, { borderColor: 'green', borderWidth:1 }]}>
                     <Image
                     source={{
-                        uri: `data:image/png;base64,${profile_pic}`
+                        // uri: `data:image/png;base64,${profile_pic}`
+                        uri: profile_pic
                     }}
                     style={styles.profileImg}
                     />

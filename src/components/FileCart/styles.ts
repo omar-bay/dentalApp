@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         marginVertical: 3,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        paddingHorizontal: 10
     },
     bar: {
         width: '3%',
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     iconContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: 15
+        // paddingHorizontal: 15
     },
     profileImgContainer: {
         alignSelf: 'center',

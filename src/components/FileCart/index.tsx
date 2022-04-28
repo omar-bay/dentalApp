@@ -19,7 +19,7 @@ const FileCart = ({ cred, navigation, services }: FileCartProps) => {
     return (
         <Pressable style={styles.root} onPress={() => handlePress(navigation)}>
             {/* Bar */}
-            <View style={[styles.profileImgContainer, { borderColor: 'green', borderWidth:1 }]}>
+            <View style={[styles.profileImgContainer, { borderColor: 'green', borderWidth:0 }]}>
                 <Image
                 source={{
                     uri: cred.profile_pic

@@ -6,7 +6,7 @@ import TaskListHeader from '../../components/TakListHeader'
 import TaskListTableHeader from '../../components/TaskListTableHeader'
 import TaskListTableCart from '../../components/TaskListTableCart'
 
-const HEADER_HEIGHT = 212
+const HEADER_HEIGHT = 215
 
 const TaskListScreen = ({ navigation, route }: Nav) => {
   const tasks = route.params.tasks

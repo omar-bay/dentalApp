@@ -56,15 +56,15 @@ const Patients = [{
 },
 {
     id: 7,
-    profile_pic: "https://expertphotography.b-cdn.net/wp-content/uploads/2018/10/joelvalve-572557-unsplash.jpg",
-    name: "Mohye Bay",
+    profile_pic: "https://www.archiefoundationhome.org.uk/wp-content/uploads/2020/05/profile-photo-social-media.jpg",
+    name: "Rafi Abla",
     age: 60,
     gender: 'M',
     cat_id: 3,
 },
 {
     id: 8,
-    profile_pic: "https://expertphotography.b-cdn.net/wp-content/uploads/2018/10/joelvalve-572557-unsplash.jpg",
+    profile_pic: "https://krausefx.com/assets/posts/profilePictures/FelixKrause2016.jpg",
     name: "Samir Mezhir",
     age: 25,
     gender: 'M',

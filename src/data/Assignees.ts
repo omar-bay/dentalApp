@@ -11,7 +11,6 @@ const Assignees = [
         office: "Main blg. 5th floor.",
         home_address: "Beirut",
         cv: "http://www.africau.edu/images/default/sample.pdf",
-
     }
 ]
 

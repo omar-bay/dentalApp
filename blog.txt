@@ -48,6 +48,8 @@ lol, added edited segment control to components
 you can prop navigation to the index page
 
 scrollview not scrolling was solved by full height the main container
+flex: 1 main container
+flexGrow: 1 scrollview
 and a dummy at the end of the scroll
 
 https://www.npmjs.com/package/react-native-pdf

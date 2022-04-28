@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         borderColor: '#bfeff8',
         width: '96%', 
-        height: '12%',
+        height: 80,
         display: 'flex',
         flexDirection: 'row',
         marginVertical: 3

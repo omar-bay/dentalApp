@@ -50,7 +50,8 @@ you can prop navigation to the index page
 scrollview not scrolling was solved by full height the main container
 flex: 1 main container
 flexGrow: 1 scrollview
-and a dummy at the end of the scroll
+and a dummy at the end of the scroll.
+Another one was not letting height in percentage
 
 https://www.npmjs.com/package/react-native-pdf
 npm install react-native-pdf react-native-blob-util --save

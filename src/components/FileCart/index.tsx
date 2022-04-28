@@ -1,7 +1,8 @@
 import React from 'react'
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, Image } from 'react-native'
 import { Patient, Nav, Service } from '../../Types';
 import styles from './styles'
+import IconRight from 'react-native-vector-icons/AntDesign'
 
 interface FileCartProps {
     cred: Patient,
@@ -17,18 +18,28 @@ const FileCart = ({ cred, navigation, services }: FileCartProps) => {
 
     return (
         <Pressable style={styles.root} onPress={() => handlePress(navigation)}>
-            {/* Mark Bar */}
-            <View style={styles.bar}></View>
+            {/* Bar */}
+            <View style={[styles.profileImgContainer, { borderColor: 'green', borderWidth:1 }]}>
+                <Image
+                source={{
+                    uri: cred.profile_pic
+                }}
+                style={styles.profileImg}
+                />
+            </View>
 
             {/* info */}
             <View style={styles.info}>
                 {/* Patient Name */}
                 <View>
                     <Text numberOfLines={1} style={styles.pat_name}>{cred.name}</Text>
+                    <Text numberOfLines={1} style={styles.status}>VIP</Text>
                 </View>
+            </View>
 
-                {/* Patient Status */}
-                <Text numberOfLines={1}>Alive</Text>
+            {/* Icon */}
+            <View style={styles.iconContainer}>
+                <IconRight name="right" size={30}/>
             </View>
 
         </Pressable>

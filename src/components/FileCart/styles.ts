@@ -3,16 +3,17 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     root: {
         alignSelf: "center",
-        alignItems: 'center',
+        // alignItems: 'center',
         backgroundColor: '#d4f4fa',
         borderWidth: 1,
         borderRadius: 5,
         borderColor: '#bfeff8',
         width: '96%', 
-        height: 80,
+        height: 100,
         display: 'flex',
         flexDirection: 'row',
-        marginVertical: 3
+        marginVertical: 3,
+        justifyContent: 'space-between'
     },
     bar: {
         width: '3%',
@@ -20,15 +21,32 @@ const styles = StyleSheet.create({
         backgroundColor: '#bfeff8'
     },
     info: {
-        display: "flex",
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '97%',
-        padding: 20
+        paddingVertical: 20,
+        marginLeft: 12,
+        flex: 1
     },
     pat_name: {
         fontSize: 18
-    }
+    },
+    status: {
+    },
+    iconContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 15
+    },
+    profileImgContainer: {
+        alignSelf: 'center',
+        height: 80,
+        width: 80,
+        borderRadius: 40,
+        marginTop: 0.5,
+    },
+    profileImg: {
+        height: 80,
+        width: 80,
+        borderRadius: 40,
+    },
 })
 
 export default styles

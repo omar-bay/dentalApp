@@ -56,3 +56,7 @@ Another one was not letting height in percentage
 https://www.npmjs.com/package/react-native-pdf
 npm install react-native-pdf react-native-blob-util --save
 note: it doesn't work with Expo Go. good thing we use cli
+
+vector icons directory
+import IconFor from 'react-native-vector-icons/AntDesign'
+<IconFor name="right" size={25}/>

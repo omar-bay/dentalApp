@@ -9,6 +9,8 @@ import Settings from './Settings'
 import styles from './styles'
 
 const HREmployeeScreen = ({navigation, route}: Nav) => {
+  const assignee = route.params.assignee
+
   const segments = [
     {
       title: "RESUME",
@@ -28,11 +30,11 @@ const HREmployeeScreen = ({navigation, route}: Nav) => {
     <View style={{ height: '100%' }}>
       <HREmployeeHeader
       navigation={navigation}
-      name="Omar Bay"
-      hr_type='Student'
-      phone="77 777 777"
-      email="thisemail2@email.com"
-      profile_pic='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80'
+      name={assignee.name}
+      hr_type={assignee.hr_type}
+      phone={assignee.phone_num}
+      email={assignee.email}
+      profile_pic={assignee.profile_pic}
       />
 
       <SegmentControl

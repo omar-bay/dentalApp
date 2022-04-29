@@ -94,9 +94,7 @@ const List = ({ all, hr_type, navigation }: ListProps) => {
             {assignees.map((assignee, index) =>
                 <HRCard
                 key={assignee?.id}
-                name={assignee?.name}
-                status={assignee?.hr_type}
-                image={assignee?.profile_pic}
+                assignee={assignee}
                 navigation={navigation}
                 />
             )}

@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import TaskScreenHeader from '../../components/TaskScreenHeader'
 import TaskInfo from '../../components/TaskInfo'
 import Redirect from '../../components/Redirect'
+import NotesModal from '../../components/NotesModal'
 
 const padTo2Digits = (num: number) => {
     return num.toString().padStart(2, '0');
@@ -34,6 +35,7 @@ const HEADER_HEIGHT = 50
 const TaskScreen = ({ navigation, route }: Nav) => {
     const task = route.params.task
 
+    const [closed, setClosed] = useState(true)
     const [scrollAnim] = useState(new Animated.Value(0));
     const [offsetAnim] = useState(new Animated.Value(0));
     const [clampedScroll, setClampedScroll] = useState(Animated.diffClamp(
@@ -96,7 +98,9 @@ const TaskScreen = ({ navigation, route }: Nav) => {
                 <TaskInfo label='Objective' info={task.description}/>
                 <TaskInfo label='status' info={task.stage.toString()}/>
                 <TaskInfo label="deadline at" info={formatAMPM(task.date)}/>
-                <TaskInfo label="Assignee Notes" info={task.assignee_notes}/>
+                <Pressable onPress={()=>setClosed(false)}>
+                    <TaskInfo label="Assignee Notes" info={task.assignee_notes}/>
+                </Pressable>
 
                 {/* Toothly Recommends */}
                 <Text style={styles.tr_text}>Toothly Recommends</Text>
@@ -107,6 +111,13 @@ const TaskScreen = ({ navigation, route }: Nav) => {
                 </View>
 
             </Animated.ScrollView>
+
+            {/* Notes Modal */}
+            {!closed && (
+                <NotesModal
+                setClosed={setClosed}
+                />
+            )}
 
         </View>
     )

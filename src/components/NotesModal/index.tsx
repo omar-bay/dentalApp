@@ -4,94 +4,49 @@ import MyDatePicker from '../MyDatePicker'
 import { formatDate } from '../../screens/TaskScreen'
 import { Stage, Task } from '../../Types'
 
-interface SModalProps {
+interface NotesModalProps {
     setClosed: Dispatch<SetStateAction<boolean>>
-    setNewTask: Dispatch<SetStateAction<{}>>
-    newTask: Task
-    newTaskName: string
-    setNewTaskName: Dispatch<SetStateAction<string>>
-    newTaskDesc: string
-    setNewTaskDesc: Dispatch<SetStateAction<string>>
 }
 
-const SModal = ({ setClosed, setNewTask, newTask, newTaskName, setNewTaskName, newTaskDesc, setNewTaskDesc }: SModalProps) => {
-    const [date, setDate] = useState(new Date());
-    const [openDate, setOpenDate] = useState(false);
+const NotesModal = ({ setClosed }: NotesModalProps) => {
+    const [text, setText] = useState('');
 
-    const handlePress = () => {
-        let taskData = {
-            ...newTask,
-            name: newTaskName,
-            description: newTaskDesc,
-            assignee_notes: "",
-            date: date
-        }
-        console.log(taskData)
-        setNewTaskName('')
-        setNewTaskDesc('')
+    const handleSubmit = () => {
         setClosed(true)
+        setText('')
     }
 
     const handleCancel = () => {
-        setNewTask({})
-        setNewTaskName('')
-        setNewTaskDesc('')
         setClosed(true)
+        setText('')
     }
 
     const chooseColor = () => {
-        switch (newTask['stage']) {
-            case Stage.New:
-                return '#FF574A'
-            case Stage.Pending:
-                return '#FDA424'
-            default:
-                return '#51CE72'
-        }
+        return '#bfeff8'
     }
 
   return (
     <Pressable style={styles.root} onPress={handleCancel}>
       <Pressable style={styles.container}>
-          <Text style={styles.title}>Task</Text>
+          <Text style={styles.title}>My Notes</Text>
           <View style={styles.item}>
-              <Text style={styles.label}>Name</Text>
               <TextInput
-              onChangeText={setNewTaskName}
-              value={newTaskName}
               style={styles.input}
-              />
-          </View>
-          <View style={styles.item}>
-              <Text style={styles.label}>Desc</Text>
-              <TextInput
-              onChangeText={setNewTaskDesc}
-              value={newTaskDesc}
-              style={styles.input}
-              />
-          </View>
-          <View style={styles.item}>
-              <Text style={styles.label}>Date</Text>
-              <Pressable style={styles.dateHolder} onPress={()=>setOpenDate(true)}>
-                  <Text>{formatDate(date)}</Text>
-              </Pressable>
-              <MyDatePicker
-              date={date}
-              setDate={setDate}
-              open={openDate}
-              setOpen={setOpenDate}
+              onChangeText={setText}
+              value={text}
+              multiline={true}
               />
           </View>
           <Pressable
           style={[styles.button, { backgroundColor: chooseColor() }]}
-          onPress={handlePress}
+          onPress={handleSubmit}
           ><Text style={styles.buttonTitle}>ADD</Text></Pressable>
       </Pressable>
     </Pressable>
   )
 }
 
-export default SModal
+export default NotesModal
 
 const styles = StyleSheet.create({
     root: {

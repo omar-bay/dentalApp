@@ -14,11 +14,11 @@ const HREmployeeScreen = ({navigation, route}: Nav) => {
   const segments = [
     {
       title: "RESUME",
-      view: () => <Resume/>
+      view: () => <Resume cv={assignee.cv}/>
     },
     {
       title: "INFO",
-      view: () => <Info/>
+      view: () => <Info assignee={assignee}/>
     },
     {
       title: "Settings",

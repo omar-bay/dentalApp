@@ -12,6 +12,10 @@ const Assignees = [
         office: "Main blg. 5th floor.",
         home_address: "Beirut",
         cv: "http://www.africau.edu/images/default/sample.pdf",
+        nationality: "Lebanese",
+        SSN: 123456789,
+        birth: new Date(),
+        marital_status: "Married"
     }
 ]
 

@@ -1,16 +1,22 @@
 import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native'
 import React from 'react'
+import { HR_Assignee } from '../../Types'
+import { formatDate } from '../TaskScreen'
 
-const Info = () => {
+interface InfoProps {
+  assignee: HR_Assignee
+}
+
+const Info = ({ assignee }: InfoProps) => {
   const work_info = [{
     title: 'Position',
-    data: 'Doctor'
+    data: assignee.hr_type
   }, {
     title: 'Work Phone',
-    data: '99 999 999'
+    data: assignee.phone_num
   }, {
     title: 'Work Email',
-    data: 'working@email.com'
+    data: assignee.email
   }, {
     title: 'Contracts',
     data: '1'
@@ -31,32 +37,32 @@ const Info = () => {
     data: 'BAU'
   }, {
     title: 'Work Location',
-    data: 'Main blg. F2'
+    data: assignee.office
   }, {
     title: 'Employed Since',
     data: '12/1/2019'
   }]
   const priv_info = [{
     title: 'Name',
-    data: 'Omar Bay'
+    data: assignee.name
   }, {
     title: 'Home Address',
-    data: 'Personal St. Safe Square.'
+    data: assignee.home_address
   }, {
     title: 'Email',
-    data: 'me_myself@email.coim'
+    data: assignee.email
   }, {
     title: 'Nationality',
-    data: 'Lebanese'
+    data: assignee.nationality
   }, {
     title: 'Home Number',
-    data: '99 999 999'
+    data: assignee.home_num
   }, {
     title: 'SSN',
-    data: '1234567890'
+    data: assignee.SSN
   }, {
     title: 'Birth',
-    data: '11/11/2011'
+    data: formatDate(assignee.birth)
   }, {
     title: 'Status',
     data: 'Single'

@@ -67,16 +67,20 @@ export interface Medical_File {
 }
 
 export interface HR_Assignee {
-    id: number,
-    name: string,
-    email: string,
-    phone_num: string,
-    profile_pic: string,
-    hr_type: HR_Type,
-    home_num: string,
-    office: string,
-    home_address: string,
+    id: number
+    name: string
+    email: string
+    phone_num: string
+    profile_pic: string
+    hr_type: HR_Type
+    home_num: string
+    office: string
+    home_address: string
     cv: string
+    nationality?: string
+    SSN?: number
+    birth: Date
+    marital_status?: string
 }
 
 export enum HR_Type {

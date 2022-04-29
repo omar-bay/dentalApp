@@ -2,9 +2,13 @@ import { View, Text, Dimensions, StyleSheet } from 'react-native'
 import Pdf from 'react-native-pdf';
 import React from 'react'
 
-const Resume = () => {
+interface ResumeProps {
+  cv: string
+}
+
+const Resume = ({ cv }: ResumeProps) => {
   const source = {
-    uri: 'http://www.africau.edu/images/default/sample.pdf',
+    uri: cv,
     cache: true 
   };
 

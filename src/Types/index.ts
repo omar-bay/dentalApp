@@ -70,9 +70,13 @@ export interface HR_Assignee {
     id: number,
     name: string,
     email: string,
-    phone: string,
+    phone_num: string,
     profile_pic: string,
-    hr_type: HR_Type
+    hr_type: HR_Type,
+    home_num: string,
+    office: string,
+    home_address: string,
+    cv: string
 }
 
 export enum HR_Type {

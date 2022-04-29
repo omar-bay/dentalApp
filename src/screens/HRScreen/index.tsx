@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { View, Text, Keyboard, ScrollView } from 'react-native'
 import { SearchBar } from 'react-native-elements'
 import styles from './styles'
 import SegmentControl from '../../components/SegmentControl'
 import HRCard from '../../components/HRCard'
-import { Nav } from '../../Types'
+import { HR_Type, Nav } from '../../Types'
 import Assignees from '../../data/Assignees'
 
 const HRScreen = ({ navigation, route }: Nav) => {
@@ -17,16 +17,16 @@ const HRScreen = ({ navigation, route }: Nav) => {
 
     const segments = [{
         title: 'ALL',
-        view: ()=>(<List navigation={navigation}/>)
+        view: ()=>(<List all={true} navigation={navigation}/>)
     }, {
         title: 'EMPLOYEE',
-        view: ()=>(<List navigation={navigation}/>)
+        view: ()=>(<List hr_type={HR_Type.Employee} navigation={navigation}/>)
     }, {
         title: 'DOCTOR',
-        view: ()=>(<List navigation={navigation}/>)
+        view: ()=>(<List hr_type={HR_Type.Doctor} navigation={navigation}/>)
     }, {
         title: 'STUDENT',
-        view: ()=>(<List navigation={navigation}/>)
+        view: ()=>(<List hr_type={HR_Type.Student} navigation={navigation}/>)
     }]
 
     return (
@@ -59,19 +59,44 @@ const HRScreen = ({ navigation, route }: Nav) => {
 }
 
 interface ListProps {
+    all?: boolean
+    hr_type?: HR_Type
     navigation: Nav['navigation']
 }
 
-const List = ({ navigation }: ListProps) => {
+const List = ({ all, hr_type, navigation }: ListProps) => {
+    const [assignees, setAssignees] = useState([]);
+    
+    useEffect(() => {
+        if(all) {
+            setAssignees(Assignees)
+        } else {
+            switch (hr_type) {
+                case HR_Type.Employee:
+                    setAssignees(Assignees?.filter(assignee => assignee.hr_type == HR_Type.Employee))
+                    break;
+                case HR_Type.Doctor:
+                    setAssignees(Assignees?.filter(assignee => assignee.hr_type == HR_Type.Doctor))
+                    break;
+                case HR_Type.Student:
+                    setAssignees(Assignees?.filter(assignee => assignee.hr_type == HR_Type.Student))
+                    break;
+                default:
+                    break;
+            }
+        }
+    }, []);
+
     return (
         <ScrollView
         showsVerticalScrollIndicator={false}
         >
-            {[0,1,2,3,4,5,6,7,,8,9,10,11].map((x,i) =>
+            {assignees.map((assignee, index) =>
                 <HRCard
-                name="Madilyn Manson"
-                status="HR Manager"
-                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmNdSL0wetARyMZVIRgtl2yPZyzXSJQx4EzA&usqp=CAU"
+                key={assignee?.id}
+                name={assignee?.name}
+                status={assignee?.hr_type}
+                image={assignee?.profile_pic}
                 navigation={navigation}
                 />
             )}

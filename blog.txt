@@ -60,3 +60,5 @@ note: it doesn't work with Expo Go. good thing we use cli
 vector icons directory
 import IconFor from 'react-native-vector-icons/AntDesign'
 <IconFor name="right" size={25}/>
+
+enums should be handled in backend

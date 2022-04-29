@@ -74,9 +74,9 @@ export interface HR_Assignee {
     profile_pic: string
     hr_type: HR_Type
     home_num: string
-    office: string
+    office?: string
     home_address: string
-    cv: string
+    cv?: string
     nationality?: string
     SSN?: number
     birth: Date

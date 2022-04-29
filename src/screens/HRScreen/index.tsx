@@ -17,16 +17,16 @@ const HRScreen = ({ navigation, route }: Nav) => {
 
     const segments = [{
         title: 'ALL',
-        view: ()=>(<List all={true} navigation={navigation}/>)
+        view: ()=>(<List all={true} navigation={navigation} text={text}/>)
     }, {
         title: 'EMPLOYEE',
-        view: ()=>(<List hr_type={HR_Type.Employee} navigation={navigation}/>)
+        view: ()=>(<List hr_type={HR_Type.Employee} navigation={navigation} text={text}/>)
     }, {
         title: 'DOCTOR',
-        view: ()=>(<List hr_type={HR_Type.Doctor} navigation={navigation}/>)
+        view: ()=>(<List hr_type={HR_Type.Doctor} navigation={navigation} text={text}/>)
     }, {
         title: 'STUDENT',
-        view: ()=>(<List hr_type={HR_Type.Student} navigation={navigation}/>)
+        view: ()=>(<List hr_type={HR_Type.Student} navigation={navigation} text={text}/>)
     }]
 
     return (
@@ -61,10 +61,11 @@ const HRScreen = ({ navigation, route }: Nav) => {
 interface ListProps {
     all?: boolean
     hr_type?: HR_Type
+    text: string
     navigation: Nav['navigation']
 }
 
-const List = ({ all, hr_type, navigation }: ListProps) => {
+const List = ({ all, hr_type, text, navigation }: ListProps) => {
     const [assignees, setAssignees] = useState([]);
     
     useEffect(() => {
@@ -91,13 +92,14 @@ const List = ({ all, hr_type, navigation }: ListProps) => {
         <ScrollView
         showsVerticalScrollIndicator={false}
         >
-            {assignees.map((assignee, index) =>
+            {assignees.map((assignee, index) => (
+                assignee?.name.toLowerCase().includes(text.toLowerCase()) &&
                 <HRCard
                 key={assignee?.id}
                 assignee={assignee}
                 navigation={navigation}
                 />
-            )}
+            ))}
             <View style={{ height: 456 }}/>
         </ScrollView>
     )

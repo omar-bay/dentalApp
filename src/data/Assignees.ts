@@ -32,6 +32,22 @@ const Assignees = [
         SSN: 123456789,
         birth: new Date(),
         marital_status: "Single"
+    },
+    {
+        id: 2,
+        name: "Oscar Habib",
+        email: "ascarsc2000@bau.com",
+        phone_num: "95 556 947",
+        profile_pic: "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        hr_type: HR_Type.Student,
+        home_num: "88 765 999",
+        office: "Main blg. 2nd floor.",
+        home_address: "Bchamoun 3rd route",
+        cv: "https://www.entnet.org/wp-content/uploads/2021/04/Instructions-for-Adding-Your-Logo-2.pdf",
+        nationality: "Lebanese",
+        SSN: 123456789,
+        birth: new Date(),
+        marital_status: "Single"
     }
 ]
 

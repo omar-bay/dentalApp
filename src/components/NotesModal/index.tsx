@@ -3,15 +3,21 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import MyDatePicker from '../MyDatePicker'
 import { formatDate } from '../../screens/TaskScreen'
 import { Stage, Task } from '../../Types'
+import Task_List from '../../data/TaskList'
 
 interface NotesModalProps {
     setClosed: Dispatch<SetStateAction<boolean>>
+    task: Task
 }
 
-const NotesModal = ({ setClosed }: NotesModalProps) => {
+const NotesModal = ({ setClosed, task }: NotesModalProps) => {
     const [text, setText] = useState('');
 
     const handleSubmit = () => {
+        console.log({
+            ...task,
+            assignee_notes: text
+        })
         setClosed(true)
         setText('')
     }

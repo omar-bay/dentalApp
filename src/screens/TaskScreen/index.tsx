@@ -115,6 +115,7 @@ const TaskScreen = ({ navigation, route }: Nav) => {
             {/* Notes Modal */}
             {!closed && (
                 <NotesModal
+                task={task}
                 setClosed={setClosed}
                 />
             )}

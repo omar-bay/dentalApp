@@ -39,7 +39,6 @@ export interface Static_Service {
 
 export interface Task {
     id: number,
-    sid: number,
     stage: Stage,
     name: string,
     description: string,

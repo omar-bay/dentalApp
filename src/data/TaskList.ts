@@ -3,7 +3,6 @@ import { Stage } from "../Types"
 const Task_List = [
     {
         id: 0,
-        sid: 0,
         name: 'First Visit Preparation',
         stage: Stage.New,
         sids: [0],
@@ -13,7 +12,6 @@ const Task_List = [
     },
     {
         id: 1,
-        sid: 0,
         name: 'Laboratory Instructions',
         stage: Stage.New,
         sids: [0],
@@ -23,7 +21,6 @@ const Task_List = [
     },
     {
         id: 2,
-        sid: 0,
         name: 'Temporary Bridge',
         stage: Stage.New,
         sids: [0],
@@ -33,7 +30,6 @@ const Task_List = [
     },
     {
         id: 3,
-        sid: 0,
         name: 'Permanent Bridge',
         stage: Stage.New,
         sids: [0],
@@ -43,7 +39,6 @@ const Task_List = [
     },
     {
         id: 4,
-        sid: 0,
         name: 'Patient Review',
         stage: Stage.New,
         sids: [1],
@@ -53,7 +48,6 @@ const Task_List = [
     },
     {
         id: 5,
-        sid: 0,
         name: 'Checkup with patient',
         stage: Stage.New,
         sids: [1],
@@ -63,7 +57,6 @@ const Task_List = [
     },
     {
         id: 6,
-        sid: 0,
         name: 'Oral Exam',
         stage: Stage.New,
         sids: [1],
@@ -73,7 +66,6 @@ const Task_List = [
     },
     {
         id: 7,
-        sid: 0,
         name: 'X-RAY',
         stage: Stage.New,
         sids: [1],
@@ -83,7 +75,6 @@ const Task_List = [
     },
     {
         id: 8,
-        sid: 0,
         name: 'Treatment Plan',
         stage: Stage.New,
         sids: [1],
@@ -93,7 +84,6 @@ const Task_List = [
     },
     {
         id: 9,
-        sid: 0,
         name: 'Implant',
         stage: Stage.New,
         sids: [4,5],
@@ -103,7 +93,6 @@ const Task_List = [
     },
     {
         id: 10,
-        sid: 0,
         name: 'Abutment',
         stage: Stage.New,
         sids: [3,4,5],
@@ -113,7 +102,6 @@ const Task_List = [
     },
     {
         id: 11,
-        sid: 0,
         name: 'Restoration',
         stage: Stage.New,
         sids: [3,4,5,6],
@@ -123,7 +111,6 @@ const Task_List = [
     },
     {
         id: 12,
-        sid: 0,
         name: 'Remove Tooth',
         stage: Stage.New,
         sids: [3,6,8],
@@ -133,7 +120,6 @@ const Task_List = [
     },
     {
         id: 13,
-        sid: 0,
         name: 'Jawbone Preparation',
         stage: Stage.New,
         sids: [3],
@@ -143,7 +129,6 @@ const Task_List = [
     },
     {
         id: 14,
-        sid: 0,
         name: 'Implant Area Healing',
         stage: Stage.New,
         sids: [3],
@@ -153,7 +138,6 @@ const Task_List = [
     },
     {
         id: 15,
-        sid: 0,
         name: 'Topical Anesthetic',
         stage: Stage.New,
         sids: [6],
@@ -163,7 +147,6 @@ const Task_List = [
     },
     {
         id: 16,
-        sid: 0,
         name: 'Bite Check',
         stage: Stage.New,
         sids: [6],
@@ -173,7 +156,6 @@ const Task_List = [
     },
     {
         id: 17,
-        sid: 0,
         name: 'Simple Extraction',
         stage: Stage.New,
         sids: [7],
@@ -183,7 +165,6 @@ const Task_List = [
     },
     {
         id: 18,
-        sid: 0,
         name: 'Surgical Extraction',
         stage: Stage.New,
         sids: [7],
@@ -193,7 +174,6 @@ const Task_List = [
     },
     {
         id: 19,
-        sid: 0,
         name: 'Local Anesthetic',
         stage: Stage.New,
         sids: [8],
@@ -203,7 +183,6 @@ const Task_List = [
     },
     {
         id: 20,
-        sid: 0,
         name: 'Clean Cavity',
         stage: Stage.New,
         sids: [8,14],
@@ -213,7 +192,6 @@ const Task_List = [
     },
     {
         id: 21,
-        sid: 0,
         name: 'Tooth-Colored Material',
         stage: Stage.New,
         sids: [8],
@@ -223,7 +201,6 @@ const Task_List = [
     },
     {
         id: 22,
-        sid: 0,
         name: 'Special Light',
         stage: Stage.New,
         sids: [8],
@@ -233,7 +210,6 @@ const Task_List = [
     },
     {
         id: 23,
-        sid: 0,
         name: 'Finalize Tooth Filling',
         stage: Stage.New,
         sids: [8],
@@ -243,7 +219,6 @@ const Task_List = [
     },
     {
         id: 24,
-        sid: 0,
         name: 'Check The Shade',
         stage: Stage.New,
         sids: [9],
@@ -253,7 +228,6 @@ const Task_List = [
     },
     {
         id: 25,
-        sid: 0,
         name: 'Cleaning',
         stage: Stage.New,
         sids: [9,12],
@@ -263,7 +237,6 @@ const Task_List = [
     },
     {
         id: 26,
-        sid: 0,
         name: 'Retractors',
         stage: Stage.New,
         sids: [9],
@@ -273,7 +246,6 @@ const Task_List = [
     },
     {
         id: 27,
-        sid: 0,
         name: 'Coating',
         stage: Stage.New,
         sids: [9],
@@ -283,7 +255,6 @@ const Task_List = [
     },
     {
         id: 28,
-        sid: 0,
         name: 'Rinsing',
         stage: Stage.New,
         sids: [9,11],
@@ -292,7 +263,6 @@ const Task_List = [
     },
     {
         id: 29,
-        sid: 0,
         name: 'Floride Treatment',
         stage: Stage.New,
         sids: [9],
@@ -301,7 +271,6 @@ const Task_List = [
     },
     {
         id: 30,
-        sid: 0,
         name: 'Veneers Examination',
         stage: Stage.New,
         sids: [10],
@@ -310,7 +279,6 @@ const Task_List = [
     },
     {
         id: 31,
-        sid: 0,
         name: 'Tooth Preparation for Veneers',
         stage: Stage.New,
         sids: [10],
@@ -319,7 +287,6 @@ const Task_List = [
     },
     {
         id: 32,
-        sid: 0,
         name: 'Mold',
         stage: Stage.New,
         sids: [10],
@@ -328,7 +295,6 @@ const Task_List = [
     },
     {
         id: 33,
-        sid: 0,
         name: 'Shade Guide',
         stage: Stage.New,
         sids: [10],
@@ -337,7 +303,6 @@ const Task_List = [
     },
     {
         id: 34,
-        sid: 0,
         name: 'Veneer Fabricating',
         stage: Stage.New,
         sids: [10],
@@ -346,7 +311,6 @@ const Task_List = [
     },
     {
         id: 35,
-        sid: 0,
         name: 'Temporary Veneer',
         stage: Stage.New,
         sids: [10],
@@ -355,7 +319,6 @@ const Task_List = [
     },
     {
         id: 36,
-        sid: 0,
         name: 'Metal Brackets',
         stage: Stage.New,
         sids: [11],
@@ -364,7 +327,6 @@ const Task_List = [
     },
     {
         id: 37,
-        sid: 0,
         name: 'Tooth Enamel Removal',
         stage: Stage.New,
         sids: [12],
@@ -373,7 +335,6 @@ const Task_List = [
     },
     {
         id: 38,
-        sid: 0,
         name: 'Dental Arch Check',
         stage: Stage.New,
         sids: [13],
@@ -382,7 +343,6 @@ const Task_List = [
     },
     {
         id: 39,
-        sid: 0,
         name: 'Temporary Appliance',
         stage: Stage.New,
         sids: [13],
@@ -391,7 +351,6 @@ const Task_List = [
     },
     {
         id: 40,
-        sid: 0,
         name: 'Crown Preparation',
         stage: Stage.New,
         sids: [13],
@@ -400,7 +359,6 @@ const Task_List = [
     },
     {
         id: 41,
-        sid: 0,
         name: 'Temporary Crown',
         stage: Stage.New,
         sids: [13],
@@ -409,7 +367,6 @@ const Task_List = [
     },
     {
         id: 42,
-        sid: 0,
         name: 'Local Anesthesia',
         stage: Stage.New,
         sids: [14],
@@ -418,7 +375,6 @@ const Task_List = [
     },
     {
         id: 43,
-        sid: 0,
         name: 'Sedation Anesthesia',
         stage: Stage.New,
         sids: [14],
@@ -427,7 +383,6 @@ const Task_List = [
     },
     {
         id: 44,
-        sid: 0,
         name: 'General Anesthesia',
         stage: Stage.New,
         sids: [14],
@@ -436,7 +391,6 @@ const Task_List = [
     },
     {
         id: 45,
-        sid: 0,
         name: 'Gum Tissue Incision',
         stage: Stage.New,
         sids: [14],
@@ -445,7 +399,6 @@ const Task_List = [
     },
     {
         id: 46,
-        sid: 0,
         name: 'Tooth Root Bone Removal',
         stage: Stage.New,
         sids: [14],
@@ -454,7 +407,6 @@ const Task_List = [
     },
     {
         id: 47,
-        sid: 0,
         name: 'Dividing Tooth to Sections',
         stage: Stage.New,
         sids: [14],
@@ -463,7 +415,6 @@ const Task_List = [
     },
     {
         id: 48,
-        sid: 0,
         name: 'Dividing Tooth to Sections',
         stage: Stage.New,
         sids: [14],
@@ -472,7 +423,6 @@ const Task_List = [
     },
     {
         id: 49,
-        sid: 0,
         name: 'Stitch Wound',
         stage: Stage.New,
         sids: [14],
@@ -481,7 +431,6 @@ const Task_List = [
     },
     {
         id: 49,
-        sid: 0,
         name: 'Gauze',
         stage: Stage.New,
         sids: [14],

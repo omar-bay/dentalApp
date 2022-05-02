@@ -62,3 +62,9 @@ import IconFor from 'react-native-vector-icons/AntDesign'
 <IconFor name="right" size={25}/>
 
 enums should be handled in backend
+
+error builds solved by
+npm cache clean
+
+BACKEND
+npm install react-query axios

@@ -1,12 +1,44 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { View, Text, Image, ScrollView, Keyboard, Pressable, Animated, Dimensions } from 'react-native'
 import { SearchBar } from 'react-native-elements'
 import IconSearch from 'react-native-vector-icons/Feather'
 import styles from './styles'
+import axios from "axios";
+import { useQuery } from "react-query";
+
+const endpoint = "http://localhost:4000/graphql"
+const HRAssigneesQuery = `
+{
+    hrAssignees {
+        email
+        updatedAt
+        createdAt
+        email
+        hr_type
+        profile_pic_url
+        password
+        name
+        id
+    }
+}
+`;
 
 const HEADER_HEIGHT = 135
 
 const KnowledgeScreen = () => {
+    const { data, isLoading, error } = useQuery("launches", () => {
+        return axios({
+            url: endpoint,
+            method: "POST",
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            data: {
+                query: HRAssigneesQuery
+            }
+        }).then(response => response.data.data);
+    });
+
     const [text, setText] = useState('')
     const [closeSearch, setCloseSearch] = useState(true)
     const [scrollAnim] = useState(new Animated.Value(0));

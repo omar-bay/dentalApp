@@ -68,3 +68,6 @@ npm cache clean
 
 BACKEND
 npm install react-query axios
+add a query provider under router provider (navigation container)
+
+ways to fetch from graphql: https://www.freecodecamp.org/news/5-ways-to-fetch-data-react-graphql/

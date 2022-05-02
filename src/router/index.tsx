@@ -4,6 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import BottomTabNav from './BottomTabNav';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import { QueryClient, QueryClientProvider } from 'react-query';
+
 import PFileStackNav from './PFileStackNav';
 import HRStackNav from './HRStackNav';
 import KBStackNav from './KBStackNav';
@@ -13,10 +15,12 @@ import IconHR from 'react-native-vector-icons/Feather'
 import IconKB from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const Tab = createBottomTabNavigator()
+const queryClient = new QueryClient()
 
 const Router = () => {
     return (
         <NavigationContainer>
+            <QueryClientProvider client={queryClient}>
 
             <Tab.Navigator
             screenOptions={{
@@ -52,6 +56,7 @@ const Router = () => {
                 />
             </Tab.Navigator>
 
+            </QueryClientProvider>
         </NavigationContainer>
     )
 }

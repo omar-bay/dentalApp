@@ -3,22 +3,22 @@ import { View, Text, Image, ScrollView, Keyboard, Pressable, Animated, Dimension
 import { SearchBar } from 'react-native-elements'
 import IconSearch from 'react-native-vector-icons/Feather'
 import styles from './styles'
-import axios from "axios";
+import { request, gql } from "graphql-request";
 import { useQuery } from "react-query";
 
-const endpoint = "http://localhost:4000/graphql"
-const HRAssigneesQuery = `
+const endpoint = "http://192.168.1.107:4000/graphql"
+const patientsQuery = `
 {
-    hrAssignees {
-        email
-        updatedAt
-        createdAt
-        email
-        hr_type
-        profile_pic_url
-        password
-        name
+    patients {
         id
+        file_number
+        name
+        gender
+        dateOfBirth
+        cat_id
+        profile_pic_url
+        createdAt
+        updatedAt
     }
 }
 `;
@@ -27,16 +27,7 @@ const HEADER_HEIGHT = 135
 
 const KnowledgeScreen = () => {
     const { data, isLoading, error } = useQuery("launches", () => {
-        return axios({
-            url: endpoint,
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-            data: {
-                query: HRAssigneesQuery
-            }
-        }).then(response => response.data.data);
+        return request(endpoint, patientsQuery);
     });
 
     const [text, setText] = useState('')

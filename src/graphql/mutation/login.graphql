@@ -1,0 +1,19 @@
+mutation Login($password: String!, $email: String!) {
+  login(password: $password, email: $email) {
+    errors {
+      field
+      message
+    }
+    hr_assignee {
+      id
+      name
+      password
+      profile_pic_url
+      hr_type
+      email
+      createdAt
+      email
+      updatedAt
+    }
+  }
+}

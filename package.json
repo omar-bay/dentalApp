@@ -7,13 +7,19 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+    "gen": "graphql-codegen --config ./codegen.yml"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.1",
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/typescript-react-apollo": "^3.2.11",
     "@react-native-masked-view/masked-view": "^0.2.6",
     "@react-navigation/bottom-tabs": "^6.2.0",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/stack": "^6.0.11",
+    "graphql": "^16.4.0",
     "graphql-request": "^4.2.0",
     "react": "17.0.2",
     "react-native": "0.66.2",
@@ -32,6 +38,8 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
+    "@graphql-codegen/typescript": "^2.4.8",
+    "@graphql-codegen/typescript-operations": "^2.3.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.65.0",

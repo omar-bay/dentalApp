@@ -1,0 +1,13 @@
+query Patient($patientId: Float!) {
+  patient(id: $patientId) {
+    id
+    file_number
+    name
+    gender
+    dateOfBirth
+    cat_id
+    profile_pic_url
+    createdAt
+    updatedAt
+  }
+}

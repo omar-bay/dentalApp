@@ -1,0 +1,10 @@
+query Files {
+  files {
+    file_number
+    patient_id
+    status
+    assignee_id
+    updatedAt
+    createdAt
+  }
+}

@@ -6,8 +6,16 @@ import SegmentControl from '../../components/SegmentControl'
 import HRCard from '../../components/HRCard'
 import { HR_Type, Nav } from '../../Types'
 import Assignees from '../../data/Assignees'
+import { useHrAssigneesQuery } from '../../../libs/generated/graphql'
 
 const HRScreen = ({ navigation, route }: Nav) => {
+    const {
+        data,
+        error,
+        loading
+    } = useHrAssigneesQuery();
+    console.log(data);
+
     const [text, setText] = useState('')
     const mySearchBar = useRef()
 

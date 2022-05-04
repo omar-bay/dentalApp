@@ -21,8 +21,8 @@ const KnowledgeScreen = () => {
             ...values,
             cat_id: 0,
             gender: Gender.Male,
-            name: "OMAR",
-            profile_pic_url: "https://avatars.githubusercontent.com/u/78387460?v=4"
+            name: "HOURSE",
+            profile_pic_url: "https://avatars.githubusercontent.com/u/78387450?v=4"
         } },
         update: (cache:any, { data }:any) => {
             cache.writeQuery<CreatePatientMutation>({
@@ -46,11 +46,6 @@ const KnowledgeScreen = () => {
         loading: isPatientsLoading,
         error: patientsError,
     } = usePatientsQuery();
-    useEffect(() => {
-        console.log(patientsData)
-        console.log(patientsError)
-        console.log(isPatientsLoading)
-    }, [patientsData,patientsError,isPatientsLoading]);
 
     const [text, setText] = useState('')
     const [closeSearch, setCloseSearch] = useState(true)

@@ -17,7 +17,9 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        marginLeft: 45
+        marginLeft: 45,
+        fontWeight: 'bold',
+        fontFamily: 'georgia'
     },
     searchContainer: {
         position: 'absolute',

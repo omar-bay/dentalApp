@@ -79,3 +79,7 @@ edit codegen.yml & router/index
 make the ip and port of your graphql database
 
 npm install --save cors apollo-server-express express graphql@14 reflect-metadata type-graphql@0 apollo-datasource-rest soap jsonwebtoken
+
+npx browserslist@latest --update-db
+
+npm install react-native-debugger

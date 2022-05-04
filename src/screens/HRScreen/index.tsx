@@ -7,15 +7,10 @@ import HRCard from '../../components/HRCard'
 import { HR_Type, Nav } from '../../Types'
 import Assignees from '../../data/Assignees'
 import { useHrAssigneesQuery } from '../../../libs/generated/graphql'
+import { useQuery } from 'react-query'
+import axios from 'axios'
 
 const HRScreen = ({ navigation, route }: Nav) => {
-    const {
-        data,
-        error,
-        loading
-    } = useHrAssigneesQuery();
-    console.log(data);
-
     const [text, setText] = useState('')
     const mySearchBar = useRef()
 
@@ -74,33 +69,64 @@ interface ListProps {
 }
 
 const List = ({ all, hr_type, text, navigation }: ListProps) => {
+    // fetching hr_assignees data
+    const HR_QUERY = `
+    {
+        hrAssignees {
+            id
+            name
+            password
+            email
+            phone_number
+            home_number
+            home_address
+            SSN
+            martial_status
+            nationality
+            profile_pic_url
+            hr_type
+            updatedAt
+            createdAt
+        }
+    }
+  `;
+    const { data, isLoading, error } = useQuery("launches", () => {
+      return axios({
+        url: "http://192.168.18.214:4000/graphql",
+        method: "POST",
+        data: {
+          query: HR_QUERY
+        }
+      }).then(response => response.data.data);
+    });
+
     const [assignees, setAssignees] = useState([]);
     
     useEffect(() => {
         if(all) {
-            setAssignees(Assignees)
+            setAssignees(data?.hrAssignees)
         } else {
             switch (hr_type) {
                 case HR_Type.Employee:
-                    setAssignees(Assignees?.filter(assignee => assignee.hr_type == HR_Type.Employee))
+                    setAssignees(data?.hrAssignees?.filter(assignee => assignee.hr_type == HR_Type.Employee))
                     break;
                 case HR_Type.Doctor:
-                    setAssignees(Assignees?.filter(assignee => assignee.hr_type == HR_Type.Doctor))
+                    setAssignees(data?.hrAssignees?.filter(assignee => assignee.hr_type == HR_Type.Doctor))
                     break;
                 case HR_Type.Student:
-                    setAssignees(Assignees?.filter(assignee => assignee.hr_type == HR_Type.Student))
+                    setAssignees(data?.hrAssignees?.filter(assignee => assignee.hr_type == HR_Type.Student))
                     break;
                 default:
                     break;
             }
         }
-    }, []);
+    }, [data]);
 
     return (
         <ScrollView
         showsVerticalScrollIndicator={false}
         >
-            {assignees.map((assignee, index) => (
+            {assignees?.map((assignee: any, index: number) => (
                 assignee?.name.toLowerCase().includes(text.toLowerCase()) &&
                 <HRCard
                 key={assignee?.id}

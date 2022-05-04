@@ -13,7 +13,7 @@ const Info = ({ assignee }: InfoProps) => {
     data: assignee.hr_type
   }, {
     title: 'Work Phone',
-    data: assignee.phone_num
+    data: assignee.phone_number
   }, {
     title: 'Work Email',
     data: assignee.email
@@ -62,7 +62,7 @@ const Info = ({ assignee }: InfoProps) => {
     data: assignee.SSN
   }, {
     title: 'Birth',
-    data: formatDate(assignee.birth)
+    data: assignee.birth? formatDate(assignee.birth): ''
   }, {
     title: 'Status',
     data: 'Single'

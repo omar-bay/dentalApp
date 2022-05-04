@@ -3,11 +3,16 @@ query HrAssignee($hrAssigneeId: Float!) {
     id
     name
     password
+    email
+    phone_number
+    home_number
+    home_address
+    SSN
+    martial_status
+    nationality
     profile_pic_url
     hr_type
-    email
-    createdAt
     updatedAt
-    email
+    createdAt
   }
 }

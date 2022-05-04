@@ -36,7 +36,6 @@ const PFilesScreen = ({navigation, route}: Nav) => {
         }
       }).then(response => response.data.data);
     });
-    console.log(data)
     // const {
     //     data: patientsData,
     //     loading: isPatientsLoading,
@@ -49,19 +48,24 @@ const PFilesScreen = ({navigation, route}: Nav) => {
             style={styles.file_carts}
             showsVerticalScrollIndicator={false}
             >
-            {/* {
+            {
                 PFiles.map((PFile: PFile) => (
                     <FileCart key={PFile.id} cred={PFile.patient} services={PFile.services} navigation={navigation}/>
                 ))
-            } */}
-            {/* {isPatientsLoading ? (
+            }
+            {/* {isLoading ? (
                 <Text>Loading..</Text>
               ) : (
-                !patientsError &&
-                patientsData && (
+                !error &&
+                data && (
                   <>
-                    {patientsData.patients.map((PFile) => (
-                      <Text>{PFile}</Text>
+                    {data.patients.map((PFile:any) => (
+                      <FileCart
+                      key={PFile.id}
+                      cred={PFile}
+                      services={PFile.services}
+                      navigation={navigation}
+                      />
                     ))}
                   </>
                 )

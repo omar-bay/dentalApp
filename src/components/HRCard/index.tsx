@@ -19,7 +19,7 @@ const HRCard = ({ navigation, assignee }: HRCardProps) => {
             <View style={styles.left}>
                 <Image
                 style={styles.image}
-                source={{ uri: assignee.profile_pic }}
+                source={{ uri: assignee.profile_pic_url }}
                 />
             </View>
             <View style={styles.right}>

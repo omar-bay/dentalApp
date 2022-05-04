@@ -32,9 +32,9 @@ const HREmployeeScreen = ({navigation, route}: Nav) => {
       navigation={navigation}
       name={assignee.name}
       hr_type={assignee.hr_type}
-      phone={assignee.phone_num}
+      phone={assignee.phone_number}
       email={assignee.email}
-      profile_pic={assignee.profile_pic}
+      profile_pic={assignee.profile_pic_url}
       />
 
       <SegmentControl

@@ -74,3 +74,8 @@ ways to fetch from graphql: https://www.freecodecamp.org/news/5-ways-to-fetch-da
 
 removing axios and trying
 npm install react-query graphql-request
+
+edit codegen.yml & router/index
+make the ip and port of your graphql database
+
+npm install --save cors apollo-server-express express graphql@14 reflect-metadata type-graphql@0 apollo-datasource-rest soap jsonwebtoken

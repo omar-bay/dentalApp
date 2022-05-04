@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import BottomTabNav from './BottomTabNav';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import PFileStackNav from './PFileStackNav';
@@ -15,12 +16,16 @@ import IconHR from 'react-native-vector-icons/Feather'
 import IconKB from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const Tab = createBottomTabNavigator()
-const queryClient = new QueryClient()
+const client = new ApolloClient({
+    uri: 'http://192.168.18.214:4000/graphql',
+    cache: new InMemoryCache(),
+    credentials: 'include',
+  });
 
 const Router = () => {
     return (
         <NavigationContainer>
-            <QueryClientProvider client={queryClient}>
+            <ApolloProvider client={client}>
 
             <Tab.Navigator
             screenOptions={{
@@ -56,7 +61,7 @@ const Router = () => {
                 />
             </Tab.Navigator>
 
-            </QueryClientProvider>
+            </ApolloProvider>
         </NavigationContainer>
     )
 }

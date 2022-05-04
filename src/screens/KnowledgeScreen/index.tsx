@@ -5,30 +5,18 @@ import IconSearch from 'react-native-vector-icons/Feather'
 import styles from './styles'
 import { request, gql } from "graphql-request";
 import { useQuery } from "react-query";
-
-const endpoint = "http://192.168.1.107:4000/graphql"
-const patientsQuery = `
-{
-    patients {
-        id
-        file_number
-        name
-        gender
-        dateOfBirth
-        cat_id
-        profile_pic_url
-        createdAt
-        updatedAt
-    }
-}
-`;
+import { usePatientsQuery } from '../../../libs/generated/graphql'
 
 const HEADER_HEIGHT = 135
 
 const KnowledgeScreen = () => {
-    const { data, isLoading, error } = useQuery("launches", () => {
-        return request(endpoint, patientsQuery);
-    });
+    // fetching patients data
+    const {
+        data: patientsData,
+        loading: isPatientsLoading,
+        error: patientsError,
+    } = usePatientsQuery();
+    console.log(patientsData)
 
     const [text, setText] = useState('')
     const [closeSearch, setCloseSearch] = useState(true)

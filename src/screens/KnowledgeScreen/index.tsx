@@ -5,7 +5,7 @@ import IconSearch from 'react-native-vector-icons/Feather'
 import styles from './styles'
 import { request, gql } from "graphql-request";
 import { useQuery } from "react-query";
-import { CreatePatientDocument, CreatePatientMutation, usePatientsQuery } from '../../../libs/generated/graphql'
+import { CreatePatientDocument, CreatePatientMutation, Gender, usePatientsQuery } from '../../../libs/generated/graphql'
 import { useCreatePatientMutation } from '../../../libs/generated/graphql'
 
 const HEADER_HEIGHT = 135
@@ -15,15 +15,15 @@ const KnowledgeScreen = () => {
     const [reqLoadingStatus, setReqLoadingStatus] = useState(false);
     const [createPatient] = useCreatePatientMutation();
     const setPatient = async (values: any) => {
-    console.log('patient card modal values', {
-        ...values,
-        gender: null,
-        name: "",
-    });
-
     setReqLoadingStatus(true);
     await createPatient({
-        variables: { input: { ...values, gender: 'male', name: '' } },
+        variables: { input: {
+            ...values,
+            cat_id: 0,
+            gender: Gender.Male,
+            name: "OMAR",
+            profile_pic_url: "https://avatars.githubusercontent.com/u/78387460?v=4"
+        } },
         update: (cache:any, { data }:any) => {
             cache.writeQuery<CreatePatientMutation>({
                 query: CreatePatientDocument,

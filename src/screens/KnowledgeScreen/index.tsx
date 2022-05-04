@@ -5,18 +5,52 @@ import IconSearch from 'react-native-vector-icons/Feather'
 import styles from './styles'
 import { request, gql } from "graphql-request";
 import { useQuery } from "react-query";
-import { usePatientsQuery } from '../../../libs/generated/graphql'
+import { CreatePatientDocument, CreatePatientMutation, usePatientsQuery } from '../../../libs/generated/graphql'
+import { useCreatePatientMutation } from '../../../libs/generated/graphql'
 
 const HEADER_HEIGHT = 135
 
 const KnowledgeScreen = () => {
+    // creating patient
+    const [reqLoadingStatus, setReqLoadingStatus] = useState(false);
+    const [createPatient] = useCreatePatientMutation();
+    const setPatient = async (values: any) => {
+    console.log('patient card modal values', {
+        ...values,
+        gender: null,
+        name: "",
+    });
+
+    setReqLoadingStatus(true);
+    await createPatient({
+        variables: { input: { ...values, gender: 'male', name: '' } },
+        update: (cache:any, { data }:any) => {
+            cache.writeQuery<CreatePatientMutation>({
+                query: CreatePatientDocument,
+                data: {
+                __typename: 'Mutation',
+                createPatient: data?.createPatient,
+                },
+            });
+            cache.evict({ fieldName: 'data:{}' });
+        },
+        onError: (error) => {
+        console.log('patient registration error', error);
+        },
+        onCompleted: () => setReqLoadingStatus(false),
+        });
+    }
     // fetching patients data
     const {
         data: patientsData,
         loading: isPatientsLoading,
         error: patientsError,
     } = usePatientsQuery();
-    console.log(patientsData)
+    useEffect(() => {
+        console.log(patientsData)
+        console.log(patientsError)
+        console.log(isPatientsLoading)
+    }, [patientsData,patientsError,isPatientsLoading]);
 
     const [text, setText] = useState('')
     const [closeSearch, setCloseSearch] = useState(true)
@@ -44,6 +78,13 @@ const KnowledgeScreen = () => {
         mySearchBar?.current.blur()
     }
 
+    const iconPressed = () => {
+        setCloseSearch(false)
+        setPatient({
+            name: "Omar Ba",
+        })
+    }
+
     return (
         <View style={{flex:1}}>
             {/* Header */}
@@ -68,7 +109,7 @@ const KnowledgeScreen = () => {
                 <Text style={styles.title}>Blog</Text>
                 {closeSearch ? (
                     <Pressable
-                    onPress={()=>setCloseSearch(false)}
+                    onPress={iconPressed}
                     ><IconSearch name="search" size={30}/></Pressable>
                 ) : (
                     <View style={styles.searchContainer}>

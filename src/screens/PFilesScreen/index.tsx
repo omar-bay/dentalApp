@@ -28,11 +28,7 @@ const usePatientsQuery = () => {
     }
   }
   `;
-  const {
-    data: patientsData,
-    isLoading: patientsIsLoading,
-    error: patientsError
-  } = useQuery("launches", () => {
+  const res = useQuery("pats", () => {
     return axios({
       url: DB_URL,
       method: "POST",
@@ -42,7 +38,7 @@ const usePatientsQuery = () => {
     }).then(response => response.data.data);
   });
 
-  return { patientsData, patientsIsLoading, patientsError };
+  return res;
 }
 
 const useFilesQuery = () => {
@@ -59,11 +55,7 @@ const useFilesQuery = () => {
     }
   }
   `;
-  const {
-    data: filesData,
-    isLoading: filesIsLoading,
-    error: filesError
-  } = useQuery("launches", () => {
+  const res = useQuery("fils", () => {
     return axios({
       url: DB_URL,
       method: "POST",
@@ -73,13 +65,13 @@ const useFilesQuery = () => {
     }).then(response => response.data.data);
   });
 
-  return { filesData, filesIsLoading, filesError };
+  return res;
 }
 
 const PFilesScreen = ({navigation, route}: Nav) => {
-    const { patientsData, patientsIsLoading, patientsError } = usePatientsQuery();
-    const { filesData, filesIsLoading, filesError } = useFilesQuery();
-    console.log(filesData)
+    const res1 = usePatientsQuery();
+    const res2 = useFilesQuery();
+    console.log(res1)
     
     return (
         <View style={styles.root}>

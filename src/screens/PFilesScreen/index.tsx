@@ -71,7 +71,8 @@ const useFilesQuery = () => {
 const PFilesScreen = ({navigation, route}: Nav) => {
     const res1 = usePatientsQuery();
     const res2 = useFilesQuery();
-    console.log(res1)
+    console.log(res1.data.patients)
+    console.log(res2.data.files)
     
     return (
         <View style={styles.root}>

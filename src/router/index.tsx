@@ -13,7 +13,7 @@ import {
 } from '@apollo/client';
 import { onError } from '@apollo/client/link/error/'
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { DB } from '@env'
+import { DB_URL } from '../global'
 
 import PFileStackNav from './PFileStackNav';
 import HRStackNav from './HRStackNav';
@@ -25,7 +25,7 @@ import IconKB from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const Tab = createBottomTabNavigator()
 const client = new ApolloClient({
-    uri: DB,
+    uri: DB_URL,
     cache: new InMemoryCache(),
     credentials: 'include',
   });

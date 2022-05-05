@@ -9,7 +9,7 @@ import Assignees from '../../data/Assignees'
 import { useHrAssigneesQuery } from '../../../libs/generated/graphql'
 import { useQuery } from 'react-query'
 import axios from 'axios'
-import { DB } from '@env'
+import { DB_URL } from '../../global'
 
 const HRScreen = ({ navigation, route }: Nav) => {
     const [text, setText] = useState('')
@@ -93,7 +93,7 @@ const List = ({ all, hr_type, text, navigation }: ListProps) => {
   `;
     const { data, isLoading, error } = useQuery("launches", () => {
       return axios({
-        url: DB,
+        url: DB_URL,
         method: "POST",
         data: {
           query: HR_QUERY

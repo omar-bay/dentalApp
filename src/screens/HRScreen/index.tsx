@@ -9,6 +9,7 @@ import Assignees from '../../data/Assignees'
 import { useHrAssigneesQuery } from '../../../libs/generated/graphql'
 import { useQuery } from 'react-query'
 import axios from 'axios'
+import { DB } from '@env'
 
 const HRScreen = ({ navigation, route }: Nav) => {
     const [text, setText] = useState('')
@@ -92,7 +93,7 @@ const List = ({ all, hr_type, text, navigation }: ListProps) => {
   `;
     const { data, isLoading, error } = useQuery("launches", () => {
       return axios({
-        url: "http://192.168.18.214:4000/graphql",
+        url: DB,
         method: "POST",
         data: {
           query: HR_QUERY
@@ -126,7 +127,9 @@ const List = ({ all, hr_type, text, navigation }: ListProps) => {
         <ScrollView
         showsVerticalScrollIndicator={false}
         >
-            {assignees?.map((assignee: any, index: number) => (
+            {isLoading?
+            <Text>Loading..</Text>:
+            assignees?.map((assignee: any, index: number) => (
                 assignee?.name.toLowerCase().includes(text.toLowerCase()) &&
                 <HRCard
                 key={assignee?.id}

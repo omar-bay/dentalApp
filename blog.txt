@@ -83,3 +83,20 @@ npm install --save cors apollo-server-express express graphql@14 reflect-metadat
 npx browserslist@latest --update-db
 
 npm install react-native-debugger
+USELESS
+
+to .env
+npm i react-native-dotenv
+go to babel.config.js and add pluggins
+create a .env file
+create a folder config then file config/env.js
+
+run postgres service
+change env in monorepo to config your postgres
+create the database
+add cors in monorepo/dentlist for mobile
+run backend: ~/monorepo: yarn nx serve dentlist
+run website: ~/monorepo: yarn nx serve unicorn
+change url in .env and codegen.yml
+
+npm run android everytime you change the .env

@@ -9,6 +9,7 @@ import { usePatientsQuery } from '../../../libs/generated/graphql'
 // import { gql, useQuery } from '@apollo/client'
 import axios from "axios";
 import { useQuery } from "react-query";
+import { DB } from "@env"
 
 const PFilesScreen = ({navigation, route}: Nav) => {
     // fetching patients data
@@ -29,7 +30,7 @@ const PFilesScreen = ({navigation, route}: Nav) => {
   `;
     const { data, isLoading, error } = useQuery("launches", () => {
       return axios({
-        url: "http://192.168.18.214:4000/graphql",
+        url: DB,
         method: "POST",
         data: {
           query: PATIENTS_QUERY

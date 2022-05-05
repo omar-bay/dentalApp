@@ -13,6 +13,7 @@ import {
 } from '@apollo/client';
 import { onError } from '@apollo/client/link/error/'
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { DB } from '@env'
 
 import PFileStackNav from './PFileStackNav';
 import HRStackNav from './HRStackNav';
@@ -22,22 +23,9 @@ import IconPF from 'react-native-vector-icons/Ionicons'
 import IconHR from 'react-native-vector-icons/Feather'
 import IconKB from 'react-native-vector-icons/MaterialCommunityIcons'
 
-// const errorLink = onError(({ graphqlErrors, networkError }) => {
-//     if(graphqlErrors) {
-//         graphqlErrors.map(({ message, location, path }) => {
-//             alert
-//         })
-//     }
-// })
-// const link = from([
-//     errorLink,
-//     new HttpLink({uri: "http://192.168.18.214:4000/graphql"})
-// ])
-
 const Tab = createBottomTabNavigator()
 const client = new ApolloClient({
-    uri: 'http://192.168.18.214:4000/graphql',
-    // link: link,
+    uri: DB,
     cache: new InMemoryCache(),
     credentials: 'include',
   });

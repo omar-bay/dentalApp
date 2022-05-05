@@ -4,42 +4,16 @@ import { SearchBar } from 'react-native-elements'
 import IconSearch from 'react-native-vector-icons/Feather'
 import styles from './styles'
 import { request, gql } from "graphql-request";
-import { useQuery } from "react-query";
-import { CreatePatientDocument, CreatePatientMutation, Gender, usePatientsQuery } from '../../../libs/generated/graphql'
-import { useCreatePatientMutation } from '../../../libs/generated/graphql'
+import { CreateHrAssigneeDocument, CreatePatientDocument, CreatePatientMutation, Gender, usePatientsQuery } from '../../../libs/generated/graphql'
+import { useCreateHrAssigneeMutation, Hr_Type } from '../../../libs/generated/graphql'
+import { useMutation } from '@apollo/client'
 
 const HEADER_HEIGHT = 135
 
 const KnowledgeScreen = () => {
-    // creating patient
-    const [reqLoadingStatus, setReqLoadingStatus] = useState(false);
-    const [createPatient] = useCreatePatientMutation();
-    const setPatient = async (values: any) => {
-    setReqLoadingStatus(true);
-    await createPatient({
-        variables: { input: {
-            ...values,
-            cat_id: 0,
-            gender: Gender.Male,
-            name: "HOURSE",
-            profile_pic_url: "https://avatars.githubusercontent.com/u/78387450?v=4"
-        } },
-        update: (cache:any, { data }:any) => {
-            cache.writeQuery<CreatePatientMutation>({
-                query: CreatePatientDocument,
-                data: {
-                __typename: 'Mutation',
-                createPatient: data?.createPatient,
-                },
-            });
-            cache.evict({ fieldName: 'data:{}' });
-        },
-        onError: (error) => {
-        console.log('patient registration error', error);
-        },
-        onCompleted: () => setReqLoadingStatus(false),
-        });
-    }
+    // creating HR
+    const [createHrAssignee] = useCreateHrAssigneeMutation()
+
     // fetching patients data
     const {
         data: patientsData,
@@ -75,8 +49,22 @@ const KnowledgeScreen = () => {
 
     const iconPressed = () => {
         setCloseSearch(false)
-        setPatient({
-            name: "Omar Ba",
+        createHrAssignee({
+            variables: {
+                input: {
+                    name: "Ali Zaart",
+                    password: "123123",
+                    email: "alizaart@bau.com",
+                    phone_number: "70 834 321",
+                    home_number: "01 788 993",
+                    home_address: "Beirut, After Dinner",
+                    SSN: "1234567890",
+                    martial_status: "married",
+                    nationality: "Lebanese",
+                    profile_pic_url: "https://www.bau.edu.lb/BAUUpload/Staff/Images/Science/dr-ali-elzaart.jpg",
+                    hr_type: Hr_Type.Doctor
+                }
+            }
         })
     }
 

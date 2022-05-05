@@ -688,7 +688,6 @@ export const CreateHrAssigneeDocument = gql`
       password
       profile_pic_url
       hr_type
-      email
       createdAt
       updatedAt
       email

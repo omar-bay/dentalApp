@@ -69,10 +69,18 @@ const useFilesQuery = () => {
 }
 
 const PFilesScreen = ({navigation, route}: Nav) => {
-    const res1 = usePatientsQuery();
-    const res2 = useFilesQuery();
-    console.log(res1.data.patients)
-    console.log(res2.data.files)
+    const {
+      data: filesData,
+      error: filesError,
+      isLoading: filesIsLoading
+    } = useFilesQuery();
+    const {
+      data: patientsData,
+      error: patientsError,
+      isLoading: patientsIsLoading
+    } = usePatientsQuery();
+
+    !filesError && filesData && console.log(filesData)
     
     return (
         <View style={styles.root}>

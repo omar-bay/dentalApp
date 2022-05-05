@@ -93,7 +93,7 @@ create a folder config then file config/env.js
 DELETED
 
 run postgres service
-change env in monorepo to config your postgres
+change .env.local in monorepo to config your postgres
 create the database
 add cors in monorepo/dentlist for mobile
 run backend: ~/monorepo: yarn nx serve dentlist

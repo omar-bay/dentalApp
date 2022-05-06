@@ -25,7 +25,7 @@ const FileCart = ({ cred, navigation, services }: FileCartProps) => {
             <View style={[styles.profileImgContainer, { borderColor: 'green', borderWidth:0 }]}>
                 <Image
                 source={{
-                    uri: cred.profile_pic_url
+                    uri: cred?.profile_pic_url
                 }}
                 style={styles.profileImg}
                 />
@@ -35,7 +35,7 @@ const FileCart = ({ cred, navigation, services }: FileCartProps) => {
             <View style={styles.info}>
                 {/* Patient Name */}
                 <View>
-                    <Text numberOfLines={1} style={styles.pat_name}>{cred.name}</Text>
+                    <Text numberOfLines={1} style={styles.pat_name}>{cred?.name}</Text>
                     <Text numberOfLines={1} style={styles.status}>VIP</Text>
                 </View>
             </View>

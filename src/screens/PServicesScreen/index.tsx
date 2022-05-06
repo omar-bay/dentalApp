@@ -25,8 +25,7 @@ const useServiceLogQuery = (fn: number) => {
           createdAt
           updatedAt
         }
-      }
-      
+    }
     `;
     const res = useQuery("srvslg", () => {
         return axios({
@@ -41,18 +40,59 @@ const useServiceLogQuery = (fn: number) => {
     return res;
 }
 
+const useServiceQuery = (sid: number) => {
+    // fetching original services data
+    const SERVICE_QUERY = `
+    {
+        service(service_id: 2) {
+            id
+            name
+            type
+            description
+            createdAt
+            updatedAt
+        }
+    }
+    `;
+    const res = useQuery("srvnm", () => {
+        return axios({
+        url: DB_URL,
+        method: "POST",
+        data: {
+            query: SERVICE_QUERY
+        }
+        }).then(response => response.data.data);
+    });
+    console.log(res)
+
+    return res;
+}
+
 const HEADER_HEIGHT = 135
 
 const PServicesScreen = ({navigation, route}: Nav) => {
+    const [Services, setServices] = useState([]);
+
     const cred = route.params.cred
-    const Services = route.params.services
+    // const Services = route.params.services
+
+    const {
+        data: serviceLogData,
+        error: serviceLogError,
+        isLoading: serviceLogIsLoading
+    } = useServiceLogQuery(1);
 
     const {
         data: serviceData,
         error: serviceError,
         isLoading: serviceIsLoading
-    } = useServiceLogQuery(0);
-    console.log(serviceData)
+    } = useServiceQuery(2);
+    
+    useEffect(() => {
+        !serviceLogError &&
+        serviceLogData &&
+        setServices(serviceLogData.servicelogsByFilenumber);
+    }, [serviceLogData]);
 
     const [text, setText] = useState('')
     const [closed, setClosed] = useState(true)
@@ -126,7 +166,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
             showsVerticalScrollIndicator={false}
             >
                 <View style={{ height: 200 }}></View>
-                {
+                {/* {
                     Services.map((service, index) => (
                         service.service.name.toLowerCase().includes(text.toLowerCase()) &&
                         <View style={{}}>
@@ -140,7 +180,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
                             />
                         </View>
                     ))
-                }
+                } */}
             </Animated.ScrollView>
 
             {!closed && (

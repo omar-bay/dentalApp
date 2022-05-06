@@ -1,18 +1,13 @@
 query HrAssignees {
   hrAssignees {
-    id
-    name
-    password
     email
-    phone_number
-    home_number
-    home_address
-    SSN
-    martial_status
-    nationality
-    profile_pic_url
-    hr_type
     updatedAt
     createdAt
+    email
+    hr_type
+    profile_pic_url
+    password
+    name
+    id
   }
 }

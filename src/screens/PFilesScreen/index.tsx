@@ -19,10 +19,10 @@ const usePatientsQuery = () => {
       id
       file_number
       name
+      profile_pic_url
       gender
       dateOfBirth
       cat_id
-      profile_pic_url
       createdAt
       updatedAt
     }
@@ -46,12 +46,18 @@ const useFilesQuery = () => {
   const FILES_QUERY = `
   {
     files {
-      file_number
-      patient_id
-      status
-      assignee_id
-      createdAt
-      updatedAt
+      errors {
+        field
+        message
+      }
+      files {
+        file_number
+        patient_id
+        createdAt
+        updatedAt
+        assignee_id
+        status
+      }
     }
   }
   `;
@@ -84,7 +90,7 @@ const PFilesScreen = ({navigation, route}: Nav) => {
 
     useEffect(() => {
       let PFiles: never[] = [];
-      !filesError && filesData && filesData.files.forEach((file:any) => {
+      !filesError && filesData && filesData.files.files.forEach((file:any) => {
         let PFile = {...file}
         PFile['patient'] = patientsData && patientsData.patients.filter((pat:any) => pat.file_number==file.file_number)[0]
         PFile['services'] = []
@@ -100,6 +106,7 @@ const PFilesScreen = ({navigation, route}: Nav) => {
             showsVerticalScrollIndicator={false}
             >
             {
+                filesIsLoading && <Text>Loading..</Text> ||
                 !filesError && filesData &&
                 PFiles.map((PFile: any) => (
                     <FileCart key={PFile.file_number} cred={PFile.patient} services={PFile.services} navigation={navigation}/>

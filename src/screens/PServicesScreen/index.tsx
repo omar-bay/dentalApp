@@ -40,31 +40,31 @@ const useServiceLogQuery = (fn: number) => {
     return res;
 }
 
-const useServiceQuery = (sid: number) => {
+const useServiceQuery = (sids: number[]) => {
     // fetching original services data
-    const SERVICE_QUERY = `
+    const SERVICE_QUERY = (sid: number) => `
     {
         service(service_id: ${sid}) {
-            id
             name
             description
-            createdAt
-            updatedAt
         }
     }
     `;
-    const res = useQuery("srvnm", () => {
-        return axios({
-        url: DB_URL,
-        method: "POST",
-        data: {
-            query: SERVICE_QUERY
-        }
-        }).then(response => response.data.data);
-    });
-    console.log(res)
+    let ress: {}[] = []
+    sids.map((sid, i) => {
+        const res = useQuery(`srvnm${i}`, () => {
+            return axios({
+            url: DB_URL,
+            method: "POST",
+            data: {
+                query: SERVICE_QUERY(sid)
+            }
+            }).then(response => response.data.data);
+        });
+        ress.push(res.data?.service)
+    })
 
-    return res;
+    return ress;
 }
 
 const HEADER_HEIGHT = 135
@@ -81,16 +81,18 @@ const PServicesScreen = ({navigation, route}: Nav) => {
         isLoading: serviceLogIsLoading
     } = useServiceLogQuery(1);
 
-    const {
-        data: serviceData,
-        error: serviceError,
-        isLoading: serviceIsLoading
-    } = useServiceQuery(2);
+    const ress = useServiceQuery([2,3]);
+    console.log(ress)
     
     useEffect(() => {
+        let services_temp:{}[] = []
         !serviceLogError &&
         serviceLogData &&
-        setServices(serviceLogData.servicelogsByFilenumber);
+        setServices(serviceLogData.servicelogsByFilenumber)
+        Services.map((log:any) => {
+            services_temp.push(log.service_id)
+        })
+        console.log(services_temp)
     }, [serviceLogData]);
 
     const [text, setText] = useState('')

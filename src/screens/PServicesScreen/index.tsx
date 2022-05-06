@@ -51,7 +51,7 @@ const useServiceQuery = (sids: number[]) => {
     }
     `;
     let ress: {}[] = []
-    sids.map((sid, i) => {
+    sids?.map((sid, i) => {
         const res = useQuery(`srvnm${i}`, () => {
             return axios({
             url: DB_URL,
@@ -61,10 +61,16 @@ const useServiceQuery = (sids: number[]) => {
             }
             }).then(response => response.data.data);
         });
-        ress.push(res.data?.service)
+        let temp = res.data?.service || {}
+        temp['service_id'] = sid
+        ress.push(temp)
     })
 
     return ress;
+}
+
+const service_ids = (logs: any) => {
+    return logs?.map((log:any) => log.service_id)
 }
 
 const HEADER_HEIGHT = 135
@@ -79,21 +85,22 @@ const PServicesScreen = ({navigation, route}: Nav) => {
         data: serviceLogData,
         error: serviceLogError,
         isLoading: serviceLogIsLoading
-    } = useServiceLogQuery(1);
+    } = useServiceLogQuery(cred.file_number);
 
-    const ress = useServiceQuery([2,3]);
-    console.log(ress)
+    const ress = useServiceQuery(service_ids(serviceLogData?.servicelogsByFilenumber));
+    // console.log(ress)
+    // console.log(serviceLogData.servicelogsByFilenumber)
     
     useEffect(() => {
-        let services_temp:{}[] = []
-        !serviceLogError &&
-        serviceLogData &&
-        setServices(serviceLogData.servicelogsByFilenumber)
-        Services.map((log:any) => {
-            services_temp.push(log.service_id)
+        let temp = serviceLogData?.servicelogsByFilenumber
+        temp?.map((log:any) => {
+            log['service'] = {
+                name: ress?.filter(res => res?.service_id==log.service_id)[0].name,
+                description: ress?.filter(res => res?.service_id==log.service_id)[0].description
+            }
         })
-        console.log(services_temp)
-    }, [serviceLogData]);
+        setServices(temp)
+    }, [serviceLogData, ress]);
 
     const [text, setText] = useState('')
     const [closed, setClosed] = useState(true)
@@ -167,9 +174,9 @@ const PServicesScreen = ({navigation, route}: Nav) => {
             showsVerticalScrollIndicator={false}
             >
                 <View style={{ height: 200 }}></View>
-                {/* {
-                    Services.map((service, index) => (
-                        service.service.name.toLowerCase().includes(text.toLowerCase()) &&
+                {
+                    Services?.map((service, index) => (
+                        service?.service.name.toLowerCase().includes(text.toLowerCase()) &&
                         <View style={{}}>
                             <ServiceCart
                             key={index}
@@ -181,7 +188,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
                             />
                         </View>
                     ))
-                } */}
+                }
             </Animated.ScrollView>
 
             {!closed && (

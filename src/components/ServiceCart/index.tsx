@@ -34,7 +34,7 @@ const ServiceCart = ({ navigation, service, setNewTask, newTask, setClosed }: Se
                         <Image
                         source={{
                             // uri: `data:image/png;base64,${service?.assignee?.profile_pic}`
-                            uri: service?.assignee?.profile_pic
+                            uri: service?.assignee?.profile_pic_url
                         }}
                         style={styles.profileImg}
                         />

@@ -10,6 +10,7 @@ import SModal from '../../components/SModal'
 import { useQuery } from 'react-query'
 import axios from 'axios'
 import { DB_URL } from '../../global'
+import { useHrAssigneesQuery, useServicelogsQuery } from '../../../libs/generated/graphql'
 
 const useServiceLogQuery = (fn: number) => {
     // fetching services data
@@ -85,7 +86,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
         data: serviceLogData,
         error: serviceLogError,
         isLoading: serviceLogIsLoading
-    } = useServiceLogQuery(cred.file_number);
+    } = useServiceLogQuery(cred?.file_number);
 
     const ress = useServiceQuery(service_ids(serviceLogData?.servicelogsByFilenumber));
     // console.log(ress)
@@ -175,9 +176,9 @@ const PServicesScreen = ({navigation, route}: Nav) => {
             >
                 <View style={{ height: 200 }}></View>
                 {
-                    Services?.map((service, index) => (
-                        service?.service.name.toLowerCase().includes(text.toLowerCase()) &&
-                        <View style={{}}>
+                    Services && Services?.map((service, index) => (
+                        service?.service?.name.toLowerCase().includes(text.toLowerCase()) &&
+                        <View style={{}} key={index}>
                             <ServiceCart
                             key={index}
                             service={service}

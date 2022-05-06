@@ -11,6 +11,7 @@ const HEADER_HEIGHT = 215
 const TaskListScreen = ({ navigation, route }: Nav) => {
   const tasks = route.params.tasks
   const service_name = route.params.service_name
+  const service_desc = route.params.service_desc
 
   const [selectedStage, setSelectedStage] = useState(Stage.New)
   const [scrollAnim] = useState(new Animated.Value(0));
@@ -62,7 +63,7 @@ const TaskListScreen = ({ navigation, route }: Nav) => {
           );
       }}
       >
-      <TaskListHeader navigation={navigation} service_name={service_name}/>
+      <TaskListHeader navigation={navigation} service_name={service_name} service_desc={service_desc}/>
 
         {/* Table Header */}
         <TaskListTableHeader selectedStage={selectedStage} setSelectedStage={setSelectedStage} pickColor={pickColor}/>

@@ -8,6 +8,31 @@ import Services from '../../data/Services'
 import IconEdit from 'react-native-vector-icons/AntDesign'
 import { Nav, Stage, Task } from '../../Types'
 import { NavigationRouteContext } from '@react-navigation/native'
+import axios from 'axios'
+import { DB_URL } from '../../global'
+import { useQuery } from 'react-query'
+
+const useHrQuery = (hr_id: number) => {
+    const HR_QUERY = `
+    {
+        hrAssignee(id: ${hr_id}) {
+            name
+            profile_pic_url
+        }
+    }
+    `;
+    const res = useQuery("herr", () => {
+        return axios({
+        url: DB_URL,
+        method: "POST",
+        data: {
+            query: HR_QUERY
+        }
+        }).then(response => response.data.data);
+    });
+
+    return res
+}
 
 interface ServiceCartProps {
     service: Service
@@ -18,10 +43,14 @@ interface ServiceCartProps {
 }
 
 const ServiceCart = ({ navigation, service, setNewTask, newTask, setClosed }: ServiceCartProps) => {
+    const res = useHrQuery(service?.assignee_id || 1);
+    console.log(res)
+
     const servicePressed = () => {
         navigation.navigate('TaskListScreen', {
-            service_name: service.service.name,
-            tasks: service.tasks,
+            service_name: service?.service.name,
+            service_desc: service?.service.description,
+            tasks: service.tasks || [],
         })
     }
 

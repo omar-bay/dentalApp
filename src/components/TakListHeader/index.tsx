@@ -8,10 +8,11 @@ import { Nav } from '../../Types'
 
 interface TaskListHeaderProps {
     navigation: Nav,
-    service_name: string
+    service_name: string,
+    service_desc?: string
 }
 
-const TaskListHeader = ({ navigation, service_name }: TaskListHeaderProps) => {
+const TaskListHeader = ({ navigation, service_name, service_desc }: TaskListHeaderProps) => {
     const handleEdit = () => {}
 
     return (
@@ -37,7 +38,7 @@ const TaskListHeader = ({ navigation, service_name }: TaskListHeaderProps) => {
 
                 {/* Space */}
                 <View style={styles.text_container}>
-                    <Text style={styles.text}>This op we don't like to make eration is nice and sometimes beautiful. Mess it up and you'll never graduate.</Text>
+                    <Text style={styles.text}>{service_desc || "NO DESC"}</Text>
                 </View>
 
             </View>

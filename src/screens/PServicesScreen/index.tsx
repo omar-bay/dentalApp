@@ -65,7 +65,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
                 );
             }}
             >
-                <PServicesHeader text={text} setText={setText} navigation={navigation} name={cred.name} profile_pic={cred.profile_pic}/>
+                <PServicesHeader text={text} setText={setText} navigation={navigation} name={cred.name} profile_pic={cred.profile_pic_url}/>
             </Animated.View>
 
             {/* list of services */}

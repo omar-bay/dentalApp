@@ -44,10 +44,9 @@ const useServiceQuery = (sid: number) => {
     // fetching original services data
     const SERVICE_QUERY = `
     {
-        service(service_id: 2) {
+        service(service_id: ${sid}) {
             id
             name
-            type
             description
             createdAt
             updatedAt

@@ -14,13 +14,6 @@ const KnowledgeScreen = () => {
     // creating HR
     const [createHrAssignee] = useCreateHrAssigneeMutation()
 
-    // fetching patients data
-    const {
-        data: patientsData,
-        loading: isPatientsLoading,
-        error: patientsError,
-    } = usePatientsQuery();
-
     const [text, setText] = useState('')
     const [closeSearch, setCloseSearch] = useState(true)
     const [scrollAnim] = useState(new Animated.Value(0));
@@ -49,23 +42,6 @@ const KnowledgeScreen = () => {
 
     const iconPressed = () => {
         setCloseSearch(false)
-        createHrAssignee({
-            variables: {
-                input: {
-                    name: "Ali Zaart",
-                    password: "123123",
-                    email: "alizaart@bau.com",
-                    phone_number: "70 834 321",
-                    home_number: "01 788 993",
-                    home_address: "Beirut, After Dinner",
-                    SSN: "1234567890",
-                    martial_status: "married",
-                    nationality: "Lebanese",
-                    profile_pic_url: "https://www.bau.edu.lb/BAUUpload/Staff/Images/Science/dr-ali-elzaart.jpg",
-                    hr_type: Hr_Type.Doctor
-                }
-            }
-        })
     }
 
     return (

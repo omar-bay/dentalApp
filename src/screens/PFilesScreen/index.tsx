@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, FlatList, ScrollView } from 'react-native'
 import FileCart from '../../components/FileCart'
 import styles from './styles'
@@ -80,7 +80,13 @@ const PFilesScreen = ({navigation, route}: Nav) => {
       isLoading: patientsIsLoading
     } = usePatientsQuery();
 
-    !filesError && filesData && console.log(filesData)
+    useEffect(() => {
+      !filesError && filesData && filesData.files.forEach((file:any) => {
+        file['patient'] = patientsData.patients.filter((pat:any) => pat.file_number==file.file_number)[0]
+        file['services'] = []
+      })
+      console.log(filesData.files[0].patient)
+    }, []);
     
     return (
         <View style={styles.root}>

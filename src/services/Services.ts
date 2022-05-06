@@ -22,3 +22,40 @@ createHrAssignee({
     }
 })
 `
+
+
+
+
+
+const example_get_hr = `
+// fetching hr_assignees data
+const HR_QUERY = ``
+{
+    hrAssignees {
+        id
+        name
+        password
+        email
+        phone_number
+        home_number
+        home_address
+        SSN
+        martial_status
+        nationality
+        profile_pic_url
+        hr_type
+        updatedAt
+        createdAt
+    }
+}
+``;
+const { data, isLoading, error } = useQuery("launches", () => {
+    return axios({
+    url: DB_URL,
+    method: "POST",
+    data: {
+        query: HR_QUERY
+    }
+    }).then(response => response.data.data);
+});
+`

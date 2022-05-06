@@ -7,12 +7,52 @@ import PServicesHeader from '../../components/PServicesHeader'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import IconBack from 'react-native-vector-icons/AntDesign'
 import SModal from '../../components/SModal'
+import { useQuery } from 'react-query'
+import axios from 'axios'
+import { DB_URL } from '../../global'
+
+const useServiceLogQuery = (fn: number) => {
+    // fetching services data
+    const SERVICE_LOG_QUERY = `
+    {
+        servicelogsByFilenumber(filenumber: ${fn}) {
+          id
+          service_id
+          patient_id
+          filenumber
+          assignee_id
+          date
+          createdAt
+          updatedAt
+        }
+      }
+      
+    `;
+    const res = useQuery("srvslg", () => {
+        return axios({
+        url: DB_URL,
+        method: "POST",
+        data: {
+            query: SERVICE_LOG_QUERY
+        }
+        }).then(response => response.data.data);
+    });
+
+    return res;
+}
 
 const HEADER_HEIGHT = 135
 
 const PServicesScreen = ({navigation, route}: Nav) => {
     const cred = route.params.cred
     const Services = route.params.services
+
+    const {
+        data: serviceData,
+        error: serviceError,
+        isLoading: serviceIsLoading
+    } = useServiceLogQuery(0);
+    console.log(serviceData)
 
     const [text, setText] = useState('')
     const [closed, setClosed] = useState(true)

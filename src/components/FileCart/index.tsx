@@ -3,6 +3,9 @@ import { View, Text, Pressable, Image } from 'react-native'
 import { Patient, Nav, Service } from '../../Types';
 import styles from './styles'
 import IconRight from 'react-native-vector-icons/AntDesign'
+import { useQuery } from 'react-query';
+import { DB_URL } from '../../global';
+import axios from 'axios';
 
 interface FileCartProps {
     cred: Patient,

@@ -15,7 +15,7 @@ import { useQuery } from 'react-query'
 const useHrQuery = (hr_id: number) => {
     const HR_QUERY = `
     {
-        hrAssignee(id: ${hr_id}) {
+        hrAssignee(id: 1) {
             name
             profile_pic_url
         }
@@ -26,7 +26,7 @@ const useHrQuery = (hr_id: number) => {
         url: DB_URL,
         method: "POST",
         data: {
-            query: HR_QUERY
+            query: HR_QUERY,
         }
         }).then(response => response.data.data);
     });

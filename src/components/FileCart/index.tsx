@@ -22,7 +22,7 @@ const FileCart = ({ cred, navigation, services }: FileCartProps) => {
             <View style={[styles.profileImgContainer, { borderColor: 'green', borderWidth:0 }]}>
                 <Image
                 source={{
-                    uri: cred.profile_pic
+                    uri: cred.profile_pic_url
                 }}
                 style={styles.profileImg}
                 />

@@ -4,7 +4,7 @@ import FileCart from '../../components/FileCart'
 import styles from './styles'
 import PFiles from '../../data/PFiles'
 import { StackScreenProps } from '@react-navigation/stack'
-import { Patient, Nav, PFile } from '../Types'
+import { Patient, Nav } from '../../Types'
 // import { gql, useQuery } from '@apollo/client'
 import axios from "axios";
 import { useQuery } from "react-query";
@@ -69,6 +69,8 @@ const useFilesQuery = () => {
 }
 
 const PFilesScreen = ({navigation, route}: Nav) => {
+    const [PFiles, setPFiles] = useState([]);
+
     const {
       data: filesData,
       error: filesError,
@@ -81,13 +83,16 @@ const PFilesScreen = ({navigation, route}: Nav) => {
     } = usePatientsQuery();
 
     useEffect(() => {
+      let PFiles: never[] = [];
       !filesError && filesData && filesData.files.forEach((file:any) => {
-        file['patient'] = patientsData.patients.filter((pat:any) => pat.file_number==file.file_number)[0]
-        file['services'] = []
+        let PFile = {...file}
+        PFile['patient'] = patientsData && patientsData.patients.filter((pat:any) => pat.file_number==file.file_number)[0]
+        PFile['services'] = []
+        PFiles.push(PFile)
       })
-      console.log(filesData.files[0].patient)
-    }, []);
-    
+      setPFiles(PFiles);
+    }, [filesData, patientsData]);
+
     return (
         <View style={styles.root}>
             <ScrollView
@@ -95,27 +100,11 @@ const PFilesScreen = ({navigation, route}: Nav) => {
             showsVerticalScrollIndicator={false}
             >
             {
-                PFiles.map((PFile: PFile) => (
-                    <FileCart key={PFile.id} cred={PFile.patient} services={PFile.services} navigation={navigation}/>
+                !filesError && filesData &&
+                PFiles.map((PFile: any) => (
+                    <FileCart key={PFile.file_number} cred={PFile.patient} services={PFile.services} navigation={navigation}/>
                 ))
             }
-            {/* {isLoading ? (
-                <Text>Loading..</Text>
-              ) : (
-                !error &&
-                data && (
-                  <>
-                    {data.patients.map((PFile:any) => (
-                      <FileCart
-                      key={PFile.id}
-                      cred={PFile}
-                      services={PFile.services}
-                      navigation={navigation}
-                      />
-                    ))}
-                  </>
-                )
-              )} */}
             </ScrollView>
         </View>
     )

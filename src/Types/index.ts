@@ -54,7 +54,7 @@ export enum Stage {
 
 export interface Patient {
     id: number,
-    profile_pic: string,
+    profile_pic_url: string,
     name: String,
     age: number,
     gender: String,

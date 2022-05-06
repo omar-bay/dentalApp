@@ -101,3 +101,5 @@ run website: ~/monorepo: yarn nx serve unicorn
 change url in ./global/index.ts and codegen.yml
 
 npm run android everytime you change the .env
+
+https://www.freecodecamp.org/news/5-ways-to-fetch-data-react-graphql/

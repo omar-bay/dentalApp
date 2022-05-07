@@ -11,6 +11,7 @@ import { useQuery } from 'react-query'
 import axios from 'axios'
 import { DB_URL } from '../../global'
 import { useHrAssigneesQuery, useServicelogsQuery } from '../../../libs/generated/graphql'
+import Service_List from '../../data/ServiceList'
 
 const useServiceLogQuery = (fn: number) => {
     // fetching services data
@@ -39,39 +40,6 @@ const useServiceLogQuery = (fn: number) => {
     });
 
     return res;
-}
-
-const useServiceQuery = (sids: number[]) => {
-    // fetching original services data
-    const SERVICE_QUERY = (sid: number) => `
-    {
-        service(service_id: ${sid}) {
-            name
-            description
-        }
-    }
-    `;
-    let ress: {}[] = []
-    sids?.map((sid, i) => {
-        const res = useQuery(`srvnm${i}`, () => {
-            return axios({
-            url: DB_URL,
-            method: "POST",
-            data: {
-                query: SERVICE_QUERY(sid)
-            }
-            }).then(response => response.data.data);
-        });
-        let temp = res.data?.service || {}
-        temp['service_id'] = sid
-        ress.push(temp)
-    })
-
-    return ress;
-}
-
-const service_ids = (logs: any) => {
-    return logs?.map((log:any) => log.service_id)
 }
 
 const HEADER_HEIGHT = 135
@@ -117,22 +85,19 @@ const PServicesScreen = ({navigation, route}: Nav) => {
         isLoading: serviceLogIsLoading
     } = useServiceLogQuery(cred?.file_number);
 
-    const ress = useServiceQuery(service_ids(serviceLogData?.servicelogsByFilenumber));
-    // console.log(ress)
-    // console.log(serviceLogData.servicelogsByFilenumber)
-    
     useEffect(() => {
-        if(!serviceLogError && ress) {
-            let temp = serviceLogData?.servicelogsByFilenumber
-            temp?.map((log:any) => {
-                log['service'] = {
-                    name: ress?.filter(res => res?.service_id==log.service_id)[0].name,
-                    description: ress?.filter(res => res?.service_id==log.service_id)[0].description
-                }
+        let temp = []
+        if(serviceLogData != undefined) {
+            serviceLogData?.servicelogsByFilenumber.map((service:any) => {
+            let tem = {
+                ...service,
+                service: Service_List.filter(ser => ser.id==service.service_id)[0]
+            }
+            temp.push(tem)
             })
-            setServices(temp)
-        } else setServices([])
-    }, [serviceLogData, ress]);
+        }
+        setServices(temp)
+    }, [serviceLogData]);
 
     return (
         <View style={{ flex: 1 }}>

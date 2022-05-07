@@ -43,8 +43,8 @@ interface ServiceCartProps {
 }
 
 const ServiceCart = ({ navigation, service, setNewTask, newTask, setClosed }: ServiceCartProps) => {
-    const res = useHrQuery(service?.assignee_id || 1);
-    console.log(res)
+    // const res = useHrQuery(service?.assignee_id || 1);
+    // console.log(res)
 
     const servicePressed = () => {
         navigation.navigate('TaskListScreen', {

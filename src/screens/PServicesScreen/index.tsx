@@ -78,31 +78,6 @@ const HEADER_HEIGHT = 135
 
 const PServicesScreen = ({navigation, route}: Nav) => {
     const [Services, setServices] = useState([]);
-
-    const cred = route.params.cred
-    // const Services = route.params.services
-
-    const {
-        data: serviceLogData,
-        error: serviceLogError,
-        isLoading: serviceLogIsLoading
-    } = useServiceLogQuery(cred?.file_number);
-
-    const ress = useServiceQuery(service_ids(serviceLogData?.servicelogsByFilenumber));
-    // console.log(ress)
-    // console.log(serviceLogData.servicelogsByFilenumber)
-    
-    useEffect(() => {
-        let temp = serviceLogData?.servicelogsByFilenumber
-        temp?.map((log:any) => {
-            log['service'] = {
-                name: ress?.filter(res => res?.service_id==log.service_id)[0].name,
-                description: ress?.filter(res => res?.service_id==log.service_id)[0].description
-            }
-        })
-        setServices(temp)
-    }, [serviceLogData, ress]);
-
     const [text, setText] = useState('')
     const [closed, setClosed] = useState(true)
     const [newTask, setNewTask] = useState({})
@@ -132,6 +107,32 @@ const PServicesScreen = ({navigation, route}: Nav) => {
             <ServiceCart navigation={navigation} service={item} />
         )
     }
+
+    const cred = route.params.cred
+    // const Services = route.params.services
+
+    const {
+        data: serviceLogData,
+        error: serviceLogError,
+        isLoading: serviceLogIsLoading
+    } = useServiceLogQuery(cred?.file_number);
+
+    const ress = useServiceQuery(service_ids(serviceLogData?.servicelogsByFilenumber));
+    // console.log(ress)
+    // console.log(serviceLogData.servicelogsByFilenumber)
+    
+    useEffect(() => {
+        if(!serviceLogError && ress) {
+            let temp = serviceLogData?.servicelogsByFilenumber
+            temp?.map((log:any) => {
+                log['service'] = {
+                    name: ress?.filter(res => res?.service_id==log.service_id)[0].name,
+                    description: ress?.filter(res => res?.service_id==log.service_id)[0].description
+                }
+            })
+            setServices(temp)
+        } else setServices([])
+    }, [serviceLogData, ress]);
 
     return (
         <View style={{ flex: 1 }}>
@@ -176,7 +177,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
             >
                 <View style={{ height: 200 }}></View>
                 {
-                    Services && Services?.map((service, index) => (
+                    Services!=[] && Services?.map((service, index) => (
                         service?.service?.name.toLowerCase().includes(text.toLowerCase()) &&
                         <View style={{}} key={index}>
                             <ServiceCart

@@ -3,6 +3,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import MyDatePicker from '../MyDatePicker'
 import { formatDate } from '../../screens/TaskScreen'
 import { Stage, Task } from '../../Types'
+import { useCreateTaskMutation } from '../../../libs/generated/graphql'
 
 interface SModalProps {
     setClosed: Dispatch<SetStateAction<boolean>>
@@ -18,6 +19,8 @@ const SModal = ({ setClosed, setNewTask, newTask, newTaskName, setNewTaskName, n
     const [date, setDate] = useState(new Date());
     const [openDate, setOpenDate] = useState(false);
 
+    const [createTask] = useCreateTaskMutation()
+
     const handlePress = () => {
         let taskData = {
             ...newTask,
@@ -26,7 +29,18 @@ const SModal = ({ setClosed, setNewTask, newTask, newTaskName, setNewTaskName, n
             assignee_notes: "",
             date: date
         }
-        console.log(taskData)
+        createTask({
+            variables: {
+                input: {
+                    service_log_id: taskData.sid,
+                    stage: taskData.stage,
+                    name: taskData.name,
+                    description: taskData.description,
+                    assignee_notes: taskData.assignee_notes,
+                    date: taskData.date
+                }
+            }
+        })
         setNewTaskName('')
         setNewTaskDesc('')
         setClosed(true)

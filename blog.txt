@@ -118,3 +118,8 @@ When abbasi edited entities & resolvers
     One way to fix it is to run an SQL statement to clear the data.
 4 - check if I changed the structure of the data. When react throws undefined, check if I changed
     structure.
+
+
+adding the task is being done in the SModal
+
+probably i cannot query because i'm not authorized

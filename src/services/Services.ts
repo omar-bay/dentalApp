@@ -1,5 +1,6 @@
 // import { useCreateHrAssigneeMutation, Hr_Type } from '../../libs/generated/graphql'
 // import { useMutation } from '@apollo/client'
+// import { useQuery } from 'react-query'
 
 // const example = `
 // const [createHrAssignee] = useCreateHrAssigneeMutation()
@@ -96,3 +97,30 @@
 
 //     return res;
 // }`
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const [createTask] = useCreateTaskMutation()
+
+// createTask({
+//     variables: {
+//         input: {
+//             service_log_id: taskData.sid,
+//             stage: taskData.stage,
+//             name: taskData.name,
+//             description: taskData.description,
+//             assignee_notes: taskData.assignee_notes,
+//             date: taskData.date
+//         }
+//     }
+// })

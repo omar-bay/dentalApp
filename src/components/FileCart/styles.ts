@@ -27,9 +27,11 @@ const styles = StyleSheet.create({
         flex: 1
     },
     pat_name: {
-        fontSize: 18
+        fontSize: 18,
+        fontFamily: 'serif'
     },
     status: {
+        fontFamily: 'sans-serif-medium'
     },
     iconContainer: {
         alignItems: 'center',

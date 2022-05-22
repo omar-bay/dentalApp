@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, FlatList, ScrollView } from 'react-native'
+import { View, Text, FlatList, ScrollView, Pressable } from 'react-native'
 import FileCart from '../../components/FileCart'
 import styles from './styles'
 import PFiles from '../../data/PFiles'
@@ -10,6 +10,7 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { DB_URL } from "../../global"
 import { createIconSetFromFontello } from 'react-native-vector-icons'
+import PFilesHeader from '../../components/PFilesHeader'
 
 const usePatientsQuery = () => {
   // fetching patients data
@@ -101,6 +102,9 @@ const PFilesScreen = ({navigation, route}: Nav) => {
 
     return (
         <View style={styles.root}>
+            {/* Header */}
+            <PFilesHeader/>
+
             <ScrollView
             style={styles.file_carts}
             showsVerticalScrollIndicator={false}

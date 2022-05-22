@@ -20,8 +20,7 @@ const PFileStackNav = () => {
         {/* PFiles */}
         <Stack.Screen name="PFilesScreen" component={PFilesScreen}
         options={{
-            title: 'Patient Files',
-            headerStyle: { backgroundColor: '#d4f4fa' },
+            headerShown: false
         }}
         />
 

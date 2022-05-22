@@ -17,10 +17,6 @@ const NotesModal = ({ setClosed, task }: NotesModalProps) => {
     const [updateTask] = useUpdateTaskMutation()
 
     const handleSubmit = () => {
-        // console.log({
-        //     ...task,
-        //     assignee_notes: text
-        // })
         updateTask({
             variables: {
                 input: {

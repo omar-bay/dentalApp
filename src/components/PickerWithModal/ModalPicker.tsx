@@ -9,6 +9,7 @@ import {
 import React, { Dispatch, SetStateAction } from 'react'
 import { Stage, Task } from '../../Types';
 import TaskScreenHeader from '../TaskScreenHeader';
+import { useUpdateTaskMutation } from '../../../libs/generated/graphql';
 
 const OPTIONS = [Stage.New, Stage.Pending, Stage.Done];
 
@@ -22,10 +23,25 @@ interface ModalPickerProps {
 }
 
 const ModalPicker = ({ setIsModalVisible, setChooseData, task }: ModalPickerProps) => {
+    const [updateTask] = useUpdateTaskMutation()
+
     const onPressItem = (option: Stage) => {
         setIsModalVisible(false)
         setChooseData(option)
-        task.stage = option
+        // task.stage = option
+        updateTask({
+            variables: {
+                input: {
+                    service_log_id: task.service_log_id,
+                    name: task.name,
+                    description: task.description,
+                    stage: option,
+                    date: new Date(Math.floor(task.date)),
+                    assignee_notes: task.assignee_notes
+                },
+                updateTaskId: task.id
+            }
+        })
     }
 
     const option = OPTIONS.map((item, index) => {

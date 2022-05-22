@@ -6,6 +6,7 @@ import { Nav, Task } from '../../Types'
 import { formatAMPM } from '../../screens/TaskScreen'
 import MyDatePicker from '../MyDatePicker'
 import PickerWithModel from '../PickerWithModal'
+import { useUpdateTaskMutation } from '../../../libs/generated/graphql'
 
 interface TaskEditsProps {
   navigation: Nav,
@@ -13,11 +14,26 @@ interface TaskEditsProps {
 }
 
 const TaskEdits = ({ navigation, task }: TaskEditsProps) => {
-  const [date, setDate] = useState(task.date)
+  const [date, setDate] = useState(new Date(Math.floor(task.date)))
   const [openDate, setOpenDate] = useState(false)
 
+  const [updateTask] = useUpdateTaskMutation()
+
   useEffect(() => {
-    task.date = date
+    // task.date = date
+    updateTask({
+      variables: {
+          input: {
+              service_log_id: task.service_log_id,
+              name: task.name,
+              description: task.description,
+              stage: task.stage,
+              date: date,
+              assignee_notes: task.assignee_notes
+          },
+          updateTaskId: task.id
+      }
+  })
   }, [date])
 
   return (
@@ -56,7 +72,7 @@ const TaskEdits = ({ navigation, task }: TaskEditsProps) => {
             navigation={navigation}
             text_style={{ color: 'black' }}
             text="Scheduled at"
-            about={formatAMPM(task.date)}
+            about={formatAMPM(new Date(task.date))}
             container_style={{ borderBottomWidth: 0 }}
             onPress={()=>setOpenDate(!openDate)}
             />

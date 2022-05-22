@@ -3,6 +3,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import MyDatePicker from '../MyDatePicker'
 import { formatDate } from '../../screens/TaskScreen'
 import { Stage, Task } from '../../Types'
+import { useUpdateTaskMutation } from '../../../libs/generated/graphql'
 import Task_List from '../../data/TaskList'
 
 interface NotesModalProps {
@@ -13,10 +14,25 @@ interface NotesModalProps {
 const NotesModal = ({ setClosed, task }: NotesModalProps) => {
     const [text, setText] = useState('');
 
+    const [updateTask] = useUpdateTaskMutation()
+
     const handleSubmit = () => {
-        console.log({
-            ...task,
-            assignee_notes: text
+        // console.log({
+        //     ...task,
+        //     assignee_notes: text
+        // })
+        updateTask({
+            variables: {
+                input: {
+                    service_log_id: task.service_log_id,
+                    name: task.name,
+                    description: task.description,
+                    stage: task.stage,
+                    date: new Date(task.date * 1000),
+                    assignee_notes: text
+                },
+                updateTaskId: task.id
+            }
         })
         setClosed(true)
         setText('')

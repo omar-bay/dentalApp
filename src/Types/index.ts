@@ -38,12 +38,13 @@ export interface Static_Service {
 }
 
 export interface Task {
+    service_log_id: number;
     id: number,
     stage: Stage,
     name: string,
     description: string,
     assignee_notes: string,
-    date: Date,
+    date: string,
 }
 
 export enum Stage {

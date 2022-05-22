@@ -7,21 +7,34 @@ interface PFilesModalProps {
 
 const PFilesModal = ({ setClosed }: PFilesModalProps) => {
     const [text, setText] = useState('');
-
+    const [pic, setPic] = useState('');
+    const [gen, setGen] = useState('Male')
 
     const handleSubmit = () => {
-        console.log("submit!")
+        console.log({
+            name: text,
+            profile_pic: pic,
+            gender: gen
+        })
         setClosed(true)
         setText('')
+        setPic('')
+        setGen('Male')
     }
 
     const handleCancel = () => {
         setClosed(true)
         setText('')
+        setPic('')
+        setGen('Male')
     }
 
     const chooseColor = () => {
         return '#bfeff8'
+    }
+
+    const handleGenPress = (gen: string) => {
+        setGen(gen)
     }
 
   return (
@@ -29,11 +42,34 @@ const PFilesModal = ({ setClosed }: PFilesModalProps) => {
       <Pressable style={styles.container}>
           <Text style={styles.title}>Add Patient</Text>
           <View style={styles.item}>
+              <Text style={styles.label}>Name</Text>
               <TextInput
               style={styles.input}
               onChangeText={setText}
               value={text}
               />
+          </View>
+          <View style={styles.item}>
+              <Text style={styles.label}>Profile Pic</Text>
+              <TextInput
+              style={styles.input}
+              onChangeText={setPic}
+              value={pic}
+              />
+          </View>
+          <View style={styles.item}>
+              <View style={styles.genPicker}>
+                  <Pressable style={styles.genButton}
+                  onPress={() => handleGenPress('Male')}
+                  >
+                      <Text style={styles.genTitle}>Male</Text>
+                  </Pressable>
+                  <Pressable style={styles.genButton}
+                  onPress={() => handleGenPress('Female')}
+                  >
+                      <Text style={styles.genTitle}>Female</Text>
+                  </Pressable>
+              </View>
           </View>
           <Pressable
           style={[styles.button, { backgroundColor: chooseColor() }]}
@@ -66,7 +102,7 @@ const styles = StyleSheet.create({
         borderRadius: 20
     },
     title: {
-        fontSize: 18
+        fontSize: 18,
     },
     item: {
         width: '80%',
@@ -75,10 +111,31 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    label: {},
+    label: {
+        flex: 0.5,
+        fontFamily: 'serif'
+    },
     input: {
         width: '100%',
+        flex: 1,
         borderBottomWidth: 0.2
+    },
+    genPicker: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        paddingVertical: 15
+    },
+    genButton: {
+        alignItems: 'center',
+        padding: 15,
+        flex: 1,
+        borderRadius: 5
+    },
+    genTitle: {
+        fontFamily: 'serif',
+        fontSize: 16
     },
     dateHolder: {
         width: '100%',

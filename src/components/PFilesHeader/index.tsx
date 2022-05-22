@@ -5,7 +5,7 @@ import styles from './styles'
 import PFilesModal from '../PFilesModal'
 
 const PFilesHeader = () => {
-    const [closed, setClosed] = useState(false);
+    const [closed, setClosed] = useState(true);
 
   return (
     <View style={styles.root}>
@@ -13,6 +13,7 @@ const PFilesHeader = () => {
             <Text style={styles.title}>PFiles</Text>
             <Pressable
             style={styles.addButton}
+            onPress={() => setClosed(!closed)}
             ><IconPlus name="plus" size={20}/></Pressable>
         </View>
 

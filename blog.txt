@@ -125,3 +125,5 @@ When abbasi edited entities & resolvers
 adding the task is being done in the SModal
 
 probably i cannot query because i'm not authorized
+
+the modal grows with keyboard because it was height 100% with the page of 100%

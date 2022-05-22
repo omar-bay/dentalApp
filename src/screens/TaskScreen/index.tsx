@@ -97,7 +97,7 @@ const TaskScreen = ({ navigation, route }: Nav) => {
                 <View style={{ height: HEADER_HEIGHT+60 }} ></View>
                 <TaskInfo label='Objective' info={task.description}/>
                 <TaskInfo label='status' info={task.stage.toString()}/>
-                <TaskInfo label="deadline at" info={formatAMPM(new Date(task.date * 1000))}/>
+                <TaskInfo label="deadline at" info={formatAMPM(new Date(Math.floor(task.date)))}/>
                 <Pressable onPress={()=>setClosed(false)}>
                     <TaskInfo label="Assignee Notes" info={task.assignee_notes}/>
                 </Pressable>

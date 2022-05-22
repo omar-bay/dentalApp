@@ -25,7 +25,7 @@ const TaskListTableCart = ({ navigation, task }: TaskListTableCartProps) => {
         </View>
 
         <View style={styles.tree_title_container}>
-            <Text numberOfLines={1} style={styles.text}>{formatDate(new Date(task.date * 1000))}</Text>
+            <Text numberOfLines={1} style={styles.text}>{formatDate(new Date(Math.floor(task.date)))}</Text>
         </View>
     </Pressable>
   )

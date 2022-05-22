@@ -28,7 +28,7 @@ const NotesModal = ({ setClosed, task }: NotesModalProps) => {
                     name: task.name,
                     description: task.description,
                     stage: task.stage,
-                    date: new Date(task.date * 1000),
+                    date: new Date(Math.floor(task.date)),
                     assignee_notes: text
                 },
                 updateTaskId: task.id

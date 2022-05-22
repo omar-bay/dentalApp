@@ -44,26 +44,6 @@ const SModal = ({ setClosed, setNewTask, newTask, newTaskName, setNewTaskName, n
                 }
             }
         })
-        // SADXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-        // axios({
-        //     url: DB_URL,
-        //     method: 'post',
-        //     data: {
-        //         service_log_id: ${taskData.sid},
-        //         stage: "${taskData.stage}",
-        //         name: "${taskData.name}",
-        //         description: "${taskData.description}",
-        //         assignee_notes: "${taskData.assignee_notes}",
-        //         date: "${taskData.date.toString()}"
-        //     }
-        //    })
-        //     .then(res => {
-        //      console.log(res.data);
-        //     })
-        //     .catch(err => {
-        //     console.log(err.message);
-        // });
-        // SADXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         setNewTaskName('')
         setNewTaskDesc('')
         setClosed(true)

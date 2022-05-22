@@ -6,13 +6,42 @@ import TaskListHeader from '../../components/TakListHeader'
 import TaskListTableHeader from '../../components/TaskListTableHeader'
 import TaskListTableCart from '../../components/TaskListTableCart'
 import { useQuery } from 'react-query'
+import axios from 'axios'
+import { DB_URL } from '../../global'
 
 const HEADER_HEIGHT = 215
 
 const TaskListScreen = ({ navigation, route }: Nav) => {
-  const tasks = route.params.tasks
+  // const tasks = route.params.tasks
+  const service_id = route.params.service_id
   const service_name = route.params.service_name
   const service_desc = route.params.service_desc
+
+  // fetching tasks
+  const TASKS_QUERY = `
+  {
+    tasksByService(service_log_id: ${service_id}) {
+      id
+      service_log_id
+      stage
+      name
+      description
+      assignee_notes
+      date
+      createdAt
+      updatedAt
+    }
+  }
+`;
+  const { data:tasks, isLoading, error } = useQuery("itstsks", () => {
+    return axios({
+      url: DB_URL,
+      method: "POST",
+      data: {
+        query: TASKS_QUERY
+      }
+    }).then(response => response.data.data);
+  });
 
   const [selectedStage, setSelectedStage] = useState(Stage.New)
   const [scrollAnim] = useState(new Animated.Value(0));
@@ -83,7 +112,7 @@ const TaskListScreen = ({ navigation, route }: Nav) => {
       >
       <View style={{ height: 325 }}></View>
       {
-        tasks.map((task: Task, index: number) => (
+        tasks && tasks.tasksByService.map((task: any, index: number) => (
           task.stage == selectedStage &&
           <TaskListTableCart key={index} navigation={navigation} task={task}/>
         ))

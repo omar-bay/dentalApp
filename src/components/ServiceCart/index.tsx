@@ -48,6 +48,7 @@ const ServiceCart = ({ navigation, service, setNewTask, newTask, setClosed }: Se
 
     const servicePressed = () => {
         navigation.navigate('TaskListScreen', {
+            service_id: service?.service.id,
             service_name: service?.service.name,
             service_desc: service?.service.description,
             tasks: service.tasks || [],

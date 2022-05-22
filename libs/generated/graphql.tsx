@@ -21,7 +21,7 @@ export type Query = {
   __typename?: 'Query';
   file: File_Response;
   files: Files_Response;
-  hrAssignee: HrAssignee;
+  hrAssignee: Hr_Assignee_Response;
   hrAssignees: Array<HrAssignee>;
   me?: Maybe<HrAssignee>;
   patient: Patient_Response;
@@ -73,7 +73,7 @@ export type QueryTaskArgs = {
 
 
 export type QueryTasksByServiceArgs = {
-  sid: Scalars['Int'];
+  service_log_id: Scalars['Int'];
 };
 
 export type File_Response = {
@@ -102,6 +102,12 @@ export type Files_Response = {
   __typename?: 'Files_Response';
   errors?: Maybe<Array<FieldError>>;
   files?: Maybe<Array<File>>;
+};
+
+export type Hr_Assignee_Response = {
+  __typename?: 'Hr_Assignee_Response';
+  errors?: Maybe<Array<FieldError>>;
+  hr_assignee?: Maybe<HrAssignee>;
 };
 
 export type HrAssignee = {
@@ -160,15 +166,8 @@ export type Service = {
   description?: Maybe<Scalars['String']>;
   id: Scalars['Float'];
   name: Scalars['String'];
-  type: ServiceType;
   updatedAt: Scalars['String'];
 };
-
-export enum ServiceType {
-  Done = 'Done',
-  InProgress = 'In_Progress',
-  New = 'New'
-}
 
 export type ServiceLog = {
   __typename?: 'ServiceLog';
@@ -203,13 +202,13 @@ export enum Stage {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addService: ServiceLog;
+  addService: ServeLog_Response;
   changePassword: Hr_Assignee_Response;
   createFile: File_Response;
   createHrAssignee: Hr_Assignee_Response;
   createPatient: Patient;
   createService: Service;
-  createTask: Task;
+  createTask: Task_Response;
   deleteFile: Scalars['Boolean'];
   deleteHrAssignee: Scalars['Boolean'];
   deletePatient: Scalars['Boolean'];
@@ -336,14 +335,16 @@ export type MutationUpdateTaskArgs = {
 
 export type ServiceLog_Input = {
   assignee_id: Scalars['Float'];
+  date: Scalars['String'];
+  filenumber: Scalars['Float'];
   patient_id: Scalars['Float'];
   service_id: Scalars['Float'];
 };
 
-export type Hr_Assignee_Response = {
-  __typename?: 'Hr_Assignee_Response';
+export type ServeLog_Response = {
+  __typename?: 'ServeLog_Response';
   errors?: Maybe<Array<FieldError>>;
-  hr_assignee?: Maybe<HrAssignee>;
+  servicelog?: Maybe<ServiceLog>;
 };
 
 export type File_Input = {
@@ -378,7 +379,6 @@ export type Patient_Input = {
 export type Service_Input = {
   description?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
-  type: ServiceType;
 };
 
 export type Task_Input = {
@@ -388,6 +388,12 @@ export type Task_Input = {
   name: Scalars['String'];
   service_log_id: Scalars['Float'];
   stage: Stage;
+};
+
+export type Task_Response = {
+  __typename?: 'Task_Response';
+  errors?: Maybe<Array<FieldError>>;
+  task?: Maybe<Task>;
 };
 
 export type Hr_Assignee_Update_Input = {
@@ -406,7 +412,6 @@ export type Hr_Assignee_Update_Input = {
 export type Service_Update_Input = {
   description?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<ServiceType>;
 };
 
 export type AddServiceMutationVariables = Exact<{
@@ -414,7 +419,7 @@ export type AddServiceMutationVariables = Exact<{
 }>;
 
 
-export type AddServiceMutation = { __typename?: 'Mutation', addService: { __typename?: 'ServiceLog', id: number, service_id: number, assignee_id: number, patient_id: number, date: string, createdAt: string, updatedAt: string } };
+export type AddServiceMutation = { __typename?: 'Mutation', addService: { __typename?: 'ServeLog_Response', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, servicelog?: { __typename?: 'ServiceLog', id: number, service_id: number, patient_id: number, filenumber: number, assignee_id: number, date: string, createdAt: string, updatedAt: string } | null } };
 
 export type ChangePasswordMutationVariables = Exact<{
   newPassword: Scalars['String'];
@@ -450,14 +455,14 @@ export type CreateServiceMutationVariables = Exact<{
 }>;
 
 
-export type CreateServiceMutation = { __typename?: 'Mutation', createService: { __typename?: 'Service', id: number, name: string, type: ServiceType, description?: string | null, createdAt: string, updatedAt: string } };
+export type CreateServiceMutation = { __typename?: 'Mutation', createService: { __typename?: 'Service', id: number, name: string, description?: string | null, createdAt: string, updatedAt: string } };
 
 export type CreateTaskMutationVariables = Exact<{
   input: Task_Input;
 }>;
 
 
-export type CreateTaskMutation = { __typename?: 'Mutation', createTask: { __typename?: 'Task', id: number, service_log_id: number, stage: Stage, name: string, description?: string | null, assignee_notes?: string | null, date: string, createdAt: string, updatedAt: string } };
+export type CreateTaskMutation = { __typename?: 'Mutation', createTask: { __typename?: 'Task_Response', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, task?: { __typename?: 'Task', id: number, service_log_id: number, stage: Stage, name: string, description?: string | null, assignee_notes?: string | null, date: string, createdAt: string, updatedAt: string } | null } };
 
 export type DeleteFileMutationVariables = Exact<{
   fileNumber: Scalars['Int'];
@@ -579,7 +584,7 @@ export type HrAssigneeQueryVariables = Exact<{
 }>;
 
 
-export type HrAssigneeQuery = { __typename?: 'Query', hrAssignee: { __typename?: 'HrAssignee', id: number, name: string, password: string, profile_pic_url?: string | null, hr_type?: Hr_Type | null, email: string, createdAt: string, updatedAt: string } };
+export type HrAssigneeQuery = { __typename?: 'Query', hrAssignee: { __typename?: 'Hr_Assignee_Response', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, hr_assignee?: { __typename?: 'HrAssignee', id: number, name: string, password: string, email: string, phone_number?: string | null, home_number?: string | null, home_address?: string | null, SSN?: string | null, martial_status?: string | null, nationality?: string | null, profile_pic_url?: string | null, hr_type?: Hr_Type | null, createdAt: string, updatedAt: string } | null } };
 
 export type HrAssigneesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -608,7 +613,7 @@ export type ServiceQueryVariables = Exact<{
 }>;
 
 
-export type ServiceQuery = { __typename?: 'Query', service: { __typename?: 'Service', id: number, name: string, type: ServiceType, description?: string | null, createdAt: string, updatedAt: string } };
+export type ServiceQuery = { __typename?: 'Query', service: { __typename?: 'Service', id: number, name: string, description?: string | null, createdAt: string, updatedAt: string } };
 
 export type ServicelogQueryVariables = Exact<{
   serviceLogId: Scalars['Float'];
@@ -629,6 +634,11 @@ export type ServicelogsByFilenumberQueryVariables = Exact<{
 
 export type ServicelogsByFilenumberQuery = { __typename?: 'Query', servicelogsByFilenumber: Array<{ __typename?: 'ServiceLog', id: number, service_id: number, patient_id: number, filenumber: number, assignee_id: number, date: string, createdAt: string, updatedAt: string }> };
 
+export type ServicesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ServicesQuery = { __typename?: 'Query', services: Array<{ __typename?: 'Service', id: number, name: string, description?: string | null, createdAt: string, updatedAt: string }> };
+
 export type TaskQueryVariables = Exact<{
   taskId: Scalars['Float'];
 }>;
@@ -637,7 +647,7 @@ export type TaskQueryVariables = Exact<{
 export type TaskQuery = { __typename?: 'Query', task: { __typename?: 'Task', id: number, service_log_id: number, stage: Stage, name: string, description?: string | null, assignee_notes?: string | null, date: string, createdAt: string, updatedAt: string } };
 
 export type TasksByServiceQueryVariables = Exact<{
-  sid: Scalars['Int'];
+  serviceLogId: Scalars['Int'];
 }>;
 
 
@@ -652,13 +662,20 @@ export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Ta
 export const AddServiceDocument = gql`
     mutation AddService($input: ServiceLog_Input!) {
   addService(input: $input) {
-    id
-    service_id
-    assignee_id
-    patient_id
-    date
-    createdAt
-    updatedAt
+    errors {
+      field
+      message
+    }
+    servicelog {
+      id
+      service_id
+      patient_id
+      filenumber
+      assignee_id
+      date
+      createdAt
+      updatedAt
+    }
   }
 }
     `;
@@ -873,7 +890,6 @@ export const CreateServiceDocument = gql`
   createService(input: $input) {
     id
     name
-    type
     description
     createdAt
     updatedAt
@@ -909,15 +925,21 @@ export type CreateServiceMutationOptions = Apollo.BaseMutationOptions<CreateServ
 export const CreateTaskDocument = gql`
     mutation CreateTask($input: Task_Input!) {
   createTask(input: $input) {
-    id
-    service_log_id
-    stage
-    name
-    description
-    assignee_notes
-    date
-    createdAt
-    updatedAt
+    errors {
+      field
+      message
+    }
+    task {
+      id
+      service_log_id
+      stage
+      name
+      description
+      assignee_notes
+      date
+      createdAt
+      updatedAt
+    }
   }
 }
     `;
@@ -1497,15 +1519,26 @@ export type FilesQueryResult = Apollo.QueryResult<FilesQuery, FilesQueryVariable
 export const HrAssigneeDocument = gql`
     query HrAssignee($hrAssigneeId: Float!) {
   hrAssignee(id: $hrAssigneeId) {
-    id
-    name
-    password
-    profile_pic_url
-    hr_type
-    email
-    createdAt
-    updatedAt
-    email
+    errors {
+      field
+      message
+    }
+    hr_assignee {
+      id
+      name
+      password
+      email
+      phone_number
+      home_number
+      home_address
+      SSN
+      martial_status
+      nationality
+      profile_pic_url
+      hr_type
+      createdAt
+      updatedAt
+    }
   }
 }
     `;
@@ -1717,7 +1750,6 @@ export const ServiceDocument = gql`
   service(service_id: $serviceId) {
     id
     name
-    type
     description
     createdAt
     updatedAt
@@ -1875,6 +1907,44 @@ export function useServicelogsByFilenumberLazyQuery(baseOptions?: Apollo.LazyQue
 export type ServicelogsByFilenumberQueryHookResult = ReturnType<typeof useServicelogsByFilenumberQuery>;
 export type ServicelogsByFilenumberLazyQueryHookResult = ReturnType<typeof useServicelogsByFilenumberLazyQuery>;
 export type ServicelogsByFilenumberQueryResult = Apollo.QueryResult<ServicelogsByFilenumberQuery, ServicelogsByFilenumberQueryVariables>;
+export const ServicesDocument = gql`
+    query Services {
+  services {
+    id
+    name
+    description
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+/**
+ * __useServicesQuery__
+ *
+ * To run a query within a React component, call `useServicesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useServicesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useServicesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useServicesQuery(baseOptions?: Apollo.QueryHookOptions<ServicesQuery, ServicesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ServicesQuery, ServicesQueryVariables>(ServicesDocument, options);
+      }
+export function useServicesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ServicesQuery, ServicesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ServicesQuery, ServicesQueryVariables>(ServicesDocument, options);
+        }
+export type ServicesQueryHookResult = ReturnType<typeof useServicesQuery>;
+export type ServicesLazyQueryHookResult = ReturnType<typeof useServicesLazyQuery>;
+export type ServicesQueryResult = Apollo.QueryResult<ServicesQuery, ServicesQueryVariables>;
 export const TaskDocument = gql`
     query Task($taskId: Float!) {
   task(id: $taskId) {
@@ -1919,8 +1989,8 @@ export type TaskQueryHookResult = ReturnType<typeof useTaskQuery>;
 export type TaskLazyQueryHookResult = ReturnType<typeof useTaskLazyQuery>;
 export type TaskQueryResult = Apollo.QueryResult<TaskQuery, TaskQueryVariables>;
 export const TasksByServiceDocument = gql`
-    query TasksByService($sid: Int!) {
-  tasksByService(sid: $sid) {
+    query TasksByService($serviceLogId: Int!) {
+  tasksByService(service_log_id: $serviceLogId) {
     id
     service_log_id
     stage
@@ -1946,7 +2016,7 @@ export const TasksByServiceDocument = gql`
  * @example
  * const { data, loading, error } = useTasksByServiceQuery({
  *   variables: {
- *      sid: // value for 'sid'
+ *      serviceLogId: // value for 'serviceLogId'
  *   },
  * });
  */

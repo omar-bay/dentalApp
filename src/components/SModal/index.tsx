@@ -4,6 +4,9 @@ import MyDatePicker from '../MyDatePicker'
 import { formatDate } from '../../screens/TaskScreen'
 import { Stage, Task } from '../../Types'
 import { useCreateTaskMutation } from '../../../libs/generated/graphql'
+import { DB_URL } from '../../global'
+import axios from 'axios'
+import { useQuery } from 'react-query'
 
 interface SModalProps {
     setClosed: Dispatch<SetStateAction<boolean>>
@@ -32,7 +35,7 @@ const SModal = ({ setClosed, setNewTask, newTask, newTaskName, setNewTaskName, n
         createTask({
             variables: {
                 input: {
-                    service_log_id: taskData.sid,
+                    service_log_id: taskData.sid || 0,
                     stage: taskData.stage,
                     name: taskData.name,
                     description: taskData.description,
@@ -41,6 +44,26 @@ const SModal = ({ setClosed, setNewTask, newTask, newTaskName, setNewTaskName, n
                 }
             }
         })
+        // SADXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        // axios({
+        //     url: DB_URL,
+        //     method: 'post',
+        //     data: {
+        //         service_log_id: ${taskData.sid},
+        //         stage: "${taskData.stage}",
+        //         name: "${taskData.name}",
+        //         description: "${taskData.description}",
+        //         assignee_notes: "${taskData.assignee_notes}",
+        //         date: "${taskData.date.toString()}"
+        //     }
+        //    })
+        //     .then(res => {
+        //      console.log(res.data);
+        //     })
+        //     .catch(err => {
+        //     console.log(err.message);
+        // });
+        // SADXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         setNewTaskName('')
         setNewTaskDesc('')
         setClosed(true)

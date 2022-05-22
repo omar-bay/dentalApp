@@ -112,6 +112,8 @@ When abbasi edited entities & resolvers
         queries/
         mutations/
     consider using a graphql client at localhost:4000/graphql for testing and autocompletion
+    - edit to your port in codegen.yml
+    - run server dentlist
 2 - yarn gen to spit out generated/graphql 
 3 - check if the database is synced. Sometimes it fails to alter because you already have data in.
     It might throw an error like this "fields can't be null"

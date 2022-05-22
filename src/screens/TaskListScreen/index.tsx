@@ -110,7 +110,7 @@ const TaskListScreen = ({ navigation, route }: Nav) => {
       scrollEventThrottle={16}
       style={[styles.scroll_view, { backgroundColor: pickColor()[1] }]}
       >
-      <View style={{ height: 325 }}></View>
+      <View style={{ height: 265 }}></View>
       {
         tasks && tasks.tasksByService.map((task: any, index: number) => (
           task.stage == selectedStage &&

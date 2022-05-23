@@ -1,5 +1,6 @@
 import { Button, Dimensions, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Gender, useCreateFileMutation, useCreatePatientMutation } from '../../../libs/generated/graphql';
 
 interface PFilesModalProps {
     setClosed: Dispatch<SetStateAction<boolean>>
@@ -8,34 +9,62 @@ interface PFilesModalProps {
 const PFilesModal = ({ setClosed }: PFilesModalProps) => {
     const [text, setText] = useState('');
     const [pic, setPic] = useState('');
-    const [gen, setGen] = useState('Male')
+    const [gen, setGen] = useState(Gender.Male)
+
+    const [createFileMutation, { data:newFileData, loading:newFileLoading, error:newFileError }] = useCreateFileMutation();
+    const [createPatient] = useCreatePatientMutation();
 
     const handleSubmit = () => {
-        console.log({
-            name: text,
-            profile_pic: pic,
-            gender: gen
+        // console.log({
+        //     name: text,
+        //     profile_pic: pic,
+        //     gender: gen
+        // })
+        createFileMutation({
+            variables: {
+                input: {
+                    assignee_id: 1,
+                    status: "alive"
+                }
+            }
+        })
+        newFileData &&
+        createPatient({
+            variables: {
+                input: {
+                    file_number: newFileData.createFile.file?.file_number,
+                    name: text,
+                    profile_pic_url: pic,
+                    gender: gen,
+                    cat_id: 1,
+                }
+            }
         })
         setClosed(true)
         setText('')
         setPic('')
-        setGen('Male')
+        setGen(Gender.Male)
     }
 
     const handleCancel = () => {
         setClosed(true)
         setText('')
         setPic('')
-        setGen('Male')
+        setGen(Gender.Male)
     }
 
     const chooseColor = () => {
         return '#bfeff8'
     }
 
-    const handleGenPress = (gen: string) => {
+    const handleGenPress = (gen: Gender) => {
         setGen(gen)
     }
+
+    useEffect(() => {
+        console.log(newFileData)
+    }, [newFileData])
+    
 
   return (
     <Pressable style={styles.root} onPress={handleCancel}>
@@ -60,12 +89,12 @@ const PFilesModal = ({ setClosed }: PFilesModalProps) => {
           <View style={styles.item}>
               <View style={styles.genPicker}>
                   <Pressable style={styles.genButton}
-                  onPress={() => handleGenPress('Male')}
+                  onPress={() => handleGenPress(Gender.Male)}
                   >
                       <Text style={styles.genTitle}>Male</Text>
                   </Pressable>
                   <Pressable style={styles.genButton}
-                  onPress={() => handleGenPress('Female')}
+                  onPress={() => handleGenPress(Gender.Female)}
                   >
                       <Text style={styles.genTitle}>Female</Text>
                   </Pressable>

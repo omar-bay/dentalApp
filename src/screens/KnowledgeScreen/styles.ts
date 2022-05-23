@@ -85,7 +85,9 @@ const styles = StyleSheet.create({
     postContainer: {
         marginTop: 15
     },
-    post: {},
+    post: {
+        fontFamily: 'sans-serif-medium'
+    },
     keywordContainer: {
         width: '70%',
         alignItems: 'flex-end',
@@ -93,7 +95,8 @@ const styles = StyleSheet.create({
     },
     keyword: {
         fontSize: 16,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontFamily: 'serif'
     }
 })
 

@@ -1,6 +1,7 @@
 import { Button, Dimensions, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Gender, useCreateFileMutation, useCreatePatientMutation } from '../../../libs/generated/graphql';
+import { gql, useMutation } from '@apollo/client';
 
 interface PFilesModalProps {
     setClosed: Dispatch<SetStateAction<boolean>>
@@ -11,16 +12,11 @@ const PFilesModal = ({ setClosed }: PFilesModalProps) => {
     const [pic, setPic] = useState('');
     const [gen, setGen] = useState(Gender.Male)
 
-    const [createFileMutation, { data:newFileData, loading:newFileLoading, error:newFileError }] = useCreateFileMutation();
+    const [createFile] = useCreateFileMutation();
     const [createPatient] = useCreatePatientMutation();
 
-    const handleSubmit = () => {
-        // console.log({
-        //     name: text,
-        //     profile_pic: pic,
-        //     gender: gen
-        // })
-        createFileMutation({
+    const handleSubmit = async () => {
+        const newFileResponse = await createFile({
             variables: {
                 input: {
                     assignee_id: 1,
@@ -28,18 +24,19 @@ const PFilesModal = ({ setClosed }: PFilesModalProps) => {
                 }
             }
         })
-        newFileData &&
-        createPatient({
-            variables: {
-                input: {
-                    file_number: newFileData.createFile.file?.file_number,
-                    name: text,
-                    profile_pic_url: pic,
-                    gender: gen,
-                    cat_id: 1,
-                }
-            }
-        })
+        console.log(newFileResponse.data.createFile.file.file_number)
+        // newFileData &&
+        // createPatient({
+        //     variables: {
+        //         input: {
+        //             file_number: newFileData.createFile.file?.file_number,
+        //             name: text,
+        //             profile_pic_url: pic,
+        //             gender: gen,
+        //             cat_id: 1,
+        //         }
+        //     }
+        // })
         setClosed(true)
         setText('')
         setPic('')
@@ -59,12 +56,7 @@ const PFilesModal = ({ setClosed }: PFilesModalProps) => {
 
     const handleGenPress = (gen: Gender) => {
         setGen(gen)
-    }
-
-    useEffect(() => {
-        console.log(newFileData)
-    }, [newFileData])
-    
+    }    
 
   return (
     <Pressable style={styles.root} onPress={handleCancel}>

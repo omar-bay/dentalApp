@@ -12,6 +12,16 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         width: '100%',
     },
+    new_service_button: {
+        backgroundColor: 'white',
+        borderRadius: 3,
+        height: 50,
+        width: '94%',
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 8
+    }
 })
 
 export default styles

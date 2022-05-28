@@ -5,7 +5,7 @@ import styles from './styles'
 import { Nav, Service, Static_Service } from '../../Types'
 import PServicesHeader from '../../components/PServicesHeader'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import IconBack from 'react-native-vector-icons/AntDesign'
+import IconPlus from 'react-native-vector-icons/FontAwesome5'
 import SModal from '../../components/SModal'
 import { useQuery } from 'react-query'
 import axios from 'axios'
@@ -85,6 +85,10 @@ const PServicesScreen = ({navigation, route}: Nav) => {
         isLoading: serviceLogIsLoading
     } = useServiceLogQuery(cred?.file_number);
 
+    const newService = () => {
+        console.log('new Service')
+    }
+
     useEffect(() => {
         let temp = []
         if(serviceLogData != undefined) {
@@ -141,6 +145,12 @@ const PServicesScreen = ({navigation, route}: Nav) => {
             showsVerticalScrollIndicator={false}
             >
                 <View style={{ height: 200 }}></View>
+                <Pressable
+                style={styles.new_service_button}
+                onPress={newService}
+                >
+                    <IconPlus name="plus" size={30}/>
+                </Pressable>
                 {
                     Services!=[] && Services?.map((service, index) => (
                         service?.service?.name.toLowerCase().includes(text.toLowerCase()) &&

@@ -127,3 +127,5 @@ adding the task is being done in the SModal
 probably i cannot query because i'm not authorized
 
 the modal grows with keyboard because it was height 100% with the page of 100%
+
+the file_number in the patient is what links them

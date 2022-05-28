@@ -24,7 +24,6 @@ const PFilesModal = ({ setClosed }: PFilesModalProps) => {
                 }
             }
         })
-        // console.log(newFileResponse.data.createFile.file.file_number)
         newFileResponse.data.createFile.file.file_number &&
         createPatient({
             variables: {

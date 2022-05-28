@@ -35,7 +35,7 @@ const RTaskStack = ({ stage, setClosed, service, setNewTask, newTask }: RTaskSta
     return (
         <View style={chooseColor()}>
             {/* Stage Name */}
-            <View style={styles.stage_container}><Text style={{ color: 'black' }}>{stage}</Text></View>
+            <View style={styles.stage_container}><Text style={{ color: 'black', fontFamily: 'sans-serif-light' }}>{stage}</Text></View>
 
             {/* Plus & RTasks */}
             <View style={styles.tasks}>

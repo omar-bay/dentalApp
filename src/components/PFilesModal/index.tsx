@@ -24,19 +24,19 @@ const PFilesModal = ({ setClosed }: PFilesModalProps) => {
                 }
             }
         })
-        console.log(newFileResponse.data.createFile.file.file_number)
-        // newFileData &&
-        // createPatient({
-        //     variables: {
-        //         input: {
-        //             file_number: newFileData.createFile.file?.file_number,
-        //             name: text,
-        //             profile_pic_url: pic,
-        //             gender: gen,
-        //             cat_id: 1,
-        //         }
-        //     }
-        // })
+        // console.log(newFileResponse.data.createFile.file.file_number)
+        newFileResponse.data.createFile.file.file_number &&
+        createPatient({
+            variables: {
+                input: {
+                    file_number: newFileResponse.data.createFile.file?.file_number,
+                    name: text,
+                    profile_pic_url: pic,
+                    gender: gen,
+                    cat_id: 1,
+                }
+            }
+        })
         setClosed(true)
         setText('')
         setPic('')

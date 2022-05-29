@@ -100,7 +100,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
         }
         setServices(temp)
     }, [serviceLogData]);
-
+    
     return (
         <View style={{ flex: 1 }}>
             {/* header */}

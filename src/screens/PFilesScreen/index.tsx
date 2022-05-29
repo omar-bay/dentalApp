@@ -113,7 +113,13 @@ const PFilesScreen = ({navigation, route}: Nav) => {
                 filesIsLoading && <Text>Loading..</Text> ||
                 !filesError && filesData &&
                 PFiles.map((PFile: any) => (
-                    <FileCart key={PFile.file_number} cred={PFile.patient} services={PFile.services} navigation={navigation}/>
+                    <FileCart
+                    key={PFile.file_number}
+                    file_number={PFile.file_number}
+                    cred={PFile.patient}
+                    services={PFile.services}
+                    navigation={navigation}
+                    />
                 ))
             }
             </ScrollView>

@@ -12,6 +12,7 @@ import axios from 'axios'
 import { DB_URL } from '../../global'
 import { useHrAssigneesQuery, useServicelogsQuery } from '../../../libs/generated/graphql'
 import Service_List from '../../data/ServiceList'
+import ServiceModal from '../../components/ServiceModal'
 
 const useServiceLogQuery = (fn: number) => {
     // fetching services data
@@ -48,6 +49,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
     const [Services, setServices] = useState([]);
     const [text, setText] = useState('')
     const [closed, setClosed] = useState(true)
+    const [newServiceClosed, setNewServiceClosed] = useState(true);
     const [newTask, setNewTask] = useState({})
     const [newTaskName, setNewTaskName] = useState('')
     const [newTaskDesc, setNewTaskDesc] = useState('')
@@ -69,7 +71,6 @@ const PServicesScreen = ({navigation, route}: Nav) => {
         extrapolate: 'clamp'
     })
 
-
     const renderList = ({item}) => {
         return (
             <ServiceCart navigation={navigation} service={item} />
@@ -77,6 +78,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
     }
 
     const cred = route.params.cred
+    const file_number = route.params.file_number
     // const Services = route.params.services
 
     const {
@@ -84,10 +86,6 @@ const PServicesScreen = ({navigation, route}: Nav) => {
         error: serviceLogError,
         isLoading: serviceLogIsLoading
     } = useServiceLogQuery(cred?.file_number);
-
-    const newService = () => {
-        console.log('new Service')
-    }
 
     useEffect(() => {
         let temp = []
@@ -147,7 +145,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
                 <View style={{ height: 200 }}></View>
                 <Pressable
                 style={styles.new_service_button}
-                onPress={newService}
+                onPress={()=>setNewServiceClosed(false)}
                 >
                     <IconPlus name="plus" size={30}/>
                 </Pressable>
@@ -177,6 +175,13 @@ const PServicesScreen = ({navigation, route}: Nav) => {
                 setNewTaskName={setNewTaskName}
                 newTaskDesc={newTaskDesc}
                 setNewTaskDesc={setNewTaskDesc}
+                />
+            )}
+            {!newServiceClosed && (
+                <ServiceModal
+                file_number={file_number}
+                setClosed={setNewServiceClosed}
+                patient_id={cred.id}
                 />
             )}
 

@@ -116,6 +116,7 @@ const PFilesScreen = ({navigation, route}: Nav) => {
                     <FileCart
                     key={PFile.file_number}
                     file_number={PFile.file_number}
+                    assignee_id={PFile.assignee_id}
                     cred={PFile.patient}
                     services={PFile.services}
                     navigation={navigation}

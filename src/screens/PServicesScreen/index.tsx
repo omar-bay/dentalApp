@@ -78,7 +78,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
     }
 
     const cred = route.params.cred
-    const file_number = route.params.file_number
+    const { file_number, assignee_id } = route.params.file_info
     // const Services = route.params.services
 
     const {
@@ -180,6 +180,7 @@ const PServicesScreen = ({navigation, route}: Nav) => {
             {!newServiceClosed && (
                 <ServiceModal
                 file_number={file_number}
+                assignee_id={assignee_id}
                 setClosed={setNewServiceClosed}
                 patient_id={cred.id}
                 />

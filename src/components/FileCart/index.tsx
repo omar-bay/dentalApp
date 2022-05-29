@@ -9,18 +9,22 @@ import axios from 'axios';
 
 interface FileCartProps {
     file_number: number
+    assignee_id: number
     cred: Patient,
     navigation: Nav['navigation'],
     services: Service[]
 }
 
-const FileCart = ({ file_number, cred, navigation, services }: FileCartProps) => {
+const FileCart = ({ file_number, assignee_id, cred, navigation, services }: FileCartProps) => {
 
     const handlePress = (navigation: Nav['navigation']) => {
         navigation.navigate("PServicesScreen", {
             cred: cred,
             services: services,
-            file_number: file_number
+            file_info: {
+                file_number,
+                assignee_id
+            }
         })
     }
 

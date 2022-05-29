@@ -9,10 +9,11 @@ import Task_List from '../../data/TaskList'
 interface ServiceModalProps {
     setClosed: Dispatch<SetStateAction<boolean>>
     file_number: number
+    assignee_id: number
     patient_id: number
 }
 
-const ServiceModal = ({ setClosed, file_number, patient_id }: ServiceModalProps) => {
+const ServiceModal = ({ setClosed, file_number, assignee_id, patient_id }: ServiceModalProps) => {
     const [text, setText] = useState('');
 
     const [updateTask] = useUpdateTaskMutation()
@@ -46,6 +47,7 @@ const ServiceModal = ({ setClosed, file_number, patient_id }: ServiceModalProps)
 
     console.log({
         file_number,
+        assignee_id,
         patient_id
     })
 

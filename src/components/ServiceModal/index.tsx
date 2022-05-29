@@ -1,11 +1,7 @@
-import { Button, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import MyDatePicker from '../MyDatePicker'
-import { formatDate } from '../../screens/TaskScreen'
-import { Stage, Task } from '../../Types'
-import { useUpdateTaskMutation } from '../../../libs/generated/graphql'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
+import React, { Dispatch, SetStateAction, useState } from 'react'
+import { useAddServiceMutation, useUpdateTaskMutation } from '../../../libs/generated/graphql'
 import ServicePicker from '../ServicePicker'
-import Task_List from '../../data/TaskList'
 
 interface ServiceModalProps {
     setClosed: Dispatch<SetStateAction<boolean>>
@@ -19,15 +15,26 @@ const ServiceModal = ({ setClosed, file_number, assignee_id, patient_id }: Servi
     const [textInputValue, setTextInputValue] = useState("");
     const [idInputValue, setIdInputValue] = useState(1);
 
-    const [updateTask] = useUpdateTaskMutation()
+    const [addServiceMutation] = useAddServiceMutation()
 
     const handleSubmit = () => {
-        console.log({
-            file_number,
-            assignee_id,
-            patient_id,
-            service_id: idInputValue,
-        })        
+        // console.log({
+        //     file_number,
+        //     assignee_id,
+        //     patient_id,
+        //     service_id: idInputValue,
+        // })
+        addServiceMutation({
+            variables: {
+                input: {
+                    service_id: idInputValue,
+                    patient_id,
+                    filenumber: file_number,
+                    assignee_id,
+                    date: new Date()
+                }
+            }
+        })
         setClosed(true)
         setText('')
     }
@@ -93,18 +100,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     label: {},
-    input: {
-        width: '100%',
-        borderBottomWidth: 0.2
-    },
-    dateHolder: {
-        width: '100%',
-        borderBottomWidth: 0.5,
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: 5,
-        padding: 10
-    },
     button: {
         backgroundColor: '#bfeff8',
         width: '80%',

@@ -4,6 +4,7 @@ import MyDatePicker from '../MyDatePicker'
 import { formatDate } from '../../screens/TaskScreen'
 import { Stage, Task } from '../../Types'
 import { useUpdateTaskMutation } from '../../../libs/generated/graphql'
+import ServicePicker from '../ServicePicker'
 import Task_List from '../../data/TaskList'
 
 interface ServiceModalProps {
@@ -15,23 +16,18 @@ interface ServiceModalProps {
 
 const ServiceModal = ({ setClosed, file_number, assignee_id, patient_id }: ServiceModalProps) => {
     const [text, setText] = useState('');
+    const [textInputValue, setTextInputValue] = useState("");
+    const [idInputValue, setIdInputValue] = useState(1);
 
     const [updateTask] = useUpdateTaskMutation()
 
     const handleSubmit = () => {
-        // updateTask({
-        //     variables: {
-        //         input: {
-        //             service_log_id: task.service_log_id,
-        //             name: task.name,
-        //             description: task.description,
-        //             stage: task.stage,
-        //             date: new Date(Math.floor(task.date)),
-        //             assignee_notes: text
-        //         },
-        //         updateTaskId: task.id
-        //     }
-        // })
+        console.log({
+            file_number,
+            assignee_id,
+            patient_id,
+            service_id: idInputValue,
+        })        
         setClosed(true)
         setText('')
     }
@@ -45,22 +41,15 @@ const ServiceModal = ({ setClosed, file_number, assignee_id, patient_id }: Servi
         return '#bfeff8'
     }
 
-    console.log({
-        file_number,
-        assignee_id,
-        patient_id
-    })
-
   return (
     <Pressable style={styles.root} onPress={handleCancel}>
       <Pressable style={styles.container}>
           <Text style={styles.title}>Service</Text>
           <View style={styles.item}>
-              <TextInput
-              style={styles.input}
-              onChangeText={setText}
-              value={text}
-              multiline={true}
+              <ServicePicker
+              setIdInputValue={setIdInputValue}
+              setTextInputValue={setTextInputValue}
+              textInputValue={textInputValue}
               />
           </View>
           <Pressable

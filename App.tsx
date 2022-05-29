@@ -50,6 +50,7 @@ import MyDatePicker from './src/components/MyDatePicker';
 import TestPicker from './src/tests/TestPicker';
 import PickerWithModalTest from './src/tests/PickerWithModalTest';
 import SegmentedControlTest from './src/tests/SegmentControlTest';
+import ServicePicker from './src/components/ServicePicker';
 
 const Section: React.FC<{
   title: string;

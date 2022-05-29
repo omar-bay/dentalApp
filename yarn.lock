@@ -8095,7 +8095,7 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
-"prop-types@^15.7.2":
+"prop-types@^15.5.10", "prop-types@^15.7.2":
   "integrity" "sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   "version" "15.7.2"
@@ -8271,6 +8271,13 @@
     "invariant" "^2.2.4"
     "lodash" "^4.17.21"
     "prop-types" "^15.7.2"
+
+"react-native-modal-selector@^2.1.0":
+  "integrity" "sha512-aXOF8tC69XXfI6kbIskRRLe8xcexiYc21GD0s8gNz/Pl1FT8921PuLz647uY2le+fsJsztX6Taaf3mij/Noc+A=="
+  "resolved" "https://registry.npmjs.org/react-native-modal-selector/-/react-native-modal-selector-2.1.0.tgz"
+  "version" "2.1.0"
+  dependencies:
+    "prop-types" "^15.5.10"
 
 "react-native-navigation-bar-color@^2.0.1":
   "integrity" "sha512-1kE/oxWt+HYjRxdZdvke9tJ365xaee5n3+euOQA1En8zQuSbOxiE4SYEGM7TeaWnmLJ0l37mRnPHaB2H4mGh0A=="

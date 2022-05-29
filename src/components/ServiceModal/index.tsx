@@ -18,12 +18,6 @@ const ServiceModal = ({ setClosed, file_number, assignee_id, patient_id }: Servi
     const [addServiceMutation] = useAddServiceMutation()
 
     const handleSubmit = () => {
-        // console.log({
-        //     file_number,
-        //     assignee_id,
-        //     patient_id,
-        //     service_id: idInputValue,
-        // })
         addServiceMutation({
             variables: {
                 input: {

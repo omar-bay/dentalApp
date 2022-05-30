@@ -8,7 +8,7 @@ interface ResumeProps {
 
 const Resume = ({ cv }: ResumeProps) => {
   const source = {
-    uri: cv,
+    uri: cv || 'https://www.cbs.dk/files/cbs.dk/cv_template_sheet_en.pdf',
     cache: true 
   };
 

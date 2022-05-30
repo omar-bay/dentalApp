@@ -11,13 +11,21 @@ import { NavigationRouteContext } from '@react-navigation/native'
 import axios from 'axios'
 import { DB_URL } from '../../global'
 import { useQuery } from 'react-query'
+import { useHrAssigneeQuery } from '../../../libs/generated/graphql'
 
 const useHrQuery = (hr_id: number) => {
     const HR_QUERY = `
     {
-        hrAssignee(id: 1) {
-            name
-            profile_pic_url
+        hrAssignee(id: ${hr_id}) {
+            errors {
+              field
+              message
+            }
+            hr_assignee {
+              id
+              name
+              profile_pic_url
+            }
         }
     }
     `;
@@ -43,8 +51,7 @@ interface ServiceCartProps {
 }
 
 const ServiceCart = ({ navigation, service, setNewTask, newTask, setClosed }: ServiceCartProps) => {
-    // const res = useHrQuery(service?.assignee_id || 1);
-    // console.log(res)
+    const res = useHrQuery(service?.assignee_id || 1);
 
     const servicePressed = () => {
         navigation.navigate('TaskListScreen', {
@@ -64,7 +71,7 @@ const ServiceCart = ({ navigation, service, setNewTask, newTask, setClosed }: Se
                         <Image
                         source={{
                             // uri: `data:image/png;base64,${service?.assignee?.profile_pic}`
-                            uri: service?.assignee?.profile_pic_url
+                            uri: res?.data?.hrAssignee?.hr_assignee?.profile_pic_url
                         }}
                         style={styles.profileImg}
                         />
